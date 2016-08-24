@@ -1,0 +1,100 @@
+<style>
+    span.ex {
+        font:bold 12px Verdana, Arial, Helvetica, sans-serif;
+        color:blue;
+    }
+
+    span.ext {
+        font:bold 14px Verdana, Arial, Helvetica, sans-serif;
+        color:red;
+    }
+
+    div.ex {
+        background-color:#EEEEFF;
+        margin-top:8px;
+        padding:8px;
+        font:normal 11px/125% Verdana, Arial, Helvetica, sans-serif;
+    }
+
+    span.paren {
+        color:#888888;
+        font:italic 10px/125% Verdana, Arial, Helvetica, sans-serif;
+    }
+
+    table.ex {
+        padding:8px;
+        font:10px Verdana, Arial, Helvetica, sans-serif;
+    }
+
+    table.ex td {
+         border-bottom:1px solid #999999;
+    }
+
+    table.ex th {
+        background-color:#DDDDDD;
+        border-bottom:2px solid #999999;
+    }
+
+    <!--- for AWDebugRemoteOpen -->
+    .ro {
+        text-decoration:none;
+        cursor:pointer;
+    }
+
+    .ro:hover{
+        text-decoration:underline;
+    }
+
+    .boxWrapper {
+        border:1px solid gray;
+        margin:10px;
+        padding:10px;
+    }
+    
+</style>
+<a:If ifTrue="^showRawStackTrace:$true">
+    <div style="text-align:right">
+        <a href="#" oncLick='document.getElementById("rawStackTrace").style.display="block"' awname="SHOW_STACK_TRACE">Show Raw Stack Trace</a>
+    </div>
+    <form id="rawStackTrace" style="display:none; margin:20px">
+        <textarea rows="60" cols="200" awname="STACK_TRACE">
+            <a:String value="$stackTrace" escapeHtml="$true"/>\
+        </textarea>
+    </form>
+    <a:If ifTrue="$hasTestExceptionInfoComponent">
+        <a:IncludeComponent awcomponentName="$testExceptionInfoComponent" exception="$exception" stackTrace="$stackTrace"/>
+    </a:If>
+</a:If>
+<div class="$^wrapperClass:boxWrapper">
+    <table class="ex">
+        <tr><td colspan="3"><div style="width:800px"/></td></tr>
+        <tr><td colspan="3">
+            <span class="ext"><a:String value="$exType"/>:</span><br/>
+            <span class="ex">$exTitle</span>
+            <div class="ex"><a:PrimitiveString value="$additionalMessage"/></div>
+        </td></tr>
+        <a:For item="$parsedException" list="$parseList">
+            <tr><td colspan="3">
+                <a:If ifTrue="$showCurrentTitle">
+                    <br/>
+                    <span class="ext"><a:String value="$exType"/>:</span><br/>
+                    <span class="ex">$exTitle</span>
+                </a:If>
+                <div _ifTrue="$showCurrentMessage" class="ex"><a:PrimitiveString value="$additionalMessage"/></div>
+            </td></tr>
+                <tr>
+                    <th>Template</th>
+                    <th>Method</th>
+                    <th>Java File</th>
+                </tr>
+                <a:For list="$parsedException.frames" item="$currentFrameInfo" index="$frameIndex">
+                    <tr _ifTrue="$shouldDisplayCurrentFrame">
+                        <td><b><a:DebugRemoteOpen>$currentFrameInfo.template</a:DebugRemoteOpen></b></td>
+                        <td><a:PrimitiveString value="$wrappedMethodString"/>()</td>
+                        <td><a:DebugRemoteOpen>$currentFrameInfo.file</a:DebugRemoteOpen></td>
+                    </tr>
+                </a:For>
+        </a:For>
+    </table>
+</div>
+<br/>

@@ -1,0 +1,123 @@
+AribaWeb Build Instructions
+
+$Id: $
+
+Basic steps:
+  0) Install pre-requisites and set up your environment variables
+
+  1) Download AribaWeb and unzip it
+
+  2) In a shell, "cd" to top level AW installation directory
+
+  3) Run bin/start
+
+  4) Run test apps (via tomcat)
+
+  5) Experiment with making changes!
+
+
+Step 0) Install pre-requisites and set up your environment variables
+
+    - Install the Java5 or Java6 JDK (http://java.sun.com/javase/downloads/index_jdk5.jsp)
+        - set your JAVA_HOME
+
+    - No need to install Ant, or Tomcat -- they're now bundled (in tools/)
+	      If you do want to use your own, make sure your have Ant 1.7.1 (note the ".1"!)
+	      and set your ANT_HOME appropriately.
+
+
+Step 1) Download AribaWeb
+
+Download a zip of the archive, and uncompress it into a directory of your choice.
+
+
+Step 2) CD to the root directory of this AW installation
+
+The root directory contains a top-level build.xml file.  Ant finds the
+build.xml file to process based on the current working directory.
+
+The default property settings in this file (e.g. for build.dir) should
+work as is.  However, you can override them as you wish by creating a build.properties
+file in one of the following locations:
+    ./build.properties
+    ~/build.properties
+    ~/aribaweb.build.properties
+
+(~ represents your home directory.
+
+
+Step 3) Run bin/aw ant
+
+Note: the bin/aw command will ensure that your AW_HOME, ANT_HOME and CATALINA_HOME are set
+correctly before then invoking the ant command.  If you manually / explicitly set these in
+your environment, then you can run ant directly.
+Ant will by default look for the "build.xml" file in your current directory, and invoke the 
+"tomcat-build" target.
+
+Some useful targets include:
+    - jars
+        Compile AW, create jars in lib/ directory
+    - wars
+        jars + create demo wars in the webapps/ directory
+    - tomcat
+        invoke tomcat using the AW top-level dir as the CATALINA_BASE
+        (and setting ARIBA_DEMOSHELL_HOME to ./src/demoshell/site)
+    - tomcat-build
+        build wars, then run tomcat (default target)
+
+Step 4) Run (via tomcat)
+
+    - You no longer need to install Tomcat -- it's bundled in tools/.
+        However, if you want to your own copy, use version 5.5.x or 6.x and set your
+        CATALINA_HOME environment to point at your tomcat install directory
+
+    - Run "ant tomcat"
+
+    - Once the apps are running, try to click on the "AW Options" link at the
+      top center of the window and select "Show Component Inspector".  A window will open
+      (if you instruct your browser popup blocker to allow it) showing the hierarchical
+      component structure of whatever page you are on in the other window.  As you click
+      in the main window, this "Inspector" will update.  Now, click on one of the rows
+      in the inspector table and you will be able to see the .awl template for that
+      part of the page.  This is an excellent way to browse the code behind the examples.
+
+      TO DEBUG:
+      Set the following variables in your environment:
+	        export JPDA_ADDRESS=8000
+        	export JPDA_TRANSPORT=dt_socket
+      Then you can attach from your IDE.
+
+
+Step 5) Experiment with making changes!
+
+    - The code in demoshell/site is automatically enabled for "rapid turnaround" -- i.e.
+      you can edit a .awl file, click refresh (F5) on your browser, and immediately see
+      the change take effect.
+
+    - If you are running with the default ant file and source structure, your apps
+      will be configured automatically for "rapid-turnaround" on your .awl files.
+      To override this, you can tell AW where to find your source directories by
+      setting the ARIBA_AW_SEARCH_PATH variable in your shell.  e.g.:
+
+        export ARIBA_AW_SEARCH_PATH="$AW_HOME/src/samples/simple;$AW_HOME/src/aribaweb;..."
+
+      (Assuming you've set an AW_HOME variable to point at the root directory of your
+       AribaWeb installation)
+
+Troubleshooting
+---------------
+If you attempt to rebuild the full AribaWeb distribution from source you
+may run into an "java.lang.OutOfMemoryError: PermGen space" error.  You
+can solve this problem by giving Ant more Perm space, as follows:
+
+    export ANT_OPTS=-XX:MaxPermSize=256m
+
+
+Support
+-------
+
+For the time being, if you have questions about aribaweb, contact:
+    craigf (at) ariba dot com
+
+---
+This software is covered under the Apache License Version 2.0 (see LICENSE.txt)

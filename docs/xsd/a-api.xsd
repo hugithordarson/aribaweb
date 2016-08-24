@@ -1,0 +1,908 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<!-- definition of AribaWeb elements for namespace 'a' -->
+<xs:element name="ActiveImage">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="filename" type="xs:string" use="required"/>
+        <xs:attribute name="width" type="xs:string"/>
+        <xs:attribute name="height" type="xs:string"/>
+        <xs:attribute name="fullUrl" type="xs:string"/>
+        <xs:attribute name="border" type="xs:string"/>
+        <xs:attribute name="title" type="xs:string"/>
+        <xs:attribute name="alt" type="xs:string"/>
+        <xs:attribute name="src" type="xs:string"/>
+        <xs:attribute name="submitForm" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="Catch">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="Content">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="templateName" type="xs:string"/>
+        <xs:attribute name="disabled" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="CurrWindowDecl">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="DragContainer">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="tagName" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="bh" type="xs:string"/>
+        <xs:attribute name="dragAction" type="xs:string"/>
+        <xs:attribute name="type" type="xs:string" use="required"/>
+        <xs:attribute name="showParent" type="xs:string"/>
+        <xs:attribute name="omitTags" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="DropContainer">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="tagName" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="style" type="xs:string"/>
+        <xs:attribute name="dropClass" type="xs:string"/>
+        <xs:attribute name="dropAction" type="xs:string" use="required"/>
+        <xs:attribute name="type" type="xs:string"/>
+        <xs:attribute name="types" type="xs:string"/>
+        <xs:attribute name="omitTags" type="xs:string"/>
+        <xs:attribute name="disableDrop" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="EditableRegion">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="disabled" type="xs:string"/>
+        <xs:attribute name="readonly" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="ErrorManagerScope">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="FileDownload">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="completeAction" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="FocusRegion">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="focus" type="xs:string"/>
+        <xs:attribute name="allowAnchor" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="For">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="list" type="xs:string" use="required"/>
+        <xs:attribute name="item" type="xs:string"/>
+        <xs:attribute name="count" type="xs:string"/>
+        <xs:attribute name="index" type="xs:string"/>
+        <xs:attribute name="start" type="xs:string"/>
+        <xs:attribute name="scopeSubcomponentsByItem" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="GenericActionTag">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="tagName" type="xs:string" use="required"/>
+        <xs:attribute name="bh" type="xs:string"/>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="disableClick" type="xs:string"/>
+        <xs:attribute name="disabled" type="xs:string"/>
+        <xs:attribute name="formValue" type="xs:string"/>
+        <xs:attribute name="isTrigger" type="xs:string"/>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="omitTags" type="xs:string"/>
+        <xs:attribute name="submitForm" type="xs:string"/>
+        <xs:attribute name="target" type="xs:string"/>
+        <xs:attribute name="windowAttributes" type="xs:string"/>
+        <xs:attribute name="tabIndex" type="xs:string"/>
+        <xs:attribute name="disableKeyPress" type="xs:string"/>
+        <xs:attribute name="onClick" type="xs:string"/>
+        <xs:attribute name="onKeyPress" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="GroupingRepetition">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="sublist" type="xs:string" use="required"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="HighLightedErrorScope">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="errorKey" type="xs:string"/>
+        <xs:attribute name="errorValueSource" type="xs:string"/>
+        <xs:attribute name="errorFieldPath" type="xs:string"/>
+        <xs:attribute name="errorGroupName" type="xs:string"/>
+        <xs:attribute name="omitTags" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="HoverContainer">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="tagName" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="HoverControl">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="tagName" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="If">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="ifTrue" type="xs:string"/>
+        <xs:attribute name="ifFalse" type="xs:string"/>
+        <xs:attribute name="equalNull" type="xs:string"/>
+        <xs:attribute name="notEqualNull" type="xs:string"/>
+        <xs:attribute name="isEqual" type="xs:string"/>
+        <xs:attribute name="isNotEqual" type="xs:string"/>
+        <xs:attribute name="isGreaterThan" type="xs:string"/>
+        <xs:attribute name="isGreaterThanOrEqual" type="xs:string"/>
+        <xs:attribute name="isLessThan" type="xs:string"/>
+        <xs:attribute name="isLessThanOrEqual" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="IncludeBlock">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="templateName" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="IncludeComponent">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="awcomponentName" type="xs:string"/>
+        <xs:attribute name="awcomponentReference" type="xs:string"/>
+        <xs:attribute name="awcomponent" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="JSDebug">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="enabled" type="xs:string"/>
+        <xs:attribute name="showHistoryFrame" type="xs:string"/>
+        <xs:attribute name="showRequestFrame" type="xs:string"/>
+        <xs:attribute name="markRefreshUpdates" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="LazyAction">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="action" type="xs:string" use="required"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="LazyDiv">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="ifTrue" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="LazyDivInternals">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="Local">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="key" type="xs:string" use="required"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="MetaTemplateWrapper">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="RefreshRegion">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="tagName" type="xs:string"/>
+        <xs:attribute name="elementId" type="xs:string"/>
+        <xs:attribute name="useId" type="xs:string"/>
+        <xs:attribute name="style" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="isScope" type="xs:string"/>
+        <xs:attribute name="alwaysRender" type="xs:string"/>
+        <xs:attribute name="dropAction" type="xs:string"/>
+        <xs:attribute name="dragAction" type="xs:string"/>
+        <xs:attribute name="disabled" type="xs:string"/>
+        <xs:attribute name="omitTags" type="xs:string"/>
+        <xs:attribute name="ignore" type="xs:string"/>
+        <xs:attribute name="forceRefreshOnChange" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="RelocatableDiv">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="style" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="RemoteLink">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="RichClientFooter">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="Singleton">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="key" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="SwitchTemplate">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="ViewportContainer">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="tagName" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="XBasicScriptFunctions">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="sessionless" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="XLogString">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="value" type="xs:string" use="required"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="ActionCheckbox">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="checked" type="xs:string"/>
+        <xs:attribute name="isExternal" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="Area">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="pageName" type="xs:string"/>
+        <xs:attribute name="disabled" type="xs:string"/>
+        <xs:attribute name="onClick" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="Body">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="filename" type="xs:string"/>
+        <xs:attribute name="onLoad" type="xs:string"/>
+        <xs:attribute name="background" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="Browser">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="list" type="xs:string" use="required"/>
+        <xs:attribute name="item" type="xs:string"/>
+        <xs:attribute name="index" type="xs:string"/>
+        <xs:attribute name="selections" type="xs:string"/>
+        <xs:attribute name="multiple" type="xs:string"/>
+        <xs:attribute name="size" type="xs:string"/>
+        <xs:attribute name="noSelectionString" type="xs:string"/>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="onChange" type="xs:string"/>
+        <xs:attribute name="isRefresh" type="xs:string"/>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="isItemSelected" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="Checkbox">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="type" type="xs:string"/>
+        <xs:attribute name="value" type="xs:string"/>
+        <xs:attribute name="checked" type="xs:string"/>
+        <xs:attribute name="isExternal" type="xs:string"/>
+        <xs:attribute name="onClick" type="xs:string"/>
+        <xs:attribute name="isRefresh" type="xs:string"/>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="disabled" type="xs:string"/>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="awname" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="ClientSideScript">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="filename" type="xs:string"/>
+        <xs:attribute name="language" type="xs:string"/>
+        <xs:attribute name="isSingleton" type="xs:string"/>
+        <xs:attribute name="scriptFile" type="xs:string"/>
+        <xs:attribute name="scriptString" type="xs:string"/>
+        <xs:attribute name="elementId" type="xs:string"/>
+        <xs:attribute name="invokeAction" type="xs:string"/>
+        <xs:attribute name="executeOnIncrementalUpdate" type="xs:string"/>
+        <xs:attribute name="globalScope" type="xs:string"/>
+        <xs:attribute name="forceDirectInclude" type="xs:string"/>
+        <xs:attribute name="synchronous" type="xs:string"/>
+        <xs:attribute name="executeOn" type="xs:string"/>
+        <xs:attribute name="handle" type="xs:string"/>
+        <xs:attribute name="RJSMayNotBeDefined" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="FileUpload">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="inputStream" type="xs:string"/>
+        <xs:attribute name="bytes" type="xs:string"/>
+        <xs:attribute name="file" type="xs:string"/>
+        <xs:attribute name="filename" type="xs:string"/>
+        <xs:attribute name="mimeType" type="xs:string"/>
+        <xs:attribute name="fileSizeExceeded" type="xs:string"/>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="newMode" type="xs:string"/>
+        <xs:attribute name="maxLength" type="xs:string"/>
+        <xs:attribute name="encrypt" type="xs:string"/>
+        <xs:attribute name="disabled" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="FileUploadInternals">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="inputStream" type="xs:string"/>
+        <xs:attribute name="bytes" type="xs:string"/>
+        <xs:attribute name="file" type="xs:string"/>
+        <xs:attribute name="filename" type="xs:string"/>
+        <xs:attribute name="mimeType" type="xs:string"/>
+        <xs:attribute name="fileSizeExceeded" type="xs:string"/>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="newMode" type="xs:string"/>
+        <xs:attribute name="maxLength" type="xs:string"/>
+        <xs:attribute name="encrypt" type="xs:string"/>
+        <xs:attribute name="disabled" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="Form">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="target" type="xs:string"/>
+        <xs:attribute name="fragmentIdentifier" type="xs:string"/>
+        <xs:attribute name="omitTags" type="xs:string"/>
+        <xs:attribute name="method" type="xs:string"/>
+        <xs:attribute name="onSubmit" type="xs:string"/>
+        <xs:attribute name="submitFormDefault" type="xs:string"/>
+        <xs:attribute name="id" type="xs:string"/>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="onKeyPress" type="xs:string"/>
+        <xs:attribute name="autocomplete" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="Frame">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="value" type="xs:string"/>
+        <xs:attribute name="pageName" type="xs:string"/>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="disableFramePageCache" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="Head">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="HiddenFormValue">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="Hyperlink">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="pageName" type="xs:string"/>
+        <xs:attribute name="submitForm" type="xs:string"/>
+        <xs:attribute name="onClick" type="xs:string"/>
+        <xs:attribute name="omitTags" type="xs:string"/>
+        <xs:attribute name="senderId" type="xs:string"/>
+        <xs:attribute name="href" type="xs:string"/>
+        <xs:attribute name="scrollToVisible" type="xs:string"/>
+        <xs:attribute name="target" type="xs:string"/>
+        <xs:attribute name="windowAttributes" type="xs:string"/>
+        <xs:attribute name="fragmentIdentifier" type="xs:string"/>
+        <xs:attribute name="onMouseDown" type="xs:string"/>
+        <xs:attribute name="behavior" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="IFrame">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="pageName" type="xs:string"/>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="value" type="xs:string"/>
+        <xs:attribute name="src" type="xs:string"/>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="Image">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="filename" type="xs:string"/>
+        <xs:attribute name="width" type="xs:string"/>
+        <xs:attribute name="fullUrl" type="xs:string"/>
+        <xs:attribute name="height" type="xs:string"/>
+        <xs:attribute name="border" type="xs:string"/>
+        <xs:attribute name="title" type="xs:string"/>
+        <xs:attribute name="alt" type="xs:string"/>
+        <xs:attribute name="src" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="ImageButton">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="filename" type="xs:string" use="required"/>
+        <xs:attribute name="width" type="xs:string"/>
+        <xs:attribute name="height" type="xs:string"/>
+        <xs:attribute name="border" type="xs:string"/>
+        <xs:attribute name="title" type="xs:string"/>
+        <xs:attribute name="alt" type="xs:string"/>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="JSListRepetition">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="list" type="xs:string" use="required"/>
+        <xs:attribute name="item" type="xs:string"/>
+        <xs:attribute name="condition" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="Label">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="MetaContentType">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="MetaRefresh">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="seconds" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="PageWrapper">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="hasForm" type="xs:string"/>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="applicationCSS" type="xs:string"/>
+        <xs:attribute name="debugTitle" type="xs:string"/>
+        <xs:attribute name="escapeTitle" type="xs:string"/>
+        <xs:attribute name="sessionless" type="xs:string"/>
+        <xs:attribute name="onLoad" type="xs:string"/>
+        <xs:attribute name="bodyClass" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="PasswordField">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="value" type="xs:string" use="required"/>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="formatter" type="xs:string"/>
+        <xs:attribute name="isRefresh" type="xs:string"/>
+        <xs:attribute name="errorKey" type="xs:string"/>
+        <xs:attribute name="onKeyDown" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="size" type="xs:string"/>
+        <xs:attribute name="placeholder" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="Popup">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="list" type="xs:string" use="required"/>
+        <xs:attribute name="item" type="xs:string"/>
+        <xs:attribute name="index" type="xs:string"/>
+        <xs:attribute name="selection" type="xs:string"/>
+        <xs:attribute name="noSelectionString" type="xs:string"/>
+        <xs:attribute name="onChange" type="xs:string"/>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="isRefresh" type="xs:string"/>
+        <xs:attribute name="disabled" type="xs:string"/>
+        <xs:attribute name="delayTakeValues" type="xs:string"/>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="size" type="xs:string"/>
+        <xs:attribute name="editable" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="PrivateHyperlink">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="pageName" type="xs:string"/>
+        <xs:attribute name="submitForm" type="xs:string"/>
+        <xs:attribute name="omitTags" type="xs:string"/>
+        <xs:attribute name="target" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="PrivateScript">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="RadioButton">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="value" type="xs:string" use="required"/>
+        <xs:attribute name="id" type="xs:string"/>
+        <xs:attribute name="onChange" type="xs:string"/>
+        <xs:attribute name="disabled" type="xs:string"/>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="RadioButtonEnvironment">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="selection" type="xs:string"/>
+        <xs:attribute name="isRefresh" type="xs:string"/>
+        <xs:attribute name="onClick" type="xs:string"/>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="omitTags" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="StyleSheet">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="filename" type="xs:string"/>
+        <xs:attribute name="media" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="SubmitButton">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="value" type="xs:string"/>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="style" type="xs:string"/>
+        <xs:attribute name="disabled" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="title" type="xs:string"/>
+        <xs:attribute name="target" type="xs:string"/>
+        <xs:attribute name="windowAttributes" type="xs:string"/>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="TextArea">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="value" type="xs:string" use="required"/>
+        <xs:attribute name="editable" type="xs:string"/>
+        <xs:attribute name="emptyStringValue" type="xs:string"/>
+        <xs:attribute name="errorKey" type="xs:string"/>
+        <xs:attribute name="escapeHtml" type="xs:string"/>
+        <xs:attribute name="formatter" type="xs:string"/>
+        <xs:attribute name="isRefresh" type="xs:string"/>
+        <xs:attribute name="maxLength" type="xs:string"/>
+        <xs:attribute name="showMaxLength" type="xs:string"/>
+        <xs:attribute name="onChange" type="xs:string"/>
+        <xs:attribute name="onKeyDown" type="xs:string"/>
+        <xs:attribute name="placeholder" type="xs:string"/>
+        <xs:attribute name="behavior" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="TextField">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="value" type="xs:string" use="required"/>
+        <xs:attribute name="editable" type="xs:string"/>
+        <xs:attribute name="formatter" type="xs:string"/>
+        <xs:attribute name="autoselect" type="xs:string"/>
+        <xs:attribute name="onChange" type="xs:string"/>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="isRefresh" type="xs:string"/>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="emptyStringValue" type="xs:string"/>
+        <xs:attribute name="placeholder" type="xs:string"/>
+        <xs:attribute name="id" type="xs:string"/>
+        <xs:attribute name="onKeyDown" type="xs:string"/>
+        <xs:attribute name="errorKey" type="xs:string"/>
+        <xs:attribute name="disabled" type="xs:string"/>
+        <xs:attribute name="behavior" type="xs:string"/>
+        <xs:attribute name="formValueStrings" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="size" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+</xs:schema>

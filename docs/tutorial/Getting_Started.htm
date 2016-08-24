@@ -1,0 +1,135 @@
+<html>
+<head>
+<title>AribaWeb -- Getting Started</title>
+<link href="../resource/widgets.css" type="text/css" rel=stylesheet>
+<script src="../resource/prettify.js" language=JavaScript></script>
+</head>
+<body class="doc" style="padding:8px" onload="prettyPrint()">
+<h2 id="contents">Contents</h2>
+
+<p>This guide describes how to install the AribaWeb distribution, get up and running with
+the examples, and start building your own application.</p>
+
+<h2 id="installation">Installation</h2>
+
+<p>The AribaWeb distribution .zip archive contains everything you need to get running
+(including Ant, Tomcat, and the HSQLDB Java database libraries) -- all you need is
+a valid installation of the Java5 or Java6 <em>JDK</em> (not just the JRE).</p>
+
+<ol>
+<li><p>Install the Java5 or Java6 JDK (http://java.sun.com/javase/downloads/index_jdk5.jsp)</p>
+
+<blockquote>
+  <p>set your JAVA_HOME (e.g. on Unix: <code>export JAVA_HOME="d:/jdk1.5"</code>,
+       on Windows set JAVA_HOME in your System Control Panel Advanced -> Environment Variables panel)</p>
+</blockquote></li>
+<li><p>Unzip the aribaweb.zip to an appropriate directory.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> Unzip to a path without any spaces in any parent directory names. --- i.e. on Windows unzip to d:/
+        rather than to your Desktop or Documents folders (both of which are in a folder called "Documents and Settings")</p>
+</blockquote></li>
+</ol>
+
+<h2 id="running_the_examples">Running The Examples</h2>
+
+<ol>
+<li><p><strong>Double-click in <code>aribaweb/bin</code> directory on <code>start</code></strong> (or, on Windows, <code>start.bat</code>)</p></li>
+<li><p>There is no step 2.  :-)</p></li>
+</ol>
+
+<p>If all goes according to plan, the examples webapps will be packed, tomcat will launch, and your browser
+will open to the Demo App <a href="http://localhost:9080/Demo/AribaWeb"
+
+
+>http://localhost:9080/Demo/AribaWeb</a>.
+From there you can click around the app, browse and search the online documentation, and see the
+source code behind the examples with Component Inspector (just Alt-click on any UI element).</p>
+
+<p>One other example app will launch as well:</p>
+
+<ul>
+<li><strong><a href="http://localhost:9080/MasterDetail/AribaWeb"
+
+
+>MasterDetail</a></strong> --  a MetaUI database app
+which includes AppCore (User, Group, Permission) and Compass text search.  (Note: for full functionality
+in MasterDetail, click the login link and login as Admin/ariba)</li>
+</ul>
+
+<p>Also included in the examples directory are:</p>
+
+<ul>
+<li><p><strong>GuestBook</strong> -- a trivial guest book app.</p></li>
+<li><p><strong>AtIssue</strong>, an email-integrated bug tracker.  To run AtIssue you'll need to set up a GMail account to use as
+your bug IMAP inbox, and configure AtIssue to point at it.  See the instructions in examples/AtIssue/README.txt
+for more info.</p></li>
+</ul>
+
+<p>You can cd into to these source directories and run <code>aw ant launch</code> to build and run each of these</p>
+
+<h3 id="troubleshooting">Troubleshooting</h3>
+
+<p>Several configuration issues could prevent the examples from launching correctly:</p>
+
+<ul>
+<li><p>Your JAVA_HOME is not set correctly, or points to a JRE (rather than JDK), or your JDK is 1.3 or 1.4
+(rather than the required 1.5 or 1.6)</p></li>
+<li><p>You installed AW to a path where a parent directory has spaces</p></li>
+<li><p>You have an ANT_HOME defined and it points to an old version of Ant (e.g. 1.6 or 1.7.0, rather than 1.7.1)</p>
+
+<blockquote>
+  <p><strong>Note:</strong> AribaWeb includes Ant 1.7.1 as part of its distribution.  You are best off clearing your ANT_HOME
+          environment variable and letting AW use its bundled Ant</p>
+</blockquote></li>
+<li><p>You have TOMCAT<em>HOME, CATALINA</em>HOME or CATALINA_BASE environment variables defined, and they point
+to an old or customized installation.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> AribaWeb includes Tomcat 6 as part of its distribution.  On initialization, the AW build files
+          copy the CATALINA_HOME/conf directory and try to update the webserver port in the copied server.xml (to 9080).
+          If you have tweaked your server.xml, for instance, AW's attempts to change the port may fail and the app
+          may start on a different port (in which case you'll need to access the apps with a different port in you
+          URL)</p>
+</blockquote></li>
+<li><p>You get a debugger port conflict on start up</p>
+
+<blockquote>
+  <p>By default AW launches the examples with the debugger enabled and set to listen on port 9000.  If you have
+        another process using that port the server will fail to start.</p>
+</blockquote></li>
+<li><p>Everything launched and AW says that it's opening the browser to http://localhost:9080/Demo/AribaWeb,
+but the browser doesn't open</p>
+
+<blockquote>
+  <p>The auto browser launch feature works only on Mac and Windows and has been known to fail on certain
+          Windows machines.  If your browser does not launch, simply manually point your browser at http://localhost:9080/Demo/AribaWeb.</p>
+</blockquote></li>
+</ul>
+
+<h2 id="building_your_own_app">Building your Own App</h2>
+
+<p>You can create a new AW app by Double-clicking in <code>aribaweb/bin</code> directory on <strong><code>aw</code></strong> (or, on Windows, <code>aw.bat</code>)
+and then respond to the shell prompt with 'c' to create a new application.  From there simply answer the on screen
+instructions to provide an app name, choose a template, and provide class and package names.  When you're done you
+can choose to have the new project opened in your IDE, or launched build and launched immediately.</p>
+
+<p>For more information see:</p>
+
+<ul>
+<li><p><a href="Creating_New_App.htm"
+
+
+>Creating a New App</a>.</p></li>
+<li><p><a href="IDE_Plugins.htm"
+
+
+>Setting up IDE Integration</a>.</p></li>
+<li><p><a href="Distribution_Contents.htm"
+
+
+>Catalog of Distribution contents</a>.</p></li>
+</ul>
+
+</body>
+</html>

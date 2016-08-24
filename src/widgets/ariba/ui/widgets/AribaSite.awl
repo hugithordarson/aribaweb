@@ -1,0 +1,8 @@
+<w:PopupMenuLink menuId="site" position="this">
+    <AribaString name="Site"/>
+</w:PopupMenuLink>
+<w:PopupMenu menuId="site">
+    <a:For list="$sites" item="$currentSite">
+        <w:PopupMenuItem action="$actionClicked"><a:String value="$siteLabel"/></w:PopupMenuItem>\
+    </a:For>
+</w:PopupMenu>

@@ -1,0 +1,6 @@
+<m:Context class="$metaContext.properties.elementType" object="$false">
+    <m:Context displayGroup="$displayGroup" dataSourceType="${displayGroup.dataSource.class.getName()}" layout="DetailTable"
+               operation="list" scopeKey="class">\
+        <m:IncludeComponent/>
+    </m:Context>
+</m:Context>

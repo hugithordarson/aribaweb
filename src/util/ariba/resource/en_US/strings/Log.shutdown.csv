@@ -1,0 +1,42 @@
+8859_1
+9257, "All Shutdown hooks did not finished within {0} seconds elapsed.  Continuing with exit...",
+9258, "Shutdown has been delayed for more than {0} minutes. Continuing with exit...",
+9260, "Error while initiating the shutdown on the delayer {0}. This delayer is now removed from the shutdown sequence. Exception was: {1}", 0-class name 1-stack trace
+9261, "Error while querying the delayer {0}. This delayer is now removed from the shutdown sequence. Exception was: {1}", 0-class name 1-stack trace
+9262, "Shutdown sequence was already initiated once. Following calls are ignored.",
+9264, "Initiating asynchronous shutdown.",
+9271, "An ExitHook was already registered. The new one ({0}) will replace the old one ({1})", 0-ExitHook object 1-ExitHook object
+9424, "ShutdownSignalHandler handle method called, signal is {0}.", 0-can be sync or async or not one of ours
+9658, "Exception occurred while contacting first node to get system shutdown status",
+9659, "Could not contact first node to get system shutdown status",
+9669, "Ignoring shutdown type {0} because system shutdown status is {1}", 0-Shutdown type 1-System Shutdown Status
+9671, "Switching system shutdown status from {0} to {1}", 0-old system shutdown status 1-new system shutdown status
+9675, "Error while cancelling the shutdown on the delayer {0}. This delayer is now removed from the shutdown sequence. Exception was: {1}", 0-class name 1-stack trace
+9676, "Shutdown has been cancelled",
+9678, "Cancelled asynchronous shutdown thread did not finish",
+9831, "Auto Recycle checks complete. Starting auto Recycle",
+9855, "Exception when sending notification about node status change: {0}", 0-stack trace
+10239, "Delaying shutdown of coordinator node by {0} minutes or until the kill signal is received.", 0-wait timeout
+10334, "[ShutdownDelayer] The task {0} is running in scheduler {1}", 0-task name 1-scheduler name
+10337, "[ShutdownDelayer] The ReplicationThread is running",
+10338, "[ShutdownDelayer] The request {0} is not expired.", 0-Request name
+10339, "[{0} ShutdownDelayer] Session {1}, {2} active sessions are there.", 0-ShutdonwDelayer Name 1-Active Session Number 2-Active Session Name
+10340, "[{0} ShutdownDelayer] Delayed shutdown: work in progress, cannot shut down, usage count: {1}",0-ShutdownDelayer Name 1-Usage Count
+10353, "[BgWorkProcessor] Background Work Processor Class {0} Count is {1}", 0-BgWorkProcessor Class 1-BgWorkProcesor Count
+10354, "[ShutdownDelayer] Work is in progress",
+10355, "[ShutdownDelayer] Delayed shutdown since the publisher is in progress",
+10356, "[ShutdownDelayer] Delayed search node shutdown since the publisher is in progress",
+10573, "Starting delayed shutdown type={0}, exitCode= {1}", 0-type 1-exitCode
+10574, "Starting immediate shutdown..... ",
+10575, "Starting immediate shutdown exitCode = {0}, nodeStatus = {1}", 0-exitCode 1-nodeStatus
+10576, "HookRunner completed running all hooks.",
+10577, "Executing last shutdown hook.",
+10580, "ShutdownManager [shutdownNow] exitCode = {0}, printExtraMessages = {1}", 0-exitCode 1-printExtraMessages
+10581, "Executing shutdown hooks",
+10582, "Calling hook.join on hook {0}, will wait for this thread to complete",  0-hook
+10583, "Finished running last shutdown hook {0}." ,0-hook
+10954, "Received response from first node = {0} , Setting system shutdown status to = {1}.", 0-firstNodeName 1-sysemStatus
+10955, "Call responses, nodeName: {0}, systemShutdownStatus={1}", 0-nodeName 1-systemShutdownStatus
+10956, "ShutdownManagerProcessor.onCall action: {0} , senderNode : {1}, returning systemShutdownStatus={2}, nodeShutdownStatus={3}", 0-nodeName 1-senderNode 2-systemShutdownStatus 3-nodeShutdownStatus
+10930, "Not safe to recycle: {0}", "0-recycle delayed message"
+11946, "Determined 'stable' ShutdownManager status ({0}) after {1} ms", "0-systemShutdownStatus 1-milliseconds count"

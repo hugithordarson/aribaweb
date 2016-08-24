@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<!--
+    Copyright 1996-2008 Ariba, Inc.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    (Some contents derived from a parallel Apache Lucene file, also licenced
+     under the same license)
+
+    $Id:  $
+ -->
+<project name="jpa-app" xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+    <description>
+        Build file for apps depending on metaui-jpa (and metaui, widgets, aribaweb) ...
+
+        Generates jar (and generates aribaweb.properties, if necessary)
+        and war (and generates persistence.xml, web.xml, if necessary)
+    </description>
+
+    <!-- Apps can set this in their build.xml to enable Compass free text search
+        <property name="use.compass" value="true"/>
+    -->
+
+    <!-- aribaweb.properties: defaults  -->
+    <property name="aw.useNamespaceFromPackage" value="ariba.ui.meta"/>
+    <property name="dependsOn.jar" value="ariba.metaui-jpa"/>
+
+    <import file="${aw.home}/tools/build-metaui-app.xml"/>
+
+    <dirname property="jpa.tools.dir" file="${ant.file.jpa-app}"/>
+    <property name="jpa.templates.dir" location="${jpa.tools.dir}/templates"/>
+
+    <available file="${jpa.tools.dir}/../lib/ext-jpa" property="lib.jpa.dir" value="${jpa.tools.dir}/../lib/ext-jpa"/>
+    <property name="lib.jpa.dir" location="${aw.home}/lib/ext-jpa"/>
+    <available file="${jpa.tools.dir}/../lib/ext-compass" property="lib.compass.dir" value="${jpa.tools.dir}/../lib/ext-compass"/>
+    <property name="lib.compass.dir" location="${aw.home}/lib/ext-compass"/>
+
+    <!--
+        for persistence.xml generation
+    -->
+    <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver"/>
+    <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+    <property name="hibernate.connection.username" value="sa"/>
+    <property name="hibernate.connection.password" value=""/>
+
+    <!-- file
+    <property name="database.dir" value="${java.io.tmpdir}/${ant.project.name}-db"/>
+    -->
+    <groovy>
+        if (properties["database.dir"]) properties["database.url"] = new File(properties["database.dir"]).toURL()
+
+        // compass dir won't work if it contains special windows chars (":" or "~")
+        if (properties["compass.dir"] &amp;&amp; !(properties["compass.dir"] =~ /.*[~:].*/)) {
+            properties["compass.url"] = new File(properties["compass.dir"]).toURL().toString().replaceAll(/^file:\/([^\/].*)/, "file:///\$1")
+        }
+    </groovy>
+    
+    <condition property="hibernate.connection.url" value="jdbc:hsqldb:${database.url}/db">
+        <isset property="database.url"/>
+    </condition>
+    <!-- server ...
+    <property name="hibernate.connection.url" value="jdbc:hsqldb:hsql://localhost"/>
+    -->
+    <!-- local - in-memory ... -->
+    <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:aname"/>
+
+    <!--
+    <property name="persistence.show.sql" value="true"/>
+    -->
+
+    <!-- Create schema on every run -->
+    <property name="hibernate.hbm2ddl.auto" value="update"/>
+
+    <target name="init" depends="widgets-app.init, compass-init">
+        <fileset id="war.jars" dir="${ariba.jars.dir}">
+            <include name="ariba.metaui-jpa.jar"/>
+        </fileset>
+    </target>
+
+    <fileset id="module.libs" dir="${lib.jpa.dir}">
+        <include name="**/*.jar"/>
+        <include name="**/*.zip"/>
+    </fileset>
+
+    <!--- Compass support -->
+    <target name="compass-init" if="use.compass">
+        <condition property="compass.engine.connection" value="${compass.url}">
+            <isset property="compass.url"/>
+        </condition>
+        <property name="compass.engine.connection" value="ram://metaui-compass-index"/>
+
+        <fileset id="module.libs3" dir="${lib.compass.dir}">
+            <include name="**/*.jar"/>
+            <include name="**/*.zip"/>
+        </fileset>
+    </target>
+
+    <!-- Use concrete persistence.xml in src directory or generate one, if none -->
+    <target name="explicit-persistence-xml">
+        <available file="${src.dir}/persistence.xml" property="persistence.xml" value="${src.dir}/persistence.xml"/>
+        <condition property="persistence.xml" value="">
+            <not><isset property="war.name"/></not>
+        </condition>
+    </target>
+
+    <target name="check-persistence-xml" depends="explicit-persistence-xml" unless="persistence.xml">
+        <property name="persistence.xml" location="${src.derived.dir}/persistence.xml"/>
+        <evaluate-template templateFile="${jpa.templates.dir}/persistence.xml" outputFile="${persistence.xml}"/>
+    </target>
+    
+    <target name="copy-resources" depends="common.copy-resources, check-persistence-xml" if="war.name">
+        <copy file="${persistence.xml}" todir="${build.classes.dir}/META-INF" failonerror="true"/>
+
+        <copy todir="${build.classes.dir}" failonerror="false">
+            <fileset dir="${jpa.templates.dir}" includes="log4j.properties,c3p0.properties"/>
+        </copy>
+    </target>
+
+    <!-- Hibernate Tools import -->
+    <taskdef name="hibernatetool"
+             classname="org.hibernate.tool.ant.HibernateToolTask"
+             classpathref="classpath"/>
+
+    <!-- Export the database schema -->
+    <target name="schemaexport" depends="compile, copy-resources"
+        description="Exports a generated schema to DB and file">
+
+        <hibernatetool destdir="${basedir}">
+            <classpath path="${build.dir}"/>
+            <jpaconfiguration/> <!-- Use META-INF/persistence.xml -->
+            <hbm2ddl
+                drop="true"
+                create="true"
+                export="true"
+                outputfilename="${proj.shortname}-ddl.sql"
+                delimiter=";"
+                format="true"/>
+        </hibernatetool>
+    </target>
+
+    <!-- Start the HSQL DB server -->
+    <target name="startdb" description="Run HSQL database server with clean DB">
+        <!-- Delete database files -->
+        <delete dir="${database.dir}"/>
+        <java classname="org.hsqldb.Server"
+              fork="yes"
+              classpathref="classpath"
+              failonerror="true">
+            <arg value="-database.0"/>
+            <arg value="file:${database.dir}/db"/>
+        </java>
+    </target>
+
+    <!-- Start the HSQL DB browser tool -->
+    <target name="dbmanager" description="Start HSQL DB manager">
+        <java
+            classname="org.hsqldb.util.DatabaseManagerSwing"
+            fork="yes"
+            classpathref="classpath"
+            failonerror="true">
+            <arg value="-url"/>
+            <arg value="jdbc:hsqldb:hsql://localhost/"/>
+            <arg value="-driver"/>
+            <arg value="org.hsqldb.jdbcDriver"/>
+        </java>
+    </target>
+
+    <!-- Listed here so IDEs surface them as top-level targets -->
+    <target name="build-and-run" depends="init, widgets-app.build-and-run"
+            description="Rebuild WARs and start Tomcat"/>
+
+    <target name="launch" depends="init, widgets-app.launch"
+            description="Rebuild WARs, starts Tomcat, opens browser"/>
+
+    <target name="clean" depends="init, widgets-app.clean"
+            description="Removes build output of this target"/>
+    
+</project>

@@ -1,0 +1,26 @@
+<m:Context pushNewContext="$true" valueMap="$contextValues">
+    <a:IncludeBlock name="pagewrapper">\
+        <m:IncludeComponent/>\
+    </a:IncludeBlock>\
+</m:Context>
+\
+<a:Block name="pagewrapper">\
+    <a:If ifTrue="$useModal">\
+        <w:ModalPageWrapper hasForm="$true" title="$metaContext.properties.label"
+                            editable="$false"
+                            okAction="$save">\
+            <!--- Todo: ActionCategory PageActions in button bar -->
+            <!--- $ariba.ui.meta.persistence.ObjectContext.get ($ariba.ui.meta.persistence.ObjectContext.get.groupName_debug) -->
+            <a:IncludeContent/>
+        </w:ModalPageWrapper>\
+    <a:Else/>\
+        <w:BasicPageWrapper hasForm="$true" awbindingsDictionary='${metaContext.pushAndResolve([module:"*"], "bindingsDictionary")}'>\
+            <!--- $ariba.ui.meta.persistence.ObjectContext.get ($ariba.ui.meta.persistence.ObjectContext.get.groupName_debug) -->
+            <a:If ifTrue="$metaContext.properties.title">\
+                <h1>$metaContext.properties.title</h1>
+            </a:If>\
+            <!--- Todo: ActionCategory PageActions in button bar -->
+            <a:IncludeContent/>\
+        </w:BasicPageWrapper>\
+    </a:If>
+</a:Block>\

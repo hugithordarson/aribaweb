@@ -1,0 +1,5 @@
+<m:Context class="$metaContext.values.class" operation="list"
+           dataSourceType="${displayGroup.dataSource.class.getName()}" layout="Table"
+           scopeKey="class">\
+    <m:IncludeComponent/>
+</m:Context>

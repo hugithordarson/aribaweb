@@ -1,0 +1,36 @@
+h1 {
+    color:#691331;
+}
+
+.cmdBarWrapper .cmdLeft,
+.cmdBarWrapper .cmdFill,
+.cmdBarWrapper .cmdRight {
+    background-image:none;
+    background-color:#BD5152;
+}
+
+.cmdBarWrapper .mastCmdContainer {
+    padding:0px;
+}
+.dropPost {
+    background-color:#BD5152;
+}
+.trashPost {
+    font-size:20px;
+    font-weight:bold;
+    color:#ff4500;
+    width:18px;
+    padding:3px;
+}
+.deletePost {
+    background-color:#ff4500;
+    color:#FFFFFF;
+}
+.alert {
+    background-color:#FFEFB5;
+    padding:5px;
+    display:inline-block;
+}
+.postsAction {
+    margin-right:5px;
+}

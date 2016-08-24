@@ -1,0 +1,13 @@
+<div id='${stringValueForBinding("name") + "feed"}'><div style="height:200px">Loading...</div></div>
+<div style="height:30px;margin-left:80px">
+    <w:TextButton buttonWrapperStyle="LeftRight"
+                  buttonClass="siteBtn"
+                  action='${ariba.ui.aribaweb.core.AWRedirect.getRedirect(requestContext,stringValueForBinding("url"))}'
+                  target='${"AW" + stringValueForBinding("name")}'>
+        $^label
+    </w:TextButton>
+</div>
+\<script type="text/javascript">
+    registerFeed("$^feedUrl", "$^name",
+                 <a:String value="$^count:3"/>, <a:String value="$^showContent:false"/>);
+\</script>

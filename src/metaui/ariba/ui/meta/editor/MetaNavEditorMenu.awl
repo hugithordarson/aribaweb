@@ -1,0 +1,20 @@
+<w:PopupMenuLink class="hoverArrow hoverLink" menuId="MetaNEM" position="this">\
+    <a:If ifTrue="$editingEnabled">
+        <b><a:Local key="a001">Editing</a:Local></b>
+    <a:Else/>
+        <a:Local key="a002">Editor</a:Local>
+    </a:If>
+</w:PopupMenuLink>
+<w:PopupMenu menuId="MetaNEM">
+    <w:PopupMenuHeading><a:Local key="a003">Metadata Editor</a:Local></w:PopupMenuHeading>
+    <a:If ifTrue="$editingEnabled">
+        <w:PopupMenuItem action="$disableEditing"><a:Local key="a004">Disable Editing</a:Local></w:PopupMenuItem>
+        <w:PopupMenuItem action="$saveChanges" disabled="$!hasChanges"><a:Local key="a005">Save Changes</a:Local></w:PopupMenuItem>
+    <a:Else/>
+        <w:PopupMenuItem action="$enableEditing"><a:Local key="a006">Enable Editing</a:Local></w:PopupMenuItem>
+    </a:If>
+<!---
+    <w:PopupMenuHeading showSeparator="$true">Debug</w:PopupMenuHeading>
+    <w:PopupMenuItem action="$metaContext.meta._logRuleStats">Log Rule Stats</w:PopupMenuItem>
+-->
+</w:PopupMenu>

@@ -1,0 +1,40 @@
+/*
+    Rules for the editor
+    Includes rules for properties defined in WidgetsRules.oss
+*/
+
+/*
+    Expected context keys to be set by editor based on context:
+        scopeKey    (e.g. class, layout, field, action)
+        type        (e.g. java.lang.String)
+        operation   (e.g. edit)
+        editable
+        component
+*/
+
+class=ariba.ui.meta.editor.Properties {
+    @field=trait {}
+
+    scope=(field, layout, action) {
+        @field=label {}
+        @field=after {}
+    }
+    
+    scope=(field, layout) {
+        @field=visible {}
+        @field=component {}
+        @field=bindings {}
+        @field=cueTip {}
+    }
+
+    scope=field {
+        @field=editable {}
+        @field=valid {}
+    }
+
+    scope=action {
+        @field=pageName {}
+        @field=actionResults {}
+        @field=pageBindings {}
+    }
+}

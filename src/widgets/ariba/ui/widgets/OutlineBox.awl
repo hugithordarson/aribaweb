@@ -1,0 +1,75 @@
+<!---
+    Copyright 1996-2008 Ariba, Inc.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+\
+<div class="$^tableClass:scrollTableWrapper" style="overflow:visible">
+<table border="0" cellspacing="0" width="100%">\
+    <tr>\
+        <td class="$^headingClass:tableHeader">\
+            <div >
+                 <table border="0" cellspacing="0" cellpadding="0" width="100%">\
+                    <tr>\
+                        <td width="1px" style="padding-left:5px">\
+                            <a:If ifTrue="$showExpandoCollapsoControl">\
+                                <a:Hyperlink action="$toggleExpandoCollapsoAction" submitForm="$true">\
+                                    <a:Image filename="$expandoCollapsoImage" title="$expandoCollapsoToolTip" style="$expandoCollapsoStyle"/>\
+                                </a:Hyperlink>\
+                            </a:If>
+                        </td>\
+                        <td align="$languageLeft"
+                            class="$^titleClass:sectionHead"
+                            style="$^headingStyle:padding:3px 0px 3px 0px;">\
+                            <a:Hyperlink omitTags="$!showExpandoCollapsoControl"
+                                         action="$toggleExpandoCollapsoAction"
+                                         submitForm="$true"
+                                         class="hoverLink"
+                                         title="$expandoCollapsoToolTip">\
+                                <a:If ifTrue="$hasTitleMaxLength">\
+                                    <w:TruncateString value="$^title" size="$^titleMaxLength" />
+                                <a:Else/>
+                                    <a:String value="$^title"/>\
+                                </a:If>
+                            </a:Hyperlink>\
+                            <a:If notEqualNull="$^titleTip">\
+                                <w:CueTip value="$^titleTip"/>
+                            </a:If>                            
+                        </td>\
+                        <td nowrap="true" align="right">\
+                            <div class="flR"><a:IncludeContent required="$false" templateName="buttonArea"/></div>\
+                        </td>\
+                    </tr>\
+                    <a:If notEqualNull="$^hint:$null">\
+                        <tr>\
+                            <td colspan="2" align="$languageLeft" style="$^headingStyle:padding:3px 0px 3px 5px;">\
+                                <a:String escapeUnsafeHtml="$true" value="$^hint"/>
+                            </td>\
+                        </tr>\
+                    </a:If>\
+                </table>\
+            </div>
+        </td>\
+    </tr>
+    <a:If ifTrue="$isExpanded">
+        <tr style="background:#FFFFFF">\
+            <td><a:IncludeContent required="$false" templateName="body"/></td>\
+        </tr>\
+    <a:Else ifTrue="$^verboseCollapsedContent:$true"/>
+        <tr>\
+            <td style="padding:5px 5px 5px 12px;background:#FFFFFF">\
+                <a:Local key="a001">Expand to view the contents of this section.</a:Local>\
+            </td>\
+        </tr>\
+    </a:If>\
+</table>\
+</div>

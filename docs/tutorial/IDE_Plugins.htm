@@ -1,0 +1,143 @@
+<html>
+<head>
+<title>AribaWeb -- IDE Plugins</title>
+<link href="../resource/widgets.css" type="text/css" rel=stylesheet>
+<script src="../resource/prettify.js" language=JavaScript></script>
+</head>
+<body class="doc" style="padding:8px" onload="prettyPrint()">
+<h1 id="ide_plugins_for_aribaweb">IDE Plugins for AribaWeb</h1>
+
+<p>This project defines a plug in for the Eclipse and IntelliJ IDEA development
+environments (IDEs).</p>
+
+<h2 id="features">FEATURES</h2>
+
+<p>The plugin adds three features to IDEA and Eclipse:</p>
+
+<h4 id="code_to_from_template_toggle_alt_a_ctrl_alt_a_">Code to/from Template toggle  (Alt-A / Ctrl-Alt-A)</h4>
+
+<p>By convention, in AribaWeb the code (.java or .groovy) and template (.awl or .htm)
+files sit together in the source directory and have the same name (but different file
+extensions).  The Alt-A command will toggle from viewing the code to template, or
+visa-versa.  You'd be surprised about just how handy this is in practice.</p>
+
+<h4 id="tag_to_definition_jump_alt_b_ctrl_alt_b_">Tag to Definition Jump (Alt-B, Ctrl-Alt-B)</h4>
+
+<p>When viewing a .awl file, if your cursor sits in an AW tag (e.g. <code>&lt;TextButton&gt;</code>)
+and you press Alt-B you will be jumped to the .awl file that defines that
+tag.</p>
+
+<p>Note: This feature is presently not working correctly for tags with namespace
+prefixes (e.g. <code>&lt;w:TextButton&gt;</code>).  This will be remedied in a future release.</p>
+
+<h4 id="app_to_source_file_navigation">App to Source File Navigation</h4>
+
+<p>This one is pretty cool:  there are various contexts in which (when in development mode)
+your running AW app may display file names from your source code in the web page
+(e.g. in an exception backtrace, in Component Inspector, or in the SearchSource app).
+In these cases, when then name is displayed as a hyperlink, clicking it will open
+the file in your IDE (and navigate to the correct line number)!</p>
+
+<h2 id="installing">INSTALLING</h2>
+
+<p>To use the plug in within your IDE you must first install the appropriate .jar file in
+your IDE's plug in directory.  These plugins can be found in your AribaWeb install root:</p>
+
+<div class='quoteCode'><pre class='prettyprint'><code>ide/
+    ariba.ideplugin.eclipse.5.0rc1.jar
+    aribawebIdeaPlugin.jar
+</pre></code></div>
+
+<p>Copy the appropriate one for your IDE into its plugins directory (e.g. eclipse/plugins)
+and restart your IDE.</p>
+
+<p><strong>IDEA:</strong> The IDEA plug-in can be downloaded via the IntelliJ Preferences->Plugins -> Available
+panel (search for AribaWeb).</p>
+
+<h2 id="getting_started_idea">GETTING STARTED: IDEA</h2>
+
+<p>See the webcast, <a href="http://www.vimeo.com/1776187"
+
+
+>AribaWeb: Setting up IntelliJ IDEA for AW Development</a>.</p>
+
+<p>Important:</p>
+
+<ul>
+<li><p>The first time you open a new AW project in IDEA you will be propted to enter your "AW_HOME"
+path variable.  After setting this variable to point at the install location for AribaWeb,
+<em>restart IDEA</em> (there appears to be a bug where this parameter change does not properly
+take effect until after a clear restart)</p></li>
+<li><p><em>You need to update your Ant Home to Ant 1.7.1</em>.  IDEA 7.0.x comes bundled with Ant
+1.7.0.  AW build files require 1.7.1, so you need to update your Ant_Home to 1.7.1.
+In the Ant panel Properties panel, under the "Execution" panel, select "Use custom ant",
+click the "..." file selector button, and select the copy of Ant 1.7.1 bundled in
+AW_HOME/tools/ant.</p></li>
+</ul>
+
+<h2 id="getting_started_eclipse">GETTING STARTED: ECLIPSE</h2>
+
+<p>The plugin automatically aids in the setup of your Eclipse workspace for AW development.</p>
+
+<ul>
+<li><p>Upon the first restart after installing the plugin, Eclipse will prompt you for your
+AW_HOME.  Select the directory where you unzipped the AribaWeb distribution.</p></li>
+<li><p>Based on your AW_HOME, the plug in will:</p>
+
+<ol><li>Change your Ant Home to point at the 1.7.1 version included with AribaWeb</li>
+<li>Set the Ant variable ${aw.home} to point at your AW_HOME</li>
+<li>Set up a "User Library" with all of the AW distribution jars (for use
+   in the classpath of your AW projects).</li></ol></li>
+</ul>
+
+<h2 id="building">BUILDING</h2>
+
+<p>To rebuild the plugin from source, you will need to point the Ant build at the location
+of your IDE's lib directory containing the integration jars.</p>
+
+<p>For IDEA, look for a directory that includes the following:</p>
+
+<ul>
+<li>openapi.jar</li>
+<li>extensions.jar</li>
+</ul>
+
+<p>(these can likely be found inside IDEA's application directory).</p>
+
+<p>Invoke the ant build as follows:</p>
+
+<div class='quoteCode'><pre class='prettyprint'><code>ant -Didea.lib.dir=/Applications/IntelliJIdea.app/lib
+</pre></code></div>
+
+<p>(Assuming that your IDEA is installed in /Applications/IntelliJIdea.app).</p>
+
+<p>For Eclipse, look for a directory that includes something like the following:</p>
+
+<ul>
+<li>org.eclipse.core.commands_3.2.0.I20060605-1400.jar</li>
+<li>org.eclipse.core.jobs_3.2.0.v20060603.jar</li>
+<li>org.eclipse.core.resources<em>3.2.1.R32x</em>v20060914.jar</li>
+<li>org.eclipse.core.runtime_3.2.0.v20060603.jar</li>
+<li>org.eclipse.equinox.common_3.2.0.v20060603.jar</li>
+<li>org.eclipse.equinox.registry<em>3.2.1.R32x</em>v20060814.jar</li>
+<li>org.eclipse.jface_3.2.1.M20060908-1000.jar</li>
+<li>org.eclipse.osgi<em>3.2.1.R32x</em>v20060919.jar</li>
+<li>org.eclipse.swt.win32.win32.x86_3.2.1.v3235.jar</li>
+<li>org.eclipse.text_3.2.0.v20060605-1400.jar</li>
+<li>org.eclipse.ui.ide_3.2.1.M20060915-1030.jar</li>
+<li>org.eclipse.ui.workbench.texteditor_3.2.0.v20060605-1400.jar</li>
+<li>org.eclipse.ui.workbench_3.2.1.M20060906-0800.jar</li>
+</ul>
+
+<p>Invoke your ant build as follows:</p>
+
+<div class='quoteCode'><pre class='prettyprint'><code>ant -Declipse.lib.dir=/Applications/eclipse/plugins
+</pre></code></div>
+
+<p>If you see out of memory exception, pass the following arguments to increase the heap size:</p>
+
+<div class='quoteCode'><pre class='prettyprint'><code>-vmargs -Xms512m -Xmx512m
+</pre></code></div>
+
+</body>
+</html>

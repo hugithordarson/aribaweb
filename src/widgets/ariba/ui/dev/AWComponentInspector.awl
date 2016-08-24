@@ -1,0 +1,206 @@
+<w:BasicPageWrapper hasForm="$true" omitWrapperFrame="$true" hasSidebarNotch="$false" isSidebarVisible="$false"
+                  isDebugVisible="$false" disableFooter="$true" disableHomeAction="$true" disableLogoutAction="$true"
+                  addContentMargin="$false"
+                  debugTitle="AW Component Inspector">\
+<style>
+    .scrollClip {
+        overflow:scroll;
+        // border: 1px solid #9C9CB8;
+        margin-top: 5px;
+        height:650px;
+        width:625px;
+    }
+    .pl {
+        margin:0px;
+        padding:0px;
+    }
+    .plsel {
+        margin:0px;
+        padding:0px;
+        background:#FFEAAA;
+    }
+</style>
+<a:ClientSideScript>
+    ariba.Debug._AWCPISession='$request.sessionId';
+    ariba.Debug._AWCPIRefreshId='<a:ActionId action="$refreshPage"/>';
+</a:ClientSideScript>
+<table width="100%" height="100%"><tr><td width="1%" valign="top">
+<div class="flexContainer">
+    <div style="width:300px"/>
+    <w:TabSet class="noPadding tabWrapper" index="$tabIndex" action="$mainTabSelectionChanged">
+        <w:Tab label="Content Tree">
+            <a:If ifTrue="$traceDisplayGroup.filteredObjects.size">
+                <span bh="_MO">
+                <t:DataTable item="$traceNode" children="$traceNode.children" displayGroup="$currentTraceDisplayGroup"
+                              singleSelect="$true" showSelectionColumn="$false" submitOnSelectionChange="$true"
+                              showColumnHeader="$false" enableScrolling="$true" showOptionsMenu="$true"
+                              class="scrollTableWrapper smallFont noTopLine" minHeight="400">
+                    <t:HeadingArea>
+                        <div class="flL" _ifTrue="$metadataDisplayGroup">
+                            Show:
+                            <a:If ifTrue="$showingMeta">
+                                <a:Hyperlink action="${showingMeta=!showingMeta; null}">All</a:Hyperlink>
+                                |
+                                <b>Meta</b>
+                            <a:Else/>
+                                <b>All</b>
+                                |
+                                <a:Hyperlink action="${showingMeta=!showingMeta; null}">Meta</a:Hyperlink>
+                            </a:If>
+                        </div>
+                    </t:HeadingArea>
+
+                    <a:Content name="optionsMenu">
+                        <nobr>
+                        <a:If ifTrue="$showingFileContents">
+                            <a:Hyperlink action="${showingFileContents=false;null}">&lt; Hide Contents</a:Hyperlink>
+                        <a:Else/>
+                            <a:Hyperlink action="${showingFileContents=true;null}">Show File Contents &gt;</a:Hyperlink>
+                        </a:If>
+                        &nbsp;
+                        </nobr>
+                    </a:Content>
+
+                    <t:Column label="Component" isValueColumn="$true">\
+                        <span targetId="$traceNode.elementId"/>
+                        <w:OutlineControl indentationPerLevel="12" renderAsTable="$true" style="font:9px Verdana, Arial, Helvetica, sans-serif">\
+                            <a:Content name="icon">\
+                                <span _ifTrue="$traceNode.associatedMetadata" class="cueTip" style="padding:1px; line-height:9px; margin-right:4px">M</span>\
+                            </a:Content>
+                            <b omitTags="$traceNode.elementIsStateless">$nodeTitle</b>
+                        </w:OutlineControl>\
+                    </t:Column>
+
+                    <t:RowDetail style="font:normal 9px Verdana, Arial, Helvetica, sans-serif;color:#666666;text-align:right">\
+                        <a:DebugRemoteOpen value="$currentFileLocation">\
+                            <w:TruncateString value="$currentReferencePath" size="40" truncationStyle="1"/>
+                             : $traceNode.sourceReference.lineNumber
+                        </a:DebugRemoteOpen>\
+                    </t:RowDetail>
+                </t:DataTable>
+                </span>
+            <a:Else/>
+                <br/>
+                <i>Component inspector not yet enabled.  Enabling...</i>
+                <a:PhaseInvocation append='${session.dict.put("AWConstants.ComponentPathDebugEnabled", true)}'/>
+                <a:ClientSideScript>
+                    ariba.Debug.fireMainWindowAction("foo");
+                </a:ClientSideScript>
+            </a:If>
+        </w:Tab>
+
+        <w:Tab label="Click Path">
+            <a:If ifTrue="$pathDisplayGroup.filteredObjects.size">
+                <span bh="_MO">
+                <t:DataTable item="$traceNode" displayGroup="$currentPathDisplayGroup"
+                              singleSelect="$true" showSelectionColumn="$false" submitOnSelectionChange="$true"
+                              showColumnHeader="$false" enableScrolling="$true" showOptionsMenu="$true"
+                              class="scrollTableWrapper smallFont noTopLine" minHeight="400">
+                    <t:HeadingArea>
+                        <div class="flL" _ifTrue="$metadataDisplayGroup">
+                            Show:
+                            <a:If ifTrue="$showingMeta">
+                                <a:Hyperlink action="${showingMeta=!showingMeta; null}">All</a:Hyperlink>
+                                |
+                                <b>Meta</b>
+                            <a:Else/>
+                                <b>All</b>
+                                |
+                                <a:Hyperlink action="${showingMeta=!showingMeta; null}">Meta</a:Hyperlink>
+                            </a:If>
+                        </div>
+                    </t:HeadingArea>
+
+                    <a:Content name="optionsMenu">
+                        <nobr>
+                        <a:If ifTrue="$showingFileContents">
+                            <a:Hyperlink action="${showingFileContents=false;null}">&lt; Hide Contents</a:Hyperlink>
+                        <a:Else/>
+                            <a:Hyperlink action="${showingFileContents=true;null}">Show File Contents &gt;</a:Hyperlink>
+                        </a:If>
+                        &nbsp;
+                        </nobr>
+                    </a:Content>
+
+                    <t:Column label="Component" isValueColumn="$true">
+                        <span targetId="$traceNode.elementId"/>
+                        <div _ifTrue="$traceNode.associatedMetadata" class="flL cueTip" style="padding:1px; line-height:9px; margin:2px 4px 0px 0px">M</div>\
+                        <b omitTags="$traceNode.elementIsStateless">$nodeTitle</b>\
+                    </t:Column>
+
+                    <t:RowDetail style="font:normal 9px Verdana, Arial, Helvetica, sans-serif;color:#666666;text-align:right">\
+                        <a:DebugRemoteOpen value="$currentFileLocation">\
+                            <w:TruncateString value="$currentReferencePath" size="40" truncationStyle="1"/>
+                            : $traceNode.element.lineNumber
+                        </a:DebugRemoteOpen>
+                    </t:RowDetail>
+                </t:DataTable>
+                </span>
+            <a:Else/>
+                <br/>
+                <i><b>Alt-Click</b> On the area of interest in the main window to see its Component Path trace</i>
+            </a:If>
+        </w:Tab>
+    </w:TabSet>
+    <a:If ifTrue="$showDebuggerLink">
+        <a:Hyperlink action="$launchDebugger">Launch AWDebugger</a:Hyperlink>
+    </a:If>    
+</div>
+</td>
+<a:MethodInvocation invoke="$makeSelectionCurrentItem"/>
+<td valign="top" _ifTrue="$showingFileContents" style="padding:0px 5px 0px 20px">\
+    <div class="flexContainer">\
+    <a:RefreshRegion>
+        <a:If ifTrue="$currentElement">
+            <w:TabSet class="noPadding tabWrapper" index="$fileContentsTabIndex" action="$viewTabSelected">
+                <w:Tab label="$referenceFileLabel">
+                    <a:IncludeBlock name="Source" content="$referenceResourceFileContents"/>
+                </w:Tab>
+                <w:Tab label="$fileName">
+                    <a:IncludeBlock name="Source" content="$resourceFileContents"/>
+                </w:Tab>
+                <w:Tab label="java" isVisible="$javaFullPath">
+                    <a:IncludeBlock name="Source" content="$javaFileContents"/>
+                </w:Tab>
+                <w:Tab label="API" isVisible="$traceNode.componentDefinition">\
+                    <div class="scrollClip" style="padding-right:5px"id="sourceDiv">\
+                        <a:ApiPage componentDefinition="$traceNode.componentDefinition"/>
+                        <br/>
+                    </div>\
+                </w:Tab>
+                <w:Tab label="Meta Properties" isVisible="$traceNode.associatedMetadata">
+                    <a:IncludeComponent name="${traceNode.associatedMetadata.inspectorComponentName(traceNode.element)}"
+                                        traceNode="$traceNode"/>
+                </w:Tab>
+            </w:TabSet>
+        <a:Else/>
+            <br/>
+            <i>Select file by clicking on row in right hand table to view file contents</i>
+        </a:If>
+    </a:RefreshRegion>
+    </div>
+</td></tr></table>
+<a:ClientSideScript>
+    ariba.Debug.cpiCheckWindowSize( <a:String value="${showingFileContents ? 960 : 320}"/>, 760);
+</a:ClientSideScript>
+<a:RefreshRegion>
+    <a:ClientSideScript>
+        ariba.Debug._AWHierarchy ={ "empth8576" : ["empty324"]
+        <a:For list="$parentNodes" item="$parentNode"> 
+            ,"$parentNode.string":<a:JSListRepetition list="$childList" item="$currChild" condition="$true">"$currChild.string"</a:JSListRepetition>
+        </a:For>
+        };
+    </a:ClientSideScript>
+</a:RefreshRegion>
+</w:BasicPageWrapper>\
+\
+<a:Block name="Source">\
+    <a:ClientSideScript filename="widg/prettify.js"/>
+    <div class="scrollClip" id="sourceDiv">\
+        <a:PrimitiveString value="$^content"/>
+    </div>\
+    <a:ClientSideScript>
+        ariba.Debug.checkSelectionPos();
+        prettyPrint();
+    </a:ClientSideScript>
+</a:Block>

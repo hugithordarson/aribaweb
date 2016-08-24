@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<!-- definition of AribaWeb elements for namespace 't' -->
+<xs:element name="BatchNavigationBar">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="showTotalItems" type="xs:string"/>
+        <xs:attribute name="displayGroup" type="xs:string" use="required"/>
+        <xs:attribute name="submitForm" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="ButtonAreaRenderer">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="ColumnRenderer">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="isHeader" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="tagName" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="DataTable">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="list" type="xs:string"/>
+        <xs:attribute name="displayGroup" type="xs:string"/>
+        <xs:attribute name="showOptionsMenu" type="xs:string"/>
+        <xs:attribute name="showBatchNavigation" type="xs:string"/>
+        <xs:attribute name="singleSelect" type="xs:string"/>
+        <xs:attribute name="multiSelect" type="xs:string"/>
+        <xs:attribute name="showSelectionColumn" type="xs:string"/>
+        <xs:attribute name="showSelectionControl" type="xs:string"/>
+        <xs:attribute name="disableRowSelection" type="xs:string"/>
+        <xs:attribute name="submitOnSelectionChange" type="xs:string"/>
+        <xs:attribute name="initialSortKey" type="xs:string"/>
+        <xs:attribute name="initialSortDirection" type="xs:string"/>
+        <xs:attribute name="groupByColumn" type="xs:string"/>
+        <xs:attribute name="showGroupCounts" type="xs:string"/>
+        <xs:attribute name="showColumnLabelWhenGrouping" type="xs:string"/>
+        <xs:attribute name="batchSize" type="xs:string"/>
+        <xs:attribute name="scrollBatchSize" type="xs:string"/>
+        <xs:attribute name="item" type="xs:string"/>
+        <xs:attribute name="disableChildrenBinding" type="xs:string"/>
+        <xs:attribute name="children" type="xs:string"/>
+        <xs:attribute name="hasChildren" type="xs:string"/>
+        <xs:attribute name="expandAll" type="xs:string"/>
+        <xs:attribute name="maxLevels" type="xs:string"/>
+        <xs:attribute name="selectionPath" type="xs:string"/>
+        <xs:attribute name="expandCurrentItem" type="xs:string"/>
+        <xs:attribute name="showExpansionControl" type="xs:string"/>
+        <xs:attribute name="showTotalItems" type="xs:string"/>
+        <xs:attribute name="isItemSelectable" type="xs:string"/>
+        <xs:attribute name="csvPath" type="xs:string"/>
+        <xs:attribute name="dataSource" type="xs:string"/>
+        <xs:attribute name="width" type="xs:string"/>
+        <xs:attribute name="valign" type="xs:string"/>
+        <xs:attribute name="showColumnHeader" type="xs:string"/>
+        <xs:attribute name="showVerticalTableBorder" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="rowClass" type="xs:string"/>
+        <xs:attribute name="detailRowClass" type="xs:string"/>
+        <xs:attribute name="tdClass" type="xs:string"/>
+        <xs:attribute name="submitForm" type="xs:string"/>
+        <xs:attribute name="tableConfig" type="xs:string"/>
+        <xs:attribute name="tableConfigName" type="xs:string"/>
+        <xs:attribute name="indentDetailRow" type="xs:string"/>
+        <xs:attribute name="forceColumnUpdate" type="xs:string"/>
+        <xs:attribute name="forceRenderRows" type="xs:string"/>
+        <xs:attribute name="useRefresh" type="xs:string"/>
+        <xs:attribute name="enableScrolling" type="xs:string"/>
+        <xs:attribute name="useParentLayout" type="xs:string"/>
+        <xs:attribute name="title" type="xs:string"/>
+        <xs:attribute name="dragAction" type="xs:string"/>
+        <xs:attribute name="dropAction" type="xs:string"/>
+        <xs:attribute name="reorderAction" type="xs:string"/>
+        <xs:attribute name="dragType" type="xs:string"/>
+        <xs:attribute name="dropType" type="xs:string"/>
+        <xs:attribute name="dropTypes" type="xs:string"/>
+        <xs:attribute name="isDragDropEnabled" type="xs:string"/>
+        <xs:attribute name="minHeight" type="xs:string"/>
+        <xs:attribute name="maxHeight" type="xs:string"/>
+        <xs:attribute name="scrollFaultAction" type="xs:string"/>
+        <xs:attribute name="showSelectAll" type="xs:string"/>
+        <xs:attribute name="groupId" type="xs:string"/>
+        <xs:attribute name="awname" type="xs:string"/>
+        <xs:attribute name="emptyTableMessage" type="xs:string"/>
+        <xs:attribute name="pivotLayout" type="xs:string"/>
+        <xs:attribute name="columnFields" type="xs:string"/>
+        <xs:attribute name="rowFields" type="xs:string"/>
+        <xs:attribute name="columnAttributes" type="xs:string"/>
+        <xs:attribute name="overrideAttribute" type="xs:string"/>
+        <xs:attribute name="filteredColumnAttributes" type="xs:string"/>
+        <xs:attribute name="shouldCollapseColumnLevel" type="xs:string"/>
+        <xs:attribute name="showRowAttributes" type="xs:string"/>
+        <xs:attribute name="useRowDetailExpansionControl" type="xs:string"/>
+        <xs:attribute name="rowDetailInitialExpansion" type="xs:string"/>
+        <xs:attribute name="rowDetailAutoCollapse" type="xs:string"/>
+        <xs:attribute name="showColumnAttributeLabelOnRow" type="xs:string"/>
+        <xs:attribute name="scopeSubcomponentsByColumn" type="xs:string"/>
+        <xs:attribute name="scopeSubcomponentsByItem" type="xs:string"/>
+        <xs:attribute name="tableBodyCollapsible" type="xs:string"/>
+        <xs:attribute name="initialTableBodyExpanded" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="DragList">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="list" type="xs:string"/>
+        <xs:attribute name="item" type="xs:string"/>
+        <xs:attribute name="dragAction" type="xs:string"/>
+        <xs:attribute name="dropAction" type="xs:string" use="required"/>
+        <xs:attribute name="type" type="xs:string"/>
+        <xs:attribute name="isHoriz" type="xs:string"/>
+        <xs:attribute name="tagName" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="label" type="xs:string"/>
+        <xs:attribute name="itemTagName" type="xs:string"/>
+        <xs:attribute name="dropTypes" type="xs:string"/>
+        <xs:attribute name="width" type="xs:string"/>
+        <xs:attribute name="height" type="xs:string"/>
+        <xs:attribute name="colspan" type="xs:string"/>
+        <xs:attribute name="rowspan" type="xs:string"/>
+        <xs:attribute name="title" type="xs:string"/>
+        <xs:attribute name="align" type="xs:string"/>
+        <xs:attribute name="valign" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="ExportConditional">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="HeadingAreaRenderer">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="MetaColumnRenderer">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="isHeader" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="MetaContentRenderer">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="table" type="xs:string" use="required"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="MultiSelectColumnRenderer">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="isHeader" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="tagName" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="OptionsMenuButton">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="showHideColumns" type="xs:string"/>
+        <xs:attribute name="showOutlineExpansion" type="xs:string"/>
+        <xs:attribute name="showGroupBy" type="xs:string"/>
+        <xs:attribute name="showExcelExport" type="xs:string"/>
+        <xs:attribute name="showPivotOptions" type="xs:string"/>
+        <xs:attribute name="showHideDetails" type="xs:string"/>
+        <xs:attribute name="showConfigureLayout" type="xs:string"/>
+        <xs:attribute name="menuId" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="OptionsMenuItems">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="showHideColumns" type="xs:string"/>
+        <xs:attribute name="showOutlineExpansion" type="xs:string"/>
+        <xs:attribute name="showGroupBy" type="xs:string"/>
+        <xs:attribute name="showExcelExport" type="xs:string"/>
+        <xs:attribute name="showPivotOptions" type="xs:string"/>
+        <xs:attribute name="showHideDetails" type="xs:string"/>
+        <xs:attribute name="showConfigureLayout" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="PivotAttributesColumnRenderer">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="RowAttributeExpandoColumnRenderer">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="RowAttributeLabelColumnRenderer">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="RowDetailExpandoColumn">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="RowDetailRenderer">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="ScrollTableWrapper">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="minHeight" type="xs:string" use="required"/>
+        <xs:attribute name="maxHeight" type="xs:string" use="required"/>
+        <xs:attribute name="showHeader" type="xs:string"/>
+        <xs:attribute name="tableBodyExpanded" type="xs:string"/>
+        <xs:attribute name="showColumnHeader" type="xs:string"/>
+        <xs:attribute name="style" type="xs:string"/>
+        <xs:attribute name="isMaximized" type="xs:string" use="required"/>
+        <xs:attribute name="topIndex" type="xs:string" use="required"/>
+        <xs:attribute name="leftPos" type="xs:string"/>
+        <xs:attribute name="topOffset" type="xs:string"/>
+        <xs:attribute name="disableRowSelection" type="xs:string"/>
+        <xs:attribute name="checkSelectionStyle" type="xs:string"/>
+        <xs:attribute name="checkNbsps" type="xs:string"/>
+        <xs:attribute name="scrollFaultAction" type="xs:string" use="required"/>
+        <xs:attribute name="elementIdForVisibleRow" type="xs:string"/>
+        <xs:attribute name="showFooter" type="xs:string"/>
+        <xs:attribute name="useRefresh" type="xs:string"/>
+        <xs:attribute name="enableScrolling" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="overrideClass" type="xs:string"/>
+        <xs:attribute name="isDragDropEnabled" type="xs:string"/>
+        <xs:attribute name="topCount" type="xs:string"/>
+        <xs:attribute name="bottomCount" type="xs:string"/>
+        <xs:attribute name="rowCount" type="xs:string"/>
+        <xs:attribute name="updateSelectAllAction" type="xs:string"/>
+        <xs:attribute name="awname" type="xs:string"/>
+        <xs:attribute name="width" type="xs:string"/>
+        <xs:attribute name="useScrollFaulting" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="SingleSelectColumnRenderer">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="isHeader" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="tagName" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="SortHeading">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="key" type="xs:string"/>
+        <xs:attribute name="caseSensitiveSort" type="xs:string"/>
+        <xs:attribute name="disabled" type="xs:string"/>
+        <xs:attribute name="displayGroup" type="xs:string"/>
+        <xs:attribute name="sortOrderings" type="xs:string"/>
+        <xs:attribute name="createSortOrdering" type="xs:string"/>
+        <xs:attribute name="submitForm" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+</xs:schema>

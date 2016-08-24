@@ -1,0 +1,660 @@
+New in Version 5.2 (12/23/2013)
+---------------------------------------------
+
+- New components
+  - Add Spotlight widget
+  - Add OutlineMenu with hover effect
+  - Add AribaBanner for the BasicPageWrapper
+
+- Enhancements
+  - Updated IDE plugin for Intellij IDEA with new features: currently compatible with 12,13.
+  - New RemoveContentLeftRightMarginHandler to better control rendered content
+  - Add support for new application/json content type
+  - Add new API for AWRedirect for better internal dispatch handling
+  - Improved string decoding in AWUtil
+  - Mobile Safari support on iPad
+  - Escape string value for awname attribute used for debugging or testing
+  - Add better handling for AWErrorManager when multiple erros occurs
+  - Dom.js added new optimized functions for DOM manipulation
+  - Add Util.js Performance improvements for string searches
+  - Add JQuery support to AW framework
+  - Using jQuery;h to replace Util.js functions
+  - Improved Calendar.js api which handles the closing of the pop-up menus
+  - AribaPrintMenu added new popup menu
+  - Improved AribaHelp
+  - Add the windowTitle and metaTags support in BasicPageWrapper
+  - Add special character handling for SectionHeading
+  - Chooser entered characters are fully escaped
+  - New JBoss 7.1.0
+  - Jetty 8.1 support
+  - GlassFish 3 support
+
+- Security fixes
+  - Fix cookie Header splitting in cookie value vulnerability
+
+- Bug fixes
+  - Fix initProgressCheck call which was missed from XMLHTTP
+  - Fix for displayErrorDiv javascript error in IE6
+  - Fix an IE8 specific javascript problem with button.
+  - Fix Request.js: issue while clicking on the Tab in Chrome
+  - Fix AWPopup event handling. Specific to IE and FireFox
+  - Fix Refresh.js: updated refresh table function
+  - Chrome support: attachements does not work as expected when using Chrome
+  - Fix error applying incremental refresh (in Firefox 24.0)
+  - BaseTabSet Rounded edges inconsistent in Firefox
+  - Fix GoogleAnalytics: 'Error messages: google.pageTracker'
+  - Fix Rows do not line up correctly for AWTDataTable excel export
+  - Fix NumberFormatException for Chooser when using Chrome
+  - Fix MasterDetail demo: User chooser not working
+
+* Please check this post for JBoss deployment. Need to disable logging to avoid ClassCastException:
+  https://groups.google.com/forum/#!searchin/aribaweb/jboss-deployment-structure/aribaweb/m3nKA5D5gRA/uoE_Fu4ElNcJ
+
+
+New in Version 5.1 (9/20/2012)
+---------------------------------------------
+
+- New components
+  - Add new DOM state framework
+  - Add AWLazyAction that gets triggered when element is in client viewport
+  - Add AWHoverContainer and AWHoverControl
+  - Add AWViewportContainer
+
+- Enhancements
+  - Placeholder text support for text fields
+  - Add annotation for request validation
+  - Allow extra params and param removal in AWFormRedirect
+  - Office 2010 compatibility
+  - Right aligned and preopen popup menu support
+  - Add client screen size in perf log
+
+- Security fixes
+  - Fix XSS vulnerability inside HTML attribute
+  - Fix cookie setting during frame-busting
+  - Remove echo from awresAction
+
+- Bug fixes
+  - Fix form id recording in print mode  
+  - Improve logging in AWCheckoutManager
+  - Fix race condition with Chooser
+  - Fix XMLHTTP in iframe case
+  - Fix url generation in AWBaseImage
+  - Fix hint message expansion
+  - Fix modal window dismissal on Firefox
+  - Fix shared calendar bug
+
+- Upgrades
+  - Lucene 3.6.0
+
+New in Version 5.0GA - PREVIEW 7 (10/18/2011)
+---------------------------------------------
+
+- Initial AribaWeb Playground Framework
+    - Documentation with running examples
+- Performance State enhancements
+- Util enhancements
+- Bug fixes
+    - Fixed Chooser race condition when multiple full matches are triggered
+    - Fixed potential ResourceManager synchronization issue
+    
+New in Version 5.0GA - PREVIEW 6 (8/3/2011)
+---------------------------------------------
+
+- New widgets
+    - Hover Card
+    - Compact Form
+    - Placeholder text support for text fields
+    - Cross browser modal panel background
+
+- Security fixes
+    - Cross frame scripting fixes
+    - Fix progressCheck direct action to not use the JSESSIONID in the query string
+
+- XMLHTTP fixes
+    - Fix file download request complete callback
+    - Fix refresh region id extraction
+
+- New data structure
+    - Consistent Hash Ring is a data structure that is used to load balance resources across several server nodes.
+
+- Update plugin to be IDEA 9.x and 10.x compatible
+- Windows 7 / IE8 support
+- Updating asm.jar to version 3.3
+- Formatted tab label support
+
+- Misc bug fixes
+    - Fix multiple calendars regression
+    - Fix scroll faulting issue and row refresh
+
+- Fix bugs reported from the community
+    - Fix ariba.aw-all-src.jar needs appcore source files
+	  http://code.google.com/p/aribaweb/issues/detail?id=76
+    - Fix Integrate User object override fix for metaui-jpa
+	  http://code.google.com/p/aribaweb/issues/detail?id=79
+    - Fix http://<app_url>/ad/restore :: causes exception
+	  http://code.google.com/p/aribaweb/issues/detail?id=75
+	- Fix Collapse All when selectionPath is binded
+
+New in Version 5.0GA - PREVIEW 5 (10/18/2010)
+---------------------------------------------
+
+- Web resource versioning for web cache busting
+    - Cache control can be set to a high expiration period in production environment   
+    - ResourceVersionManager interface for application versioning strategy
+
+- Improve polling recovery due to network connection
+    - Auto reconnection
+    - Warning dialog
+    - Enabled for page with frequent poll intervals        
+
+- Security fixes
+    - XSS fixes in AWFormRedirect
+    - XSS fixes in AWHiddenFormParameter
+    - Fix AWPassword to correctly specify autocomplete="off"
+    - Fix remote host exception handling.
+        - Remove setting the new IP onto the session.
+	    - Introduce an explicit AWRemoteHostMismatchException for application handling.	
+
+- Add new utilities to ListUtil, SetUtil, and FileUtil
+
+- Misc bug fixes
+    - Fix IE6 poll response cachine
+    - Fix HTML label handling
+    - Fix IE6 multiple lazy div loading
+    - Fix error manager focus and indicator scrolling
+    - Improve logging for AWSessionStatusManager
+    - Fix response size counter in PerfLog
+    - Fix race condition in AWMultiLocaleResourceManager
+    - Fix MetaUI to use standard loggers
+    - Fix HintMessage expansion on IE6
+    - Fix DateField's in multiple forms
+    - Fix multi-select Chooser Add icon display
+    - Minor fixes in DataTable
+    - Fix BigDecimalFormatter to report more parse errors
+
+New in Version 5.0GA - PREVIEW 4 (05/11/2010)
+---------------------------------------------
+
+- Add HTML to PDF generation utility method
+- Add action support to AWRadioButton
+- Add validate binding to Confirmation
+- Add chooserStyle property to enumeration
+- Fix Safari 4 issues
+- Add guides
+    - Drag and Drop
+    - Cycles and Scopes
+    - Direct Action
+    - Auto Ajax
+    - Chooser
+- Security fixes
+    - Cache-control vulnerability
+    - XSS fixes
+- Performance fix
+    - element id cache flushing
+- Misc bug fixes
+    - Fix NPE and panel sizing for Chooser
+    - Fix stale state in Pivot Table 
+    - Fix scrolling issue caused by AribaToc
+
+New in Version 5.0GA - PREVIEW 3 (10/29/2009)
+---------------------------------------------
+
+- Safari 4 support
+- Upgrade Tomcat to 6.0.20
+- Add Wizard guide
+- Misc bug fixes
+    - Localized formatter fixes
+    - Fix perf log for direct actions
+    - OutlineBox enhancements: allow external toggle state and action control; allow truncated title
+
+New in Version 5.0GA - PREVIEW 2 (8/29/2009)
+---------------------------------------------
+
+- MetaUI tutorial completed
+- Fix duplicate objects on create.
+- Add convenient pageWithName with args method to AWRequestContext
+- Fix MetaUI initialization to allow annotation listeners to register correctly in the pre init phase even without MetaUI-JPA dependency.
+- Fix issue where rules.oss is not loaded in non-debug mode.
+- Add renderAsLinks option to MetaActionList exposed as the trait ActionLinks.
+- Add pause in start.bat
+- AWBrowser onchange bug fix
+
+New in Version 5.0GA - PREVIEW 1 (6/02/2009)
+---------------------------------------------
+
+- Add Wizard example
+    - Clean up wizard for working open source example
+- Widgets: Adding formatters for formatting absolute dates
+- Site generation fixes on Windows
+
+New in Version 5.0RC3 (5/29/2009)
+---------------------------------------------
+
+- Google AppEngine compatibility (round 1)
+    - Fix exceptions due to file access not allowed
+    - Fix PerformanceState that was spawning a monitoring thread
+    - Remove reference to System.getSecurityManager() in Expr.
+    - Remove app name in Servlet URL
+
+- Component Inspector: Content Highlighting for click path
+
+- Misc bug fixes
+    - Multiplay charts do not load (issue 39)
+    - Use proper logging for MetaUI and MetaJPA (issue 48)
+        - Update log4j.properties template to enable logging configuration
+        - Fix "sticky" action categories across user sessions
+    - Fix modular visibility logic
+    - Disable cancel button on MetaUI modal panel until we get proper nested session working
+
+- Update Demo app with basic drag and drop example
+
+New in Version 5.0RC3 - PREVIEW 4 (4/20/2009)
+---------------------------------------------
+
+- MetaUI Fixes
+    - MetaNavTabBar
+        - Fix NPE when on tab click if more meta rules added during previous operation
+        - Fix NPE when app has no (visible) nav tabs
+
+    - GlobalActions not always showing up in TOC MetaActionLists
+            - Added showGlobal binding, and used it in the basic MetaUI layout                                                      
+    - AppCore
+        - Fix ClassCastException on pages with multiple classes in scope on the tab
+
+    - Fix extra NavModuleTabs not showing up when @SupercededSuperclass used on User
+    
+New in Version 5.0RC3 - PREVIEW 3 (4/8/2009)
+---------------------------------------------
+
+- Formatter enhancements
+    - AWVFormatterFactory has new FormatterProvider interface where external providers can
+      register handlers to add/override formatters in the default $formatters set
+	- Multi-currency formatter support
+	    - New GenericMoneyFormatter: formatter with interfaces to be adapted to various Money/Currency implementations (via class extensions)
+        - New BigDecimalMoneyFormatter: based on GenericMoneyFormatter, provides currency formatting of BigDecimals based on formatter-specified currency
+	    - New $formatter.currency and $formatters.currencyLong formatter maps.
+	      E.g. can use $formatters.currency.EUR to get a formatter with a euro symbol prefix,
+	      or $formatters.currencyLong.EUR to get one that will prefix with the Euro symbol and suffix with "EUR".
+	    - $formatters.money now returns a BigDecimalMoneyFormatter from the $formatters.currency set, based on the AWVFormatterFactory.getDefaultCurrencyName().
+	      Apps may override the application-wide default currency by calling AWVFormatterFactory.getDefaultCurrencyName("GBP") from their application init() method.
+	    - AWTCSVDataSource now parses decimal numbers as BigDecimals instead of as Doubles
+
+- MetaUI: fixes/enhancements
+    - Fix broken LIKE query generation
+    - Add support for overriding persistent classes with subclass with 
+      the @SupercedesSuperclass annotation
+
+- Build system improvements
+    - Support for app including local lib/ directory. zips/jars in lib/ directory of project
+      will be automatically copy them into the web app, and be included in the build time classpath.
+
+New in Version 5.0RC3 - PREVIEW 2 (4/1/2009)
+---------------------------------------------
+
+- Database Mapping fixes / enhancements
+    - Correct exception on Create of objects with nullable=false fields
+        - Hibernate commits these on persist().  We now defer persist() until just pre-save()
+        - @Column(nullable=false) now implies @Trait.Required (so we catch errors in UI pre-save).
+    - Support for to-many properties of type Set (java.util.Set)
+        - Sets now supported just like java.util.List
+        - AppCore examples updated to use Sets in several places
+    - Ability for domain class to intervene in update to collection properties
+        - Domain classes can implement "addTo<PropName>(val)" and/or "removeFrom<PropName>(val)"
+          to take over add/remove on a to-many Collection property
+    - Project templates for Database apps now consistently use java.util.Date instead of
+      ariba.util.core.Date
+        - Eliminates issue with JPA exception if Date fields are marked @Temporal
+
+- Localization support
+    - Distribution now includes localized resources for aribaweb and widgets frameworks
+        (German, Spanish, French, Italian, Japanese, Korean,Dutch, Brazilian Portuguese,
+        Russian, Swedish, and Simplified and Traditional Chinese)
+    - MetaUI string externalization support
+        - Support for $[] localized string contants in .oss files
+        - Support for externalization of auto-generated labels (e.g. string file lookup is
+          performed for class, module and layout labels that would otherwise be defaulted
+          based on "decamelized" version of name)
+    - New localization script and ant targets:
+        - ant localize:         externalize strings from source to base locale (en_US) csvs
+        - ant localize-meta:    externalize default metaui labels to base locale
+        - ant localize-locales: propagate new strings locale-specific resource directories
+    - New "Pseudo-Localization" mode to enable seeing strings tagged for externalization/localization
+        (before they are actaully translated)
+    - New Localization Editor tool
+        - Embedded UI to manage localization process
+            - See all app project directories and their locales and strings files
+            - Menus for running the above ant targets to perform externalization
+            - String file editor for viewing, editing and saving .csv files
+            - BabelFish service integration for performing sample auto-translations
+    - Partial localization of Demo and MasterDetail examples
+    
+- Component Inspector: Content Highlighting
+    - Alt-hover in the main document now shows the region for the leaf component that will
+      be inspected (upon click) in the Component Inspector
+    - Hovering over lines in component inspector highlights the corresponding area in the document
+      window 
+
+- Form layout: support for labels above fields (instead of to the left)
+    - MetaUI layout trait 'labelsOnTop' to use this layout
+
+- MetaUI Search
+    - Support for Range search on Number and Date fields (when using database "Structured Search")
+    - Support for rendering Search Form outside of result table header
+        - Module trait "SearchInToc" to put search form in TOC (with narrow labelsOnTop rendering)
+        - Refactored MetaSearch and MetaDetailTable to create MetaTable -- more meta-controllable table setup
+
+- IE8 support
+    - Pages are auto-tagged with IE7 meta tag and javascript updated to parse for IE8
+    
+- Misc fixes
+   - AppCore apps not showing new global tabs (@module added in Application.oss) by default
+   - .oss files should be parsed as UTF-8 by default (support for extended character is string constants)
+   - Fix MySQL inactivity disconnect issue (by setting c3p0 connection pool to
+     testConnectionOnCheckout=true)
+   - Chooser: Many fixes - Keyboard nav: retain text focus upon edit to choosers and popups, ...
+   - AWReload: avoid loop when dynamic source recompilation fails to yield expected new .class file
+   - Hitting return incorrectly submitting forms that don't have explicit actions
+   - PulldownButton shouldn't show menu on click when disabled=$true
+   - Fix broken look of "More..." pseudo-tab (shown when more top level tabs than will fit)
+
+- Enhanced examples
+    - MasterDetail example now demonstrates 1) adding a tab via metaui module,
+      2) top-level nav actions
+
+- Build system improvements
+    - Faster builds and smaller wars: strip unneeded Xinha files from ariba.widgets.jar
+    - Fix resource packaging error when rebuilding from clean on Windows (was resulting in exceptions about
+      "bad date format", etc, due to missing resources).
+    - ariba.src-all.jar should include metaui-jpa and awreload source
+    - Fix 'war' target not forcing build of app jar
+    - Fix bug with resource copy resulting in every bigger copy of build directory into docroot
+
+
+
+New in Version 5.0RC2 (3/2009)
+------------------------------
+
+- New "AribaWeb by Example" Guide
+    - Three chapters: Introduction, AribaWeb Core, and Widgets
+      (two more coming: MetaUI and MetaUI-JPA)
+
+- Update to GA build of Groovy 1.6
+
+- Numerous bug fixes reported by forum members
+    - DataTable samples throwing exception when run under non-US locale
+    - Compass jars included in Eclipse project build path
+    - MySQL compatible connection params (and appcore column name fix)
+    - Windows Vista compatible Ant target for browser launch
+    - No Exception if launch metaui-jpa app with no @NavModule entities
+
+- Other minor fixes / enhancements
+    - metaui-jpa / AWTDataTable: support for performing sort in fetch rather than in memory
+    - fixes for installing/finding branding resources when deploying in production mode
+    - FourZone layout 50/50 column width fix
+    - Component Inspector: fix JavaScript exception when re-opening Inspector on Internet Explorer
+
+New in Version 5.0RC1 (2/2009)
+------------------------------
+
+- New AribaWeb.org Website!
+    - For the public launch of AribaWeb 5 (with this Release Candidate milestone) we have a new,
+      vastly improved, web site.
+    - New Product info pages, Updated Doc, new FAQ
+
+- MetaUI
+    - Multi-threading fixes: now can perform fully concurrent access without locking
+    - Rule matching performance improvements, rule indexing memory reduction
+        - Performance: > 500K context-ops/sec (2.3MHz Core Duo)
+    - Rapid turnaround fixes:  parse errors keep previous rules, reload after error works
+    - Support for scoped rules (e.g. when layout=Tabs appears inside layout=Inspect)
+    - Better error tolerance, more friendly error handling
+        - Parse errors shown in red debug bar -- no exception page
+        - No component error renders info inline -- no exception page
+        - Clearer context formatting in exception traces
+    - Easier to make newly declared actions and fields visible (no actionCategory required for actions)
+    - Trait for File and byte[] fields: imageData trait for diplaying file as image
+        - New FileUploadChooser component; automatic client-side fix to form enctype if upload present
+
+- IDE Plugins
+    - IDEA plug-in updated for IDEA 8.x compatibility
+
+- New AWStaticSiteGenerator
+    - Can generate static HTML version of simple navigation-oriented sites
+        - Used to generate new aribaweb.org site (from java-free metaui + markdown specified app!)
+    - Markdown / HTMLActionFilter improvements: can turn relative links in Markdown doc into meta action invocations
+
+- Deployment fixes
+    - App runs with AW Debug mode disabled by default if deployed outside of dev-time build system
+    - Fix bad resource path for widgets_all.js when run in non-debug mode
+
+- Demo / Example improvements
+    - Documentation Search has better java-source-friendly tokenizer
+    - New Master-Detail example replaces MetaDB
+
+- Many misc AribaWeb / Widgets bug fixes
+    - clicking on validation error navigator could revert bad values
+    - incremental refresh could cause multiple text editors to show up (Firefox only)
+    - mispositioned date chooser popup (Safari only)
+
+- Updated embedded Groovy to version 1.6 (RC3)
+    - Much improved runtime performance for Groovy code
+
+
+New in Version 5.0b7 (12/2008)
+------------------------------
+
+- AtIssue: a new full-featured demo app
+    - email integrated lightweight bug/task tracker
+
+- Full Text Search support via Compass/Lucene (JPA / Hibernate integration)
+    - automatically used in choosers and search panels
+
+- New *AppCore* framework:
+    - Basic User, Group, Permission support
+    - Login (local auth)
+    - MailMonitor
+
+- New CSV Data Loader
+    - Automatically initializes new schemas by loading integration/pkg.ClassName.csv files
+    - Support relationship initialization (automatic foreign key lookup)
+
+- New project template for Master Detail apps
+    - Creates app set up for AppCore, Compass, ...
+
+- New mail parsing / viewing support (AWMimeParsedMessage, MimeMessageViewer)
+    - Mail Client example updated to use it
+
+- MetaUI: many enhancements
+    - New *compact field ordering* (and trait application) syntax:  e.g. 
+          zLeft => firstName => lastName;    zRight => email#required => phone;
+    - New wrapper style traits (bold, italic, heading, ...)
+    - OulineBox layout
+    - DataTable detail row rendering support
+    - Generic support in MetaIncludeComponent for wrappers, named contents
+        - Also, easily propagate full bag of bindings to subcomponents (awbindingDictionary binding support)
+    - Merge of "traits" and "trait" property (only "trait" lives on)
+    - Support for using parent context traits in rules affecting nested keys. e.g.:
+          module-trait=CoolMode { field { editing: false } }
+
+- Bug Fixes:
+    - Build fix: re-builds were creating nested build directories (and breaking app re-launch)
+    - Some metaui Context exceptions (on nested value override chaining)
+    - MetaUI rapid-turnaround (reloading) fixes
+    - Rebuild of groovy app not rebuilding groovy classes
+
+- Updated Dependencies
+    - Updated to Hibernate 3.3.1, JavaMail 1.4.1, log4j-1.2.15
+    
+
+New in Version 5.0b6 (11/13/2008)
+---------------------------------
+
+- New version numbering
+    - "5.0" - to reflect the 10 year internal release history of the framework)
+      (See the [AribaWeb release history](Documentation/Release_History.txt))
+
+- MetaUI Editor
+    - Component Inspector-based rule editor, context stack display
+    - Drag and Drop field ordering
+    - Inline Property editor
+
+- Eclipse Plug-in Update: Create Project wizard
+    - Plus slick automatic AW_HOME / Ant setup
+
+- Embedded Groovy in .awl files
+    - Support single file component definition via `groovy` tag
+      (support migrated from demoshell)
+
+- Groovy support factored into ariba.groovyloader.jar
+    - demoshell component dropped from distribution
+    
+- Build system: (much) faster incremental rebuild
+    - build *unpacked* wars by default
+
+- PivotTable enhancements
+    - now supports per-item expand / collapse of row detail attribute display
+
+- Examples
+    - XK terseness shootout (http://www.zkoss.org/smalltalks/gwtZk/)
+        - AW requires *half* the code of XK for Google Maps and Master-Detail examples   
+    - IMAP mail reader     
+    - Multi-file Upload examples
+    - Examples of AWLocalLoginSessionHandler (on actions, DirectActions, and page rendering)
+    - Package SearchSource doc app into own package, multiple files
+
+- Bug Fixes
+    - MetaUI
+        - DataTable column and cell visibility
+        - global (static) class-scoped action firing
+    - AWLocalLoginSessionHandler fixes: support for direct actions
+    - XHR-compatible FormPostRedirect
+    - Tighten up security (html escape various possible XSS vectors)    
+
+
+New in Version 0.8.5 (9/29/2008)
+--------------------------------
+
+- Higher performance AJAX
+    - XMLHTTP for incremental requests (instead of IFrames)
+
+- IDEA project file auto-generation support
+
+- New components:
+    - FusionCharts (flash-based charting): flat and 2D pivot data
+    - Google Maps integration (via GMaps) tags
+
+- More Examples
+    - YouTubeBrowser example
+    - GMaps examples: address charting, marker drawing, AWPoll-based animated path following
+    - Charting examples
+    - File Upload / Download example
+    - MasterDetail example enhanced with Drag / Drop
+    
+- Other script / build file cleanup
+    - `aw` command now prompts to create project if launched with no args
+    - Tomcat launched with *debug* on by default
+    - app-local builds use cwd for build output (classes, jars, wars, tomcat base)
+    - cygwin/MKS compatibility for (sh-based) aw & start commands
+
+- Component Inspector (x-ray) bug fixes
+    - More reliably uses incremental refresh, fewer JS errors, works for modal panels
+
+
+New in Version 0.8.4 (9/1/2008)
+-------------------------------
+
+- Documentation
+    - JavaDoc, including inlined AWApi (binding doc)
+    - SourceSearch documentation browse / search application
+    - New w:Markdown tag for writing markdown in components
+
+- Reworked organization of Examples
+    - All interesting examples now in examples/Demo app
+    - No embedded (demoshell) JS and groovy -- all .java or discrete .groovy files
+
+- Improved Component Inspector
+    - Browse metaui meta data (properties, and assignment source)
+    - Cleaner switching between path and tree views
+
+- Added RichTextEditor widget (based on Xinha javascript library)
+    - Used automatically by Meta UI for strings marked with trait "RichText"
+
+- Added AWReload: aka Java Rapid Turnaround
+    - i.e. support for dynmically compiling and reloading Java (and groovy) source changes
+    
+- Added AribaWeb IDE plugings for IntelliJ IDEA and Eclipse (see ide/ and src/ideplugin/README.txt)
+
+- Added metaui-jpa -- alpha implementation of metaui persistence API in terms of
+  EJB3 JPA / Hibernate.  Includes project templates, ant files, and bundled HSQLDB
+
+- Demo app enhancements
+    - Separate demo app from demoshell lib
+    - Support for .groovy files (in addition to script embedded in <groovy> tags) with automatic reloading
+
+- New "start", "aw" and "create-project" commands
+    - "aw" command sets up AW_HOME, ANT_HOME, JAVA_HOME, and checks CATALINA_HOME
+        - will invoke ant targets from tools/build-commands.xml (like create-project)
+    - "create-project" creates new project skeletons from templates
+        - currently have templates for a basic AW/Widgets apps and MetaUI-jpa (database) apps
+
+- Ant build file clean up (round 2)
+    - Apps can use tools/build-*-app.xml parent build files
+      web.xml and aribaweb.properties generated automatically
+    - Can build and run tomcat directly from app subdirectory (if AW_HOME set)
+    - Tomcat 6 support (copy conf from CATALINA_HOME rather than bundle it)
+
+- Embedded Tomcat (6.0.x) and Ant (1.7.1) simplifies getting started
+
+- Lib dir re-org
+    - External dependencies now in ext* subdirectories of lib
+    - Example ariba libs now prefixed with "app." (to distinguish from ariba.*.jar libs)
+
+
+New in Version 0.8.2 (6/25/2008)
+---------------------------------
+
+- Ant build file cleanup
+    - Top level ant file!
+    - Much faster incremental builds (no rebuilding jars/wars that didn't change)
+    - Just type "ant" to build and run
+    - Non-library apps can build without AW source (just need jars)
+    - Apps automatically launched with rapid turnaround set up (ARIBA_AW_SEARCH_PATH set)
+
+- Source tree simplification
+    - Examples moved to top level examples directory
+    - Demoshell examples moved to examples/demoshell-site (out of the demoshell src)
+
+- MetaUI greatly enhanced
+    - Big performance and correctness enhancements
+    - Support for complex nested layouts (tabs, sections, to-many property display)
+    - Persistence package -- foundation for JPA/Hibernate (or other ORM) integration
+    - App nav tabs now track current page (regardless of how user got there)
+    - More MetaUI examples (BusObjUI now has Simple, Medium, and Advanced examples)
+    - Exceptions post rapid-turnaround edits (especially with .oss files) eliminated
+    - Continuing after .oss parse failure and fix now possible
+    - Cleaner factoring for rule/property assigning Annotation listeners
+    - MetaActionList now can render as button list (as well as menu button and wrapper menu link)
+    
+- AW / Widgets enhancements
+    - Nicer exception page (and proper UI rendering of exceptions occuring on first request)
+    - AWLocalLoginSessionHander -- clean support for actions that require authentication
+        before proceeding (see initSessionValidator() in demoshell/.../Application.java
+        and secureAction in examples/demoshell-site/TnE/ERPage.htm)
+    - AWJarWalker support for load-time (cheap) annotation listeners
+    
+- Many bug fixes
+    - All known example exceptions fixed
+    - Disabled ./logs/perf*.csv spew
+    - Number of fixes to GenericChooser
+    - Fix DatePicker exception (no time zone)
+    - Chooser triggering non-smooth refresh (especially with DataTables) fixed
+    - javax.servlet eliminated from .war files
+    - Fix look of (modally) disabled Nav tabs and actions
+    - Fix drag/mouse behavior in PortletWrapper
+    ...
+
+Version 0.8.0 / 0.8.1 (5/13/2008)
+------------------------------------
+
+First opensource release of AribaWeb
+

@@ -1,0 +1,8 @@
+<w:ModalPageWrapper title="$[a001]Choose File to Upload"
+        okAction="$done" okTitle="$[a002]Cancel">
+    <w:FileUploadChooser filename="$fileName"
+        bytes="$bytes"
+        mimeType="$mimeType"
+        maxLength="$maxsize"
+        fileSizeExceeded="$fileSizeExceeded"/>\
+</w:ModalPageWrapper>

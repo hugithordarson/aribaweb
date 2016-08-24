@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+
+<!--
+    Copyright 1996-2008 Ariba, Inc.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    (Some contents derived from a parallel Apache Lucene file, also licenced
+     under the same license)
+
+    $Id:  $
+ -->
+
+<project name="aribaweb-libs" default="default" basedir=".">
+    <property file="version.properties"/>
+    <import file="${aw.home}/tools/build-common.xml"/>
+
+    <macrodef name="module-crawl">
+        <attribute name="target" default=""/>
+        <attribute name="failonerror" default="true"/>
+        <sequential>
+            <subant target="@{target}" failonerror="@{failonerror}">
+                <property name="make.common.dir" location="${make.common.dir}"/>
+                <property name="build.dir" value="${build.dir}"/>
+                <fileset dir="${src.util.dir}" includes="build.xml"/>
+                <fileset dir="${src.expr.dir}" includes="build.xml"/>
+                <fileset dir="${src.ui.dir}" includes="aribaweb/build.xml"/>
+                <fileset dir="${src.ui.dir}" includes="widgets/build.xml"/>
+                <fileset dir="${src.ui.dir}" includes="metaui/build.xml"/>
+                <fileset dir="${src.ui.dir}" includes="metaui-jpa/build.xml"/>
+                <fileset dir="${src.ui.dir}" includes="demoshell/build.xml"/>
+                <fileset dir="${src.ui.dir}" includes="groovyloader/build.xml"/>
+                <fileset dir="${src.ui.dir}" includes="ideplugin/build.xml"/>
+                <fileset dir="${src.ui.dir}" includes="awreload/build.xml"/>
+            </subant>
+        </sequential>
+    </macrodef>
+
+    <target name="war">
+        <subant target="war">
+            <property name="make.common.dir" location="${make.common.dir}"/>
+            <property name="build.dir" value="${build.dir}"/>
+            <fileset dir="${src.ui.dir}" includes="demoshell/build.xml"/>
+        </subant>
+    </target>
+
+    <target name="jar">
+        <module-crawl target="jar"/>
+    </target>
+
+    <target name="awapidocs" description="Generate awapi docs" depends="init, jar">
+        <echo message="Invoking java..."/>
+        <mkdir dir="${doc.dir}/xsd"/>
+        <java classname="ariba.ui.dev.AWApiDocGenerator" outputproperty="awapi.out">
+            <arg value="${doc.dir}/api"/>
+            <arg value="${doc.dir}/xsd"/>
+            <arg value="${src.ui.dir}/aribaweb"/>
+            <arg value="${src.ui.dir}/widgets"/>
+            <arg value="${src.ui.dir}/metaui"/>
+            <classpath>
+                <path refid="classpath"/>
+            </classpath>
+        </java>
+        <echo message="Output: ${awapi.out}"/>
+    </target>
+
+    <target name="generate-javadocs" description="Generate javadoc" depends="init, jar">
+        <mkdir dir="${doc.dir}/api"/>
+        <invoke-javadoc
+          access="public"
+          destdir="${doc.dir}/api"
+        />
+    </target>
+
+    <target name="javadocs" description="Generate javadoc" depends="generate-javadocs, awapidocs">
+    </target>
+
+    <target name="javadocs-internal" depends="jar">
+        <mkdir dir="${doc.dir}/api-internal"/>
+        <invoke-javadoc
+          access="package"
+          destdir="${doc.dir}/api-internal"
+        />
+    </target>
+
+    <macrodef name="invoke-javadoc">
+        <attribute name="access"/>
+        <attribute name="destdir"/>
+        <sequential>
+
+            <javadoc
+                    overview="${src.ui.dir}/docs/api/overview.html"
+                    packagenames="ariba.ui.*,ariba.util.*"
+                    destdir="@{destdir}"
+                    access="@{access}"
+                    encoding="${build.encoding}"
+                    author="true"
+                    version="true"
+                    use="false"
+                    source="${ant.java.version}"
+                    link="${javadoc.link}"
+                    windowtitle="${Name} ${version} API"
+                    doctitle="${Name} ${version} API"
+                    bottom="&lt;a href='http://aribaweb.org' target='_top'&gt;AribaWeb User Interface Development Framework&lt;/a&gt;&lt;br/&gt;Copyright &amp;copy; ${year} Ariba, Inc.  All Rights Reserved.">
+                <tag name="note" description="Note:"/>
+                <tag name="aribaapi" enabled="false"/>
+
+
+                <packageset dir="${src.util.dir}"/>
+                <packageset dir="${src.expr.dir}"/>
+                <packageset dir="${src.ui.dir}/aribaweb"/>
+
+                <packageset dir="${src.ui.dir}/widgets">
+                    <exclude name="ariba/ui/dev/**"/>
+                </packageset>
+
+                <packageset dir="${src.ui.dir}/metaui"/>
+                <packageset dir="${src.ui.dir}/metaui-jpa"/>
+                <!--
+                <packageset dir="${src.ui.dir}/demoshell">
+                    <exclude name="ariba/ui/scratch/**"/>
+                    <exclude name="ariba/ui/groovy/**"/>
+                </packageset>
+                -->
+
+                <!-- If the main javadoc Group listing includes an "Other   -->
+                <!-- Packages" group after the ones listed here, then those -->
+                <!-- packages are not being matched by any of these rules   -->
+
+                <group title="aribaweb" packages="ariba.ui.aribaweb.*:ariba.ui.servletadaptor"/>
+
+                <group title="widgets"
+                       packages="ariba.ui.widgets:ariba.ui.table:ariba.ui.outline:ariba.ui.validation:ariba.ui.wizard.*"/>
+
+                <group title="metaui" packages="ariba.ui.meta.*"/>
+
+                <group title="util"
+                       packages="ariba.util.fieldvalue:ariba.util.formatter:ariba.util.core:ariba.util.io:ariba.util.log:ariba.util.i18n:ariba.util.shutdown"/>
+                <group title="expr" packages="ariba.util.expr:ariba.util.fieldtype"/>
+
+                <!--
+                <group title="demoshell" packages="ariba.ui.demoshell"/>
+                -->
+                <classpath refid="javadoc.classpath"/>
+            </javadoc>
+        </sequential>
+    </macrodef>
+</project>

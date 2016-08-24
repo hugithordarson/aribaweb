@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<project name="GuestBook" default="launch">
+    <property environment="env"/>
+    <property name="aw.home" location="${env.AW_HOME}"/>
+    <property name="app.name" value="Main"/>
+    <import file="${aw.home}/tools/build-metaui-app.xml"/>
+</project>

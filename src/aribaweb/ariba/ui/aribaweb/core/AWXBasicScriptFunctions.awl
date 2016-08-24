@@ -1,0 +1,123 @@
+<a:Api>
+    <Copyright>
+        Copyright 1996-2008 Ariba, Inc.
+
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at
+            http://www.apache.org/licenses/LICENSE-2.0
+
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+
+        $Id: //ariba/platform/ui/aribaweb/ariba/ui/aribaweb/core/AWXBasicScriptFunctions.awl#50 $
+    </Copyright>
+
+    <Overview>
+        TBD
+    </Overview>
+
+    <Binding key="sessionless" direction="get" type="boolean" default="$false">
+        Indicates whether the current page is sessionless.
+    </Binding>
+</a:Api>\
+
+<a:Singleton>\
+    <!--- Function used by AWClientSideScript - See AWXRichClientScriptFunctionsCommon.js -->\
+    <a:RefreshRegion useId="DC" ignore="$true" alwaysRender="$true">\
+        <a:GenericContainer tagName="script" language="JavaScript">
+            <a:CurrWindowDecl/>\
+            if (window.name == "AWRefreshFrame") {
+                ariba_IR = true;
+                RJS = function (inc, sync, isGS, f) { if (inc) parent.ariba.Refresh.RSS(sync, isGS, f.toString()); }
+            }\
+            if (window.ariba_IR && ariba && ariba.Request) {
+                ariba.Request.requestNotInProgress();
+            }
+        </a:GenericContainer>\
+        <a:If ifTrue="$isBrowserMicrosoft">\
+            <a:GenericContainer tagName="script" language="VBScript">
+                sub GlobalEvalVBScript (s)
+                    <!--- awDebug "<b>*** Running VBScript:</b> <br> <pre>" & s & "</pre>" -->\
+                    ExecuteGlobal s
+                end sub
+            </a:GenericContainer>\
+        </a:If>\
+    </a:RefreshRegion>\
+\
+    <!--- need this out of the refresh region -->\
+    <a:Environment scriptForceDirectInclude="$true">
+        <sCript>var ENABLE_COMMUNITY = $isUserCommunityEnabled;</sCript>
+        <a:If ifTrue="$isUserCommunityEnabled">
+            <sCript>var SCREEN_RESOLUTION_WIDTH = $getFoldInSituOnWindowSizeParam;</sCript>    
+        </a:If>
+
+        <a:If ifTrue="$includeIndividualJSFiles">
+            <!--- This MUST match the files AND ORDER in the Makefile -->
+            <a:ClientSideScript filename="jquery.js"/>
+            <a:ClientSideScript filename="Util.js"/>
+            <a:ClientSideScript filename="Dom.js"/>
+            <a:ClientSideScript filename="Event.js"/>
+            <a:ClientSideScript filename="Input.js"/>
+            <a:ClientSideScript filename="Request.js"/>
+            <a:ClientSideScript filename="Refresh.js"/>
+            <a:ClientSideScript filename="Handlers.js"/>           
+        <a:Else/>
+            <a:ClientSideScript filename="aribaweb_all.js"/>\
+        </a:If>
+
+        <a:If ifTrue="$ariba.ui.aribaweb.core.AWConcreteServerApplication.IsDebuggingEnabled">
+            <a:If ifTrue="$^sessionless:$false">
+                <a:JSDebug enabled="$false"
+                           showRequestFrame="$false"
+                           showHistoryFrame="$false"/>
+            <a:Else/>
+                <a:JSDebug enabled="$session.dict.IsJavascriptDebuggingEnabled"
+                           showRequestFrame="$session.dict.IsRefreshFrameVisible"
+                           showHistoryFrame="$session.dict.IsHistoryVisible"
+                           markRefreshUpdates="$session.dict.RefreshRegionsVisible"/>
+            </a:If>
+        </a:If>
+    </a:Environment>
+
+    <!--- only put these on the main page --->
+    <a:RefreshRegion useId="BSF">
+        <a:If ifTrue="$^sessionless:$false">
+            <a:ClientSideScript synchronous="$true">
+                ariba.Request.AWFrameName = null;
+            </a:ClientSideScript>
+        <a:Else/>
+            <a:ClientSideScript synchronous="$true">\
+                ariba.Request.initParams(\
+                    '<a:PrimitiveString value="$requestContext.responseId"/>',\
+                    '<a:PrimitiveString value="$session.sessionSecureId"/>',\
+                    '<a:PrimitiveString value="$refreshUrl"/>',\
+                    '<a:PrimitiveString value="$pingUrl"/>',\
+                    '<a:PrimitiveString value="$progressCheckUrl"/>',\
+                    '<a:PrimitiveString value="$requestHandlerUrl"/>',\
+                    <a:PrimitiveString value="$ariba.ui.aribaweb.core.AWRequestContext.UseXmlHttpRequests"/>,\
+                    <a:If ifFalse="$=ariba.ui.aribaweb.core.AWConcreteApplication.IsCookieSessionTrackingEnabled">\
+                        '<a:PrimitiveString value="$=ariba.ui.aribaweb.core.AWRequestContext.SessionIdKey"/>',\
+                        '<a:PrimitiveString value="$httpSession.id"/>',\
+                    <a:Else/>\
+                        null,\
+                        null,\
+                    </a:If>\
+                    <a:If notEqualNull="$requestContext.frameName">\
+                        '<a:JavascriptString value="$requestContext.frameName"/>',\
+                    <a:Else/>
+                        null,\
+                    </a:If>\
+                    '<a:PrimitiveString value="$backTrackUrl"/>',\
+                    '<a:PrimitiveString value="$forwardTrackUrl"/>',\
+                    <!--- Delay before the barber pole displays-->\
+                    <a:PrimitiveString value="$waitAlertMillis"/>,\
+                    '<a:JavascriptString value="$openWindowErrorMessage" escape="$true"/>'\
+                );\
+            </a:ClientSideScript>
+        </a:If>\
+    </a:RefreshRegion>\
+</a:Singleton>\

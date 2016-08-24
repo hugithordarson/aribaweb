@@ -1,0 +1,19 @@
+<w:BasicPageWrapper hasForm="$true">
+    <w:HintMessage>Compare to ZK data binding example: http://www.zkoss.org/smalltalks/gwtZk/ (AW requires 50% less code)</w:HintMessage>
+    <t:DataTable list="$persons" singleSelect="$true" displayGroup="$displayGroup" enableScrolling="$true">
+        <t:Column key="firstName" label="First Name"/>
+        <t:Column key="lastName" label="First Name"/>
+        <t:Column key="name" label="Full Name"/>
+    </t:DataTable>
+    <!-- show the detail of the selected person -->
+    <w:FormTable showErrorFlags="$true">
+        <w:FormRow label="First Name"><a:TextField value="$displayGroup.selectedObject.firstName"/></w:FormRow>
+        <w:FormRow label="Last Name"><a:TextField value="$displayGroup.selectedObject.lastName"/></w:FormRow>
+        <w:FormRow label="Full Name">$displayGroup.selectedObject.name</w:FormRow>
+    </w:FormTable>
+</w:BasicPageWrapper>
+<groovy>
+    import busobj.Person
+    def displayGroup;
+    List persons = (1..30).collect { new Person("First ${it}", "Last ${it}") }
+</groovy>

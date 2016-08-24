@@ -1,0 +1,104 @@
+<w:BasicPageWrapper hasForm="$true">
+
+<w:HintMessage showTopLine="$true">
+    <a:Local key="a010">A side-by-side master-detail layout with type-specific detail panels!</a:Local>
+</w:HintMessage>
+<w:FourZoneLayout widthLeft="auto" widthRight="300px">
+    <a:Content name="left">
+        <t:DataTable displayGroup="$displayGroup" csvPath="ER.csv" item="$currentItem"
+                     multiSelect="$true" showSelectionColumn="$false" initialSortKey=""
+                     submitOnSelectionChange="$true"
+                     dropAction="$chargeDropped" dropType="charge"                
+                     enableScrolling="$true" showOptionsMenu="$true"
+                     title="$[a001]Expense Items">
+
+            <t:Column key="Year" label="$[a002]Date" formatter="$formatters.shortDate"/>
+            <t:Column key="Type" label="$[a003]Type!"/>
+            <t:Column key="Amount" label="$[a004]Amount" formatter="$formatters.money" align="right"/>
+
+            <t:ButtonArea>
+                <w:TextButton action="$deleteSelected"><a:Local key="a011">Delete</a:Local></w:TextButton>\
+                <w:PulldownButton menuId="AddItem"><a:Local key="a012">Add New Item</a:Local></w:PulldownButton>
+                <w:TextButton action="$bigPanel"><a:Local key="a013">Big Panel</a:Local></w:TextButton>\
+                <w:TextButton action="$longRunningAction" confirmationId="LRAConf">\
+                    <a:Local key="a014">Long Running Action</a:Local>
+                </w:TextButton>\
+                <w:TextButton action="$secureAction"><a:Local key="a015">Secure Action</a:Local></w:TextButton>\
+            </t:ButtonArea>
+        </t:DataTable>
+        <br/>
+        <w:PopupMenu menuId="AddItem">
+            <w:PopupMenuHeading showSeparator="$false">\
+                <a:Local key="a016">Create New Expense</a:Local>\
+            </w:PopupMenuHeading>
+
+            <w:PopupMenuItem action='${addItem("Hotel")}'>\
+                <a:Local key="a017">Hotel</a:Local>\
+            </w:PopupMenuItem>
+            <w:PopupMenuItem action='${addItem("Meal")}'>\
+                <a:Local key="a018">Meal</a:Local>\
+            </w:PopupMenuItem>
+        </w:PopupMenu>\
+    </a:Content>
+
+    <a:Content name="right">
+        <div style="width:300px">
+            <w:TabSet class="tabWrapper noPadding" contentClass="noPadding tabContentWrapper"
+                      index="$tabIndex">
+                <w:Tab label="$[a005]Expense Items" dropType="Expense" dropAction="$null">
+                    <a:If notEqualNull="$displayGroup.selectedObject">
+                        <div style="padding:5px">
+                            <h1 class="flL">\
+                                <a:String value="$displayGroup.selectedObject.Type"/>\
+                            </h1>
+                            <div class="flR">\
+                                <w:TextButton action="$save"><a:Local key="a019">Save</a:Local></w:TextButton>\
+                            </div>
+                            <div style="clear:both">
+                                <a:IncludeComponent
+                                        awcomponentName="$viewerForSelectedItem"
+                                        currentItem="$displayGroup.selectedObject"/>
+                            </div>
+                        </div>
+                    <a:Else/>
+                        <div style="padding:5px">
+                            <h1><a:Local key="a020">Add Expense Line</a:Local></h1>
+                            <a:For item="$expenseType" list="$expenseTypes">
+                                <li><a:Hyperlink action="${addItem(expenseType)}">$expenseType</a:Hyperlink></li>
+                            </a:For>
+                        </div>
+                    </a:If>
+                </w:Tab>
+                <w:Tab label="$[a006]Charges" dropType="Expense" dropAction="$null">
+                    <t:DataTable class="noBox scrollTableWrapper smallFont" multiSelect="$true"
+                                 csvPath="Charges.csv" displayGroup="$chargeDisplayGroup"
+                                 dragAction="$chargeDragged" dragType="charge"
+                                 initialSortDirection="descending" initialSortKey="Year"
+                                 enableScrolling="$true" showOptionsMenu="$false">
+
+                        <t:Column key="Year" label="$[a007]Date" formatter="$formatters.shortDate"/>
+                        <t:Column key="Type" label="$[a008]Type!"/>
+                        <t:Column key="Amount" label="$[a009]Amount" formatter="$formatters.money" align="right"/>
+                        
+                        <t:ButtonArea>
+                            <w:TextButton action="$addCharges"><a:Local key="a021">Add Charge</a:Local></w:TextButton>
+                        </t:ButtonArea>
+                    </t:DataTable>
+                </w:Tab>
+            </w:TabSet>\
+        </div>\
+    </a:Content>
+</w:FourZoneLayout>
+
+<a:PhaseInvocation append="$rememberLastSelected"/>
+<w:Confirmation id="LRAConf" lazyLoadConfirmation="$false" okAction="$longRunningAction">
+    <a:Content name="header">\
+        <a:Local key="a022">Sample Long Running Operation Alert!</a:Local>
+    </a:Content>\
+    <a:Content name="content">\
+        <table><tr><td>\
+            <a:Local key="a023">Are you sure that you want to do this? This will take > 30 seconds!</a:Local>
+        </td></tr></table>\
+    </a:Content>\
+</w:Confirmation>
+</w:BasicPageWrapper>

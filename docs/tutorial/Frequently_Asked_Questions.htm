@@ -1,0 +1,119 @@
+<html>
+<head>
+<title>AribaWeb -- Frequently Asked Questions</title>
+<link href="../resource/widgets.css" type="text/css" rel=stylesheet>
+<script src="../resource/prettify.js" language=JavaScript></script>
+</head>
+<body class="doc" style="padding:8px" onload="prettyPrint()">
+<h2 id="i_first_heard_of_aribaweb_only_recently_is_it_new_">I first heard of AribaWeb only recently.  Is it new?</h2>
+
+<p>Yes and no.  AribaWeb has been used by Ariba, Inc. in its commercial enterprise applications and On Demand
+WebServices since 1999.  The framework was first released as Open Source (quietly) in May, 2008.
+Active promotion of the open source project began in February 2009.</p>
+
+<p>For more background, check out the AW <a href="Release_History.htm"
+
+
+>Product History</a>.</p>
+
+<h2 id="how_does_aribaweb_compare_to_other_open_source_ui_frameworks_">How does AribaWeb compare to other Open Source UI Frameworks?</h2>
+
+<p>Although AW predates nearly all currently popular open source web frameworks,
+it shares an interesting combination of virtues with many of them:</p>
+
+<ul>
+<li><p>Like Java Server Faces (JSF), Tapestry and Wicket, AribaWeb is a deeply
+<em>component-oriented framework</em>, and, like Wicket, AW transparently manages component server state.
+AW's model of template/class binding is most similar to that of Tapestry.</p></li>
+<li><p>Like Google Web Toolkit (GWT), ZK, and Echo2, AribaWeb enables creating
+<em>AJAX applications without writing JavaScript</em>, and like ZK and Echo2, AW's "Auto AJAX"
+approach is server-based.</p></li>
+<li><p>Like ZK, AribaWeb enables <em>less source code</em> to implement many UIs (and offers the ability to inline
+component logic in the UI template, if desired).</p></li>
+<li><p>Like Ruby on Rails, Django, and Grails, AribaWeb provides a <em>full stack</em> for implementing database
+applications, and supports a <em>dynamic scripting language</em> (Groovy, in the case of AW) for conveniently
+expressing application logic.</p></li>
+</ul>
+
+<p>In addition to combining all these attributes in a single framework, several aspects of AribaWeb set
+it apart:</p>
+
+<ul>
+<li><p>AribaWeb's component model is both more dynamic that Tapestry's and more efficient than Wicket's.</p></li>
+<li><p>AribaWeb's approach to server-side-AJAX is totally transparent and does not require applications
+to adopt a tedious event handling paradigm (instead favoring consistent declarative binding).</p></li>
+<li><p>AribaWeb's ability to concisely express an application UI is unmatched (typically 50% the code of
+even ZK, and even less than in other frameworks).  With MetaUI, the AW advantage is even greater.</p></li>
+<li><p>Only AribaWeb has <em>Instant App</em> with <em>Live Edit</em> support: while some frameworks provide a limited
+ability to generate UIs based on the application data model (using "scaffolding" or "generic views"),
+AribaWeb is unique in enabling radical customization of these UIs (contextually, to the operation,
+layout, etc.) as well as the live editing of the UI layout and rules, directly on the running application
+interface.</p></li>
+<li><p>While AribaWeb supports authoring applications in a dynamic scripting language (Groovy),
+<em>AribaWeb itself is 100% pure Java</em> and fully supports applications written in pure-Java
+(or a mix of Java and Groovy).  This means that the AW engine is extremely <em>fast</em>
+(and multi-threaded) and that your application can use whatever mix of dynamic and static code
+best meets your requirements.</p></li>
+</ul>
+
+<h2 id="100x_less_code_than_rails_really_">100x Less Code than Rails?  Really??</h2>
+
+<p>It hard to believe, but it's <a href="http://aribaweb.blogspot.com/2009/02/way-way-less-code.html"
+
+
+>true</a>:
+An out of the box AribaWeb project for an app managing a handful of domain classes
+has 100x fewer lines of code than its equivalent (but <em>far</em> less function) Rails project.
+And, for each added domain class, AW add 15x less code.</p>
+
+<h2 id="10x_less_than_gwt_for_google_maps_">10x Less than GWT?  For Google Maps?!?</h2>
+
+<p>Ah, the irony....  But, <a href="http://aribaweb.blogspot.com/2009/02/way-way-less-code.html#autoajax_50_the_code_of_zk_"
+
+
+>yes</a>,
+in comparing implementations of a simple AJAX app that searches for a location and marks it on a Google Map,
+the AW implementation is 2x smaller than ZK, and 10x smaller than with Google Web Toolkit, or JSF/ICEfaces. </p>
+
+<h2 id="is_aribaweb_production_quality_">Is AribaWeb Production Quality?</h2>
+
+<p>Absolutely.  AW has been deployed commercially for nearly a decade to millions of users in some
+of the most demanding enterprises in the world, and has been part of over a Trillion Dollars (USD)
+of Business-to-Business electronic commerce.</p>
+
+<h2 id="does_ariba_use_all_of_the_aribaweb_libraries_">Does Ariba Use All of the AribaWeb Libraries?</h2>
+
+<p>Almost.  The Util, Expr, AribaWeb (core), and Widgets library are used in customer
+facing applications.  MetaUI is new (although it is similar to an older internal
+Ariba framework) and is currently used only in administrative and testing applications
+(although its use is likely to expand over time).  Only the JPA (Hibernate) integration
+is not currently used by Ariba.</p>
+
+<h2 id="does_aw_require_groovy_">Does AW Require Groovy?</h2>
+
+<p>No.  The AW libraries are implemented entirely in Java and support pure-Java applications.
+However, AW also supports an add on library, ariba.groovyloader.jar, which enables
+embedding groovy in component templates as well as dynamic source reloading ("rapid turnaround")
+for .groovy files paired with .awls.  Finally, the AW Ant build system is Groovy-aware, so its
+easy to use compiled groovy in your projects for your JPA domain classes.</p>
+
+<h2 id="what_s_the_aribaweb_license_">What's the AribaWeb License?</h2>
+
+<p>AribaWeb is released as Open Source under the (commercially friendly) Apache License, v2.</p>
+
+<h2 id="why_did_ariba_release_aribaweb_as_open_source_why_now_">Why Did Ariba Release AribaWeb as Open Source?  Why Now?</h2>
+
+<p>We should have done it sooner!  :-)</p>
+
+<p>As one of the first companies to push Java to enterprise/web scale (releasing the pure-Java
+ORMS in 1997) Ariba has long been a heavy adopter of Open Source technology.  The AribaWeb
+framework has long been a "hidden gem" inside the company and we decided that we wanted to
+"give back" to the community that has helped make our products possible.  Also, we saw how
+other frameworks were evolving (with a heavy emphasis on handed coded javascript clients)
+and we felt that AribaWeb's unique server-centric Auto-AJAX programming model, and meta-data
+driven (rules-based) UI derivation were important ideas to expose to the web development
+community.  We hope that now, with access to this technology, many others can now build better
+apps faster.</p>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+/*
+    @ModelClass@ - model class
+*/
+package @ModelPkg@
+
+import ariba.ui.meta.annotations.*
+import javax.persistence.*
+import java.util.*
+
+@Entity @NavModuleClass
+class @ModelClass@
+{
+    @Id @GeneratedValue
+    private Long id
+
+    String title
+
+    @Trait.RichText
+    String description
+}

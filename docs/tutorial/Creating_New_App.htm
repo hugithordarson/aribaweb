@@ -1,0 +1,97 @@
+<html>
+<head>
+<title>AribaWeb -- Creating New App</title>
+<link href="../resource/widgets.css" type="text/css" rel=stylesheet>
+<script src="../resource/prettify.js" language=JavaScript></script>
+</head>
+<body class="doc" style="padding:8px" onload="prettyPrint()">
+<h1 id="creating_a_new_application">Creating a New Application</h1>
+
+<p>AribaWeb includes new project templates that make getting started
+with your first application quite easy.</p>
+
+<h2 id="online_video_tutorials">Online Video Tutorials</h2>
+
+<ul>
+<li><a href="http://www.vimeo.com/1790856"
+
+
+>Getting Started</a></li>
+<li><a href="http://www.vimeo.com/1773123"
+
+
+>Building a GuestBook</a></li>
+<li><a href="http://www.vimeo.com/1776187"
+
+
+>Setting up IntelliJ IDEA</a></li>
+</ul>
+
+<h2 id="before_getting_started">Before Getting Started</h2>
+
+<ol>
+<li><p>Open a shell window (e.g. Windows cygwin/MKS window, or MacOS X / Linux Terminal)</p></li>
+<li><p>Make sure that you have the bin directory of you aribaweb installation in your PATH.
+e.g. if you unpacked AW in your home directory:</p>
+
+<div class='quoteCode'><pre class='prettyprint'><code>export PATH="~/aribaweb-5.0/bin:$PATH"
+</pre></code></div></li>
+</ol>
+
+<h2 id="creating_a_widgets_app">Creating a Widgets App</h2>
+
+<p>Let's say we want to create a simple, one page, "guest book" sample.</p>
+
+<ol>
+<li><p>First, change your current working directory to where you'd like to put your new project.</p>
+
+<div class='quoteCode'><pre class='prettyprint'><code>cd ~/projects
+</pre></code></div></li>
+<li><p>Now we'll run the AW create-project command to create our project from a template</p>
+
+<div class='quoteCode'><pre class='prettyprint'><code>% aw create-project
+</pre></code></div></li>
+<li><p>At the prompts, choose the "Basic Widgets Application" and enter
+reasonable values for the application name ("GuestBook") and source code
+package ("app")</p>
+
+<div class='quoteCode'><pre class='prettyprint'><code>Please choose a template from among the following:
+    [1] Basic AribaWeb/Widgets Application
+           A starter template for a basic (non-database)
+           AribaWeb application that uses the Widgets library.
+    ...
+Selection [1]:
+1
+
+
+Enter name/path for your project (directory) [MyApp]:
+GuestBook
+
+
+Java package to use for your AW components/pages [app]:
+app
+</pre></code></div></li>
+<li><p>cd into your new project and run it</p>
+
+<div class='quoteCode'><pre class='prettyprint'><code>cd GuestBook
+aw ant launch
+</pre></code></div></li>
+</ol>
+
+<p>The browser will automatically open and connect to your app.</p>
+
+<ol>
+<li><p>Take a look at the source code in your IDE / Text editor of choice.</p>
+
+<ul><li><p><code>app/Main.awl</code> is the AW template for the main page</p></li>
+<li><p><code>app/Main.java</code> is the corresponding component definition</p></li>
+<li><p><code>build.xml</code> is your build files.  Note that it includes a parent build file from
+your AW installation (the AW_HOME environment varaible is being set for you by
+the "aw" command that you used to run Ant</p></li></ul></li>
+<li><p>Try out modifications to the files</p>
+
+<ul><li>add some basic HTML to the .awl file and refresh the page in your browser</li></ul></li>
+</ol>
+
+</body>
+</html>

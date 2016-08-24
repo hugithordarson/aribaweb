@@ -1,0 +1,40 @@
+<w:BasicPageWrapper hasForm="$true">
+
+    <w:Confirmation id="LoginPanel" okAction="$loginAction">
+        <a:Content name="header">IMAP Login Parameters</a:Content>\
+        <a:Content name="content">
+            <m:Context object="$loginParams" operation="edit"><m:Form/></m:Context>
+        </a:Content>\
+    </w:Confirmation>
+
+    <w:FourZoneLayout widthLeft="200px" widthRight="auto">
+        <a:Content name="left">
+            <div style="padding-top:7px"></div>\
+            <w:RoundedBox>
+                <w:OutlineRepetition list="$folders" item="$folder" children="$null"
+                                     hasChildren="$false" selectedObject="$selFolder">
+                    <div style="padding-top:4px">\
+                        <w:OutlineFolderControl title="$folder.name" allowSelection="$true"
+                            isFolder="$true"/>\
+                    </div>
+                </w:OutlineRepetition>
+                <br/>
+            </w:RoundedBox>
+            <br/><a:If ifTrue="$displayGroup.selectedObject"><a:Hyperlink action="$inspectMime">Inspect Mime</a:Hyperlink></div></a:If>
+            
+        </a:Content>
+        <a:Content name="right">
+            <t:DataTable list="$messages" item="$message" displayGroup="$displayGroup"
+                         initialSortKey="" enableScrolling="$true"
+                         multiSelect="$true" showSelectionColumn="$false" submitOnSelectionChange="$true">
+                <t:Column key="sentDate" label="Sent" formatter="$formatters.shortDate"/>
+                <t:Column key="from" label="From"/>
+                <t:Column key="subject" label="Subject"/>
+            </t:DataTable>
+
+            <w:MimeMessageView parsedMessage="$displayGroup.selectedObject"
+                style="width:auto; height:550px; overflow:scroll; margin-top:7px; padding:3px; border:1px solid #9C9CB8"/>
+            <br/>
+        </a:Content>
+    </w:FourZoneLayout>
+</w:BasicPageWrapper>

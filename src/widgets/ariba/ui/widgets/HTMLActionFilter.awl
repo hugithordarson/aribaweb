@@ -1,0 +1,79 @@
+<a:Api>
+    <Copyright>
+        Copyright 1996-2008 Ariba, Inc.
+
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at
+            http://www.apache.org/licenses/LICENSE-2.0
+
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+
+        $Id: //ariba/platform/ui/widgets/ariba/ui/widgets/HTMLActionFilter.awl#10 $
+    </Copyright>
+
+    <Overview>
+        Rewrites static HTML string to turn embeded href and action URLs into
+        AW actions, which, by default, are turned into AWRedirects, or, with the
+        `action` binding, can execute arbitrary AW code.
+
+        When used with content vended by the displaying AW app, and with direct action
+        URLs pointing back at that app, the default redirect will be turned into a
+        "local direct action" invocation, (thereby avoiding the actual redirect and
+        providing / x-page refresh and remote URL annotation)
+    </Overview>
+
+    <Binding key="value" type="String" direction="get" required="$true">
+        HTML string to be rewritten
+    </Binding>
+
+    <Binding key="action" type="AWResponseGenerating" direction="get">
+        Invoked after pushing new url to `actionUrl` to ask app for new page.
+        If null is returned, then an AWRedirect to the actionUrl is used.
+    </Binding>
+
+    <Binding key="actionUrl" type="String" direction="set">
+        Push of the url that was just clicked.
+    </Binding>
+
+    <Binding key="actionTarget" type="String" direction="get">
+        href window target (if specified will override any originally on link)
+    </Binding>
+
+    <Binding key="resourceUrl" type="String" direction="set">
+        Push of the url that was/will be just fetched.
+    </Binding>
+
+    <Binding key="replacementUrl" type="String" direction="get">
+        Url to use in place of the pushed resource URL (if null, will fire action)
+    </Binding>
+
+    <Binding key="resourceResponse" type="AWResponseGenerating" direction="get">
+        Fired to dynamically provide resource data back
+    </Binding>
+</a:Api>\
+<a:While notEqualNull="$nextAction">\
+    <a:PrimitiveString value="$currentPrefix"/>\
+    <a:If ifTrue="$matchIsHref">\
+        <a:If ifTrue="$requestContext.isStaticGeneration">\
+            href="$staticUrlForActionResults"
+            <a:If notEqualNull="$currentTarget">\
+                target="$currentTarget"\
+            </a:If>\
+        <a:Else/>\
+            href="#" id="<a:ActionId action='$currentClicked'/>" bh="GAT" \
+            <a:If notEqualNull="$currentTarget">\
+                _t="$currentTarget"\
+            </a:If>\
+        </a:If>
+    <a:Else ifTrue="$useStaticUrl"/>\
+        src="$staticUrl"\
+    <a:Else/>
+        src="<a:ActionUrl action='$resourceRequest'/>"\
+    </a:If>
+</a:While>\
+<a:PrimitiveString value="$remainderString"/>\

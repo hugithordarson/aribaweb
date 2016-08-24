@@ -1,0 +1,96 @@
+<a:Api>
+    <Copyright>
+        Copyright 1996-2010 Ariba, Inc.
+
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at
+            http://www.apache.org/licenses/LICENSE-2.0
+
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+
+        $Id: //ariba/platform/ui/widgets/ariba/ui/widgets/HoverCard.awl#6 $
+    </Copyright>
+
+    <Overview>
+        The HoverCard widget adds hover behavior to any element.
+        On hover, the specified content is lazily loaded
+        on the left or right side of the element.
+
+        Usage:
+        <HoverCard>
+            <AWContent name="link">
+                <AWHyperlink action="$profileClicked">User A</AWHyperlink>
+            </AWContent>
+            <AWContent name="content">
+                <h3>User A</h3>
+                User Profile
+            </AWContent>
+        </HoverCard>
+    </Overview>
+
+    <Binding key="position" type="String" direction="get" required="false">
+        Can force the position of the hover card.
+        Supported values: bottom
+    </Binding>
+
+    <Binding key="disableLazyDiv" type="boolean" direction="get" required="false" default="false">
+        Don't lazily initialize the hover card content.
+    </Binding>
+
+    <Binding key="shouldOpen" type="boolean" direction="get" required="false" default="false">
+        Should keep the hover card content open.
+    </Binding>
+
+    <Binding key="class" type="String" direction="get" required="false">
+        CSS class for wrapper and match card element. "Card" will be appended for the hover card content/pointer name.
+
+        Example:
+        .foo {
+            // style wrapper
+        }
+
+        .fooCard .hcContent {
+            // style content field
+        }
+
+        .fooCard hcPointer {
+            // style pointer
+        }
+
+        Specify contentClass if need to add style (or change some style)
+        of the class hcContent.
+    </Binding>
+</a:Api>\
+
+<a:If ifFalse="$^shouldOpen">\
+    <span bh="HCC" _pos="$^position" class="$^class">
+        <a:IncludeContent name="link"/>
+        <a:RelocatableDiv class="$hcClass" style="display:none" bh="HC">
+            <div class="hcContent">
+                <a:LazyDiv ifTrue="$disableLazyDiv">
+                    <a:IncludeContent name="content"/>
+                </a:LazyDiv>
+            </div>
+            <span class="hcPointer"></span>
+            <span class="hcPointer hcPointerInner"></span>
+        </a:RelocatableDiv>
+    </span>
+<a:Else/>
+    <span>
+        <a:IncludeContent name="link"/>
+        <a:RelocatableDiv class="hcard hoverBottom">
+            <div class="hcContent">
+                <a:LazyDiv ifTrue="$disableLazyDiv">
+                    <a:IncludeContent name="content"/>
+                </a:LazyDiv>
+            </div>
+            <span class="hcPointer hcPointerInner"></span>
+        </a:RelocatableDiv>
+    </span>
+</a:If>
+

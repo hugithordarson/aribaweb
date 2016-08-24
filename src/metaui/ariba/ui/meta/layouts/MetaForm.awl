@@ -1,0 +1,144 @@
+<a:Api>
+    <Copyright>
+        Copyright 2008 Craig Federighi
+
+        Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
+        file except in compliance with the License.
+        You may obtain a copy of the License at
+        http://www.apache.org/licenses/LICENSE-2.0
+
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+
+        $Id: //ariba/platform/ui/metaui/ariba/ui/meta/layouts/MetaForm.awl#17 $
+    </Copyright>
+
+    <Overview>
+        Renders a FormTable based on the current MetaContext
+    </Overview>
+
+    <Binding key="useFourZones" direction="get" type="boolean" required="$true">
+        Use a TBLR layout (versus one column)
+    </Binding>
+</a:Api>\
+\
+<m:Context scopeKey="class">
+    <a:PhaseInvocation append="$initClass"/>
+    <!--- <b>MetaForm: </b><pre>$metaContext.debugString</pre>-->
+    <a:SetValue fieldsByZone="$metaContext.properties.fieldsByZone"/>
+    <div emitTags="$dragType" class="regionWrapper">
+    <a:If ifTrue="$metaContext.properties.fourZoneLayout">\
+        <w:FormTable useFourZones="$true"
+                     showErrorFlags="$currentProperties.editing"
+                     editable="$metaContext.properties.editing"
+                     awbindingsDictionary="$metaContext.properties.bindingsDictionary">
+            <a:Content name="top" disabled='${shouldHideZone("zTop")}'>\
+                <a:IncludeBlock name="DropZone" zone="zTop"/>\
+                <a:For list="$fieldsByZone.zTop" item="$field">
+                    <a:IncludeBlock name="RowTemplate"/>
+                </a:For>
+            </a:Content>
+            <a:Content name="left" disabled='${shouldHideZone("zLeft")}'>\
+                <a:IncludeBlock name="DropZone" zone="zLeft"/>\
+                <a:For list="$fieldsByZone.zLeft" item="$field">
+                    <a:IncludeBlock name="RowTemplate"/>
+                </a:For>
+            </a:Content>
+            <a:Content name="right" disabled='${shouldHideZone("zRight")}'>\
+                <a:IncludeBlock name="DropZone" zone="zRight"/>\
+                <a:For list="$fieldsByZone.zRight" item="$field">
+                    <a:IncludeBlock name="RowTemplate"/>
+                </a:For>
+            </a:Content>
+            <a:Content name="bottom" disabled='${shouldHideZone("zBottom") && shouldHideZone("zDetail")}'>\
+                <a:IncludeBlock name="DropZone" zone="zBottom"/>\
+                <a:For list="$fieldsByZone.zBottom" item="$field">
+                    <a:IncludeBlock name="RowTemplate"/>
+                </a:For>
+                <a:IncludeBlock name="DropZone" zone="zDetail"/>
+                <a:SetValue renderedFirst="$false"/>
+                <a:For list="$fieldsByZone.zDetail" item="$field">
+                    <a:IncludeBlock name="RowTemplate" useNoLabelLayout="$true" useSeparators="$true"/>
+                </a:For>
+            </a:Content>
+        </w:FormTable>\
+    <a:Else/>\
+        <w:FormTable
+                showErrorFlags="$currentProperties.editing"
+                editable="$metaContext.properties.editing"
+                awbindingsDictionary="$metaContext.properties.bindingsDictionary">
+            <a:IncludeBlock name="DropZone" zone="zTop"/>\
+            <a:For list="$fieldsByZone.zTop" item="$field">
+                <a:IncludeBlock name="RowTemplate"/>
+            </a:For>
+            <a:For list="$fieldsByZone.zLeft" item="$field">
+                <a:IncludeBlock name="RowTemplate"/>
+            </a:For>
+            <a:For list="$fieldsByZone.zRight" item="$field">
+                <a:IncludeBlock name="RowTemplate"/>
+            </a:For>
+            <a:For list="$fieldsByZone.zBottom" item="$field">
+                <a:IncludeBlock name="RowTemplate"/>
+            </a:For>
+
+            <a:SetValue renderedFirst="$false"/>
+            <a:For list="$fieldsByZone.zDetail" item="$field">
+                <a:IncludeBlock name="RowTemplate" useNoLabelLayout="$true" useSeparators="$true"/>
+            </a:For>            
+        </w:FormTable>\
+    </a:If>
+    <!--- Detail fields
+    <a:RefreshRegion tagName="table" isScope="$true" cellpadding="0" cellspacing="0" width="100%">
+        <a:RefreshRegion tagName="tr"><td></td></a:RefreshRegion>
+        <a:IncludeBlock name="DropZone" zone="zDetail"/>
+        <a:SetValue renderedFirst="$false"/>
+        <a:For list="$fieldsByZone.zDetail" item="$field">
+            <a:IncludeBlock name="RowTemplate" useNoLabelLayout="$true" useSeparators="$true"/>
+        </a:For>
+    </a:RefreshRegion>\
+        -->
+    </div>
+</m:Context>\
+\
+<a:Block name="RowTemplate">\
+    <m:Context field="$field">
+        <a:SetValue properties="$metaContext.properties"/>
+        <a:If ifTrue="$properties.visible">\
+            <a:If ifTrue="$^useSeparators">\
+                <a:If ifTrue="$renderedFirst">
+                    <a:RefreshRegion tagName="tr"><td>&nbsp;</td></a:RefreshRegion>
+                </a:If>
+                <a:SetValue renderedFirst="$true"/>
+            </a:If>
+            <w:FormRow  hidden="$!properties.visible"
+                        label="$properties.label"
+                        cueTip="$properties.cueTip"
+                        required="$properties.required"
+                        errorValueSource="$object"
+                        errorFieldPath="$properties.field"
+                        labelNowrap="$properties.bindings.labelNowrap"
+                        dragType="$dragType"
+                        dragAction="$dragAction" dropAction="$dropAction"
+                        dragHandleClickAction="$handleClickedAction"
+                        highlightRow="$isInspectedField"
+                        useNoLabelLayout="$^useNoLabelLayout:$properties.bindings.useNoLabelLayout">\
+                    <m:IncludeComponent/>\
+            </w:FormRow>
+        </a:If>
+    </m:Context>
+</a:Block>
+\
+<a:Block name="DropZone">\
+    <a:If ifTrue="$dragType">\
+        <a:SetValue zone="$^zone"/>
+        <m:Context field="$zonePath">\
+            <a:RefreshRegion tagName="tr" valign="middle"
+                         bh="DrP" class="$dropAreaClass" dropAction="$dropAction">
+                <td colspan="3" class="dropArea"><a:Image filename="cleardot.gif" width="1" height="2"/></td>
+            </a:RefreshRegion>
+        </m:Context>
+    </a:If>
+</a:Block>

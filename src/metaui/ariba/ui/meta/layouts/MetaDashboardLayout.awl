@@ -1,0 +1,55 @@
+<table cellspacing="0" width="100%" class="dbTitleWrapper"><tr>
+    <td class="dbTitle">$metaContext.properties.label <b><a:Local key="a001">Dashboard</a:Local></b></td>
+    <td align="right" nowrap>\
+        <!--- Imagine Something useful here -->
+    </td>
+</tr></table>
+<table cellspacing="0" width="100%" cellpadding="0"><tr>
+    <td _ifTrue="$layoutsByZones.zToc" class="dbTOC">\
+        <div class="tocSpacer"></div>\
+        <div class="flexContainer">\
+            <div class="dbTOC">\
+                <a:IncludeBlock name="portlets" list="$layoutsByZones.zToc" portletWidth="narrow"/>
+            </div>
+        </div>
+    </td>
+    <td valign="top">\
+        <div class="flexContainer">\
+            <a:MethodInvocation invoke="$requestContext.markNextComponentAsMainInTrace"/>\            
+            <w:FourZoneLayout awbindingsDictionary="$metaContext.properties.bindingsDictionary">
+                <a:Content name="top">
+                    <a:IncludeBlock name="portlets" list="$layoutsByZones.zTop" portletWidth="wide"/>
+                </a:Content>
+                <a:Content name="left">
+                    <a:IncludeBlock name="portlets" list="$layoutsByZones.zLeft" portletWidth="normal"/>
+                </a:Content>
+                <a:Content name="right">
+                    <a:IncludeBlock name="portlets" list="$layoutsByZones.zRight" portletWidth="normal"/>
+                </a:Content>
+                <a:Content name="bottom">
+                    <a:IncludeBlock name="portlets" list="$layoutsByZones.zBottom" portletWidth="wide"/>
+                </a:Content>
+            </w:FourZoneLayout>
+        </div>
+    </td>
+</tr></table>
+\
+<a:Block name="portlets">\
+    <a:Environment portletWidth="$^portletWidth">\
+        <a:For list="$^list" item="$layout">
+            <m:Context layout="$layout.name">
+                <a:If ifTrue="$metaContext.properties.visible">
+                    <a:Form omitTags="$!metaContext.properties.needsForm">
+                        <a:IncludeComponent name="$metaContext.properties.portletWrapper:PortletWrapper"
+                               title="$label"
+                               dragAction='${ariba.ui.widgets.AribaPageContent.setMessage("Dragging portlets not fully implemented yet -- check back later!", session()); null}'>
+                            <table width="100%" cellpadding="0" cellspacing="0"><tr><td>\
+                                <m:IncludeComponent/>\
+                            </td></tr></table>
+                        </a:IncludeComponent>
+                    </a:Form>
+                </a:If>
+            </m:Context>
+        </a:For>
+    </a:Environment>
+</a:Block>

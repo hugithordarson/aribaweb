@@ -1,0 +1,463 @@
+<?xml version="1.0"?>
+
+<!--
+    Copyright 1996-2008 Ariba, Inc.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    (Some contents derived from a parallel Apache Lucene file, also licenced
+     under the same license)
+
+    $Id:  $
+ -->
+<project name="aribaweb-all" default="tomcat-build" basedir=".">
+    <property name="aw.home" location="${basedir}"/>
+    <available file="${basedir}/tools" value="${basedir}/tools" property="make.common.dir"/>
+    <property name="src.dir" location="${basedir}/src"/>
+    <property file="${src.dir}/version.properties"/>
+    <property name="war.name" value="Demo"/>
+    <property name="use.shared.webapps.base" value="true"/>
+
+    <import file="tools/build-common.xml"/>
+
+    <property name="build.jars.dir" value="${dist.root.dir}/lib"/>
+    <property name="demoshell.home" location="${src.samples.dir}/demoshell-site"/>
+    <property name="binary.dist.zip" location="${dist.dir}/aribaweb-${version}.zip"/>
+    <property name="src.dist.zip" location="${dist.dir}/aribaweb-src-${version}.zip"/>
+
+    <!-- J A R                                                              -->
+    <target name="jars" description="Packages the JAR file" depends="init">
+        <module-crawl target="jar"/>
+    </target>
+
+    <target name="webapps" depends="jars">
+        <module-crawl target="webapp"/>
+    </target>
+
+    <target name="wars" depends="jars">
+        <module-crawl target="war"/>
+    </target>
+
+    <target name="samples-check1" unless="all.samples">
+        <fileset id="src.samples" dir="${src.samples.dir}" includes="**/build.xml" excludes="**/AtIssue/build.xml,**/GuestBook/build.xml"/>
+        <fileset id="src.ui.samples" dir="${src.ui.dir}" includes="*/examples/*/build.xml" excludes="**/AtIssue/build.xml,**/GuestBook/build.xml" erroronmissingdir="false"/>
+    </target>
+
+    <target name="samples-check2" if="all.samples">
+        <fileset id="src.samples" dir="${src.samples.dir}" includes="**/build.xml"/>
+        <fileset id="src.ui.samples" dir="${src.ui.dir}" includes="*/examples/*/build.xml"/>
+    </target>
+
+    <target name="init" depends="common.init, samples-check1, samples-check2">
+    </target>
+
+    <target name="clean"
+            description="Removes contents of build and dist directories">
+        <delete dir="${build.dir}"/>
+        <delete>
+          <fileset dir="${build.jars.dir}" includes="*.jar"/>
+        </delete>
+        <delete dir="${build.wars.dir}"/>
+        <delete dir="${dist.dir}"/>
+        <delete dir="${dist.root.dir}/work"/>
+        <delete dir="${doc.dir}/api"/>
+        <delete dir="${doc.dir}/tutorial"/>
+        <delete dir="${doc.dir}/site"/>
+        <delete dir="${doc.dir}/index.lucene"/>
+        <delete dir="${doc.dir}/xsd"/>
+    </target>
+    
+    <target name="tomcat-build" depends="webapps, tomcat"
+            description="Rebuild WAR dirs and start Tomcat"/>
+
+    <target name="tomcat-build-browse" depends="webapps, tomcat-browse"/>
+
+    <target name="launch" depends="tomcat-build-browse"
+            description="Rebuild WAR dirs, start Tomcat, opens browser window"/>
+
+    <target name="tomcat-exec" depends="has-tomcat, webapps"
+            description="Build, then run Tomcat">
+        <property name="demoshell.home" location="${src.ui.dir}/demoshell/site"/>
+        <condition property="catalina-command" value="catalina.bat">
+            <os family="windows"/>
+        </condition>
+        <property name="catalina-command" value="catalina.sh"/>
+        <echo message="Launching tomcat with CATALINA_BASE=${catalina.base.dir} ([CTRL-C] to stop)..."/>
+        <echo message="Setting ARIBA_AW_SEARCH_PATH=${aw.search.path}"/>
+        <echo message="Connect via ${app.url}"/>
+        <exec dir="." executable="${catalina.home.dir}/bin/${catalina-command}">
+            <env key="CATALINA_BASE" value="${catalina.base.dir}"/>
+            <env key="CATALINA_HOME" value="${catalina.home.dir}"/>
+            <env key="ARIBAWEB_HOME" value="${dist.root.dir}"/>
+            <!-- <env key="ARIBA_DEMOSHELL_HOME" value="${demoshell.home}"/> -->
+            <env key="ARIBA_AW_SEARCH_PATH" value="${aw.search.path}"/>
+            <arg value="jpda"/>
+            <arg value="run"/>
+        </exec>
+    </target>
+
+    <target name="tomcat-build-exec" depends="webapps, tomcat-exec"
+            description="Rebuild WARs and start Tomcat"/>
+
+    <target name="groovysh-broken">
+        <echo message="Launching groovy shell"/>
+        <java classpathref="groovy.script.classpath" classname="org.codehaus.groovy.tools.shell.Main" fork="true">
+        </java>
+    </target>
+
+    <target name="groovysh" depends="init, check-debug">
+        <pathconvert refid="groovysh.classpath" property="classpath.string"/>
+        <echo message="Launching groovy shell with classpath: ${classpath.string}"/>
+        <echo message="transport=${env.JPDA_TRANSPORT}, address=${env.JPDA_ADDRESS}"/>
+        <exec dir="." executable="groovyConsole">
+            <arg value="-cp"/>
+            <arg value="${classpath.string}"/>
+            <env key="JAVA_OPTS" value="-Xdebug -Xrunjdwp:transport=${env.JPDA_TRANSPORT},address=${env.JPDA_ADDRESS},server=y,suspend=n"/>
+        </exec>
+    </target>
+
+
+    <!-- ================================================================== -->
+    <!-- D O C U M E N T A T I O N                                          -->
+    <!-- ================================================================== -->
+    <target name="no-doc">
+        <property name="nodoc" value="true"/>
+    </target>
+
+    <target name="doc-resources" unless="nodoc">
+        <property name="doc.resource.dir" location="${doc.dir}/resource"/>
+        <property name="widgets.resource.dir" location="${src.ui.dir}/widgets/resource/webserver/"/>
+        <delete dir="${doc.resource.dir}"/>
+        <mkdir dir="${doc.resource.dir}"/>
+        <delete dir="${site.dir}"/>
+        <mkdir dir="${site.dir}"/>
+        <copy file="${src.dir}/docs/index.html" todir="${doc.dir}"/>
+        <copy file="${widgets.resource.dir}/widg/prettify.js" todir="${doc.resource.dir}"/>
+        <copy file="${widgets.resource.dir}/branding/ariba/widgets.css" todir="${doc.resource.dir}"/>
+    </target>
+
+    <target name="process-doc" depends="doc-resources" unless="nodoc">
+        <property name="site.src" location="${src.dir}/site"/>
+        <property name="doc.src" location="${site.src}/Documentation"/>
+        <property name="doc.template" location="${tools.dir}/templates/doctemplate.awl"/>
+        <property name="tutorial.doc.dir" location="${doc.dir}/tutorial"/>
+        <delete dir="${tutorial.doc.dir}"/>
+        <mkdir dir="${tutorial.doc.dir}"/>
+
+        <groovy src="bin/processdoc.groovy" classpathref="groovy.script.classpath">
+            <arg value="${doc.template}"/>
+            <arg value="${doc.src}"/>
+            <arg value="${tutorial.doc.dir}"/>
+        </groovy>
+
+    </target>
+
+    <property name="AWAPI.URL" value="http://aribaweb.org/api"/>
+    <property name="AWAPI.RootDirectory" value="${doc.dir}/api"/>
+
+    <target name="site">
+        <delete dir="${site.dir}"/>
+        <mkdir dir="${site.dir}"/>
+        <property name="site.src" location="${src.dir}/site"/>
+        <copy todir="${site.dir}">
+            <fileset dir="${site.src}/docroot"/>
+        </copy>
+
+        <groovy classpathref="groovy.app.classpath">
+            import ariba.ui.aribaweb.core.AWConcreteApplication
+            import ariba.ui.aribaweb.util.AWNamespaceManager
+            import ariba.ui.aribaweb.util.AWStaticSiteGenerator
+
+            // println "Sleeping for debugger attach..."; Thread.currentThread().sleep(5000)
+
+            // Need to override groovy class loader with one for AW so jar resources are found...
+            Thread.currentThread().setContextClassLoader(AWConcreteApplication.class.getClassLoader())
+
+            System.getProperties()["AWAPI.URL"] = properties["AWAPI.URL"]
+            System.getProperties()["AWAPI.RootDirectory"] = properties["AWAPI.RootDirectory"]
+            println "AWAPI.URL = ${System.getProperties()["AWAPI.URL"]}"
+
+            println "Generating to ${properties["site.dir"]}"
+
+            // AWStaticSiteGenerator.main([properties["site.dir"], properties["site.src"]].toArray(new String[2]));
+            AWStaticSiteGenerator.main([properties["site.dir"], properties["site.src"], ".", "http://aribaweb.org"].toArray(new String[4]));
+        </groovy>
+    </target>
+
+    <target name="run-site">
+        <subant target="build-and-run" failonerror="true">
+            <property name="aw.home" location="${aw.home}"/>
+            <property name="make.common.dir" location="${make.common.dir}"/>
+            <property name="build.dir" value="${build.dir}"/>
+            <property name="build.jars.dir" value="${build.jars.dir}"/>
+            <property name="tomcat.jvmarg.extra1" value="-DAWAPI.URL=${AWAPI.URL}"/>
+            <property name="tomcat.jvmarg.extra2" value="-DAWAPI.RootDirectory=${AWAPI.RootDirectory}"/>
+
+            <fileset dir="src/site" includes="build.xml" erroronmissingdir="false"/>
+        </subant>
+    </target>
+    
+    <target name="javadocs" description="Generate javadoc" depends="doc-resources"  unless="nodoc">
+        <module-crawl target="javadocs"/>
+    </target>
+
+    <target name="javadocs-internal"  unless="nodoc">
+        <module-crawl target="javadocs-internal"/>
+    </target>
+
+    <target name="docs" description="Generate docs" depends="javadocs, process-doc"/>
+
+    <!-- Need app.Demo.jar for lucence SourceCodeAnalyzer -->
+    <path id="groovy.lucene.classpath">
+        <path refid="groovy.script.classpath"/>
+
+        <fileset dir="${ariba.jars.dir}">
+            <include name="app.Demo.jar"/>
+        </fileset>
+    </path>
+
+    <target name="index-doc" depends="" unless="nodoc">
+        <property name="doc.index" location="${doc.dir}/index.lucene"/>
+        <delete dir="${doc.index}"/>
+        <mkdir dir="${doc.index}"/>
+
+        <groovy src="bin/indexsource.groovy" classpathref="groovy.lucene.classpath">
+            <arg value="${doc.index}"/>
+
+            <arg value="${doc.dir}/api/"/>
+            <arg value="$ARIBAWEB_HOME/docs/api"/>
+            <arg value="doc"/>
+
+            <arg value="${doc.dir}/tutorial/"/>
+            <arg value="$ARIBAWEB_HOME/docs/tutorial"/>
+            <arg value="tutorial"/>
+
+            <arg value="${src.ui.dir}/aribaweb/"/>
+            <arg value="$ARIBAWEB_HOME/src/aribaweb"/>
+            <arg value="source"/>
+
+            <arg value="${src.ui.dir}/widgets/"/>
+            <arg value="$ARIBAWEB_HOME/src/widgets"/>
+            <arg value="source"/>
+
+            <arg value="${src.ui.dir}/metaui/"/>
+            <arg value="$ARIBAWEB_HOME/src/metaui"/>
+            <arg value="source"/>
+
+            <arg value="${dist.root.dir}/examples/"/>
+            <arg value="$ARIBAWEB_HOME/examples"/>
+            <arg value="examples"/>
+        </groovy>
+    </target>
+
+    <!-- run groovy script with our classpath, as in  ant -Dscript=bin/something.groovy -Dargs="arg1 arg2" -->
+    <target name="groovy" depends="">
+        <groovy src="${script}" classpathref="groovy.script.classpath">
+            <arg line="${args}"/>
+        </groovy>
+    </target>
+
+    <target name="groovy-lucene" depends="">
+        <groovy src="${script}" classpathref="groovy.lucene.classpath">
+            <arg line="${args}"/>
+        </groovy>
+    </target>
+
+    <!-- ================================================================== -->
+    <!-- D I S T R I B U T I O N                                            -->
+    <!-- ================================================================== -->
+    <patternset id="src.jar.patterns"
+                includes="**/*.java, **/*.awl, **/*.groovy, **/*.js, **/*.css, **/*.htm"/>
+    <patternset id="src.dist.patterns"
+                includes="tools/,src/,examples/,*,lib/ext*/,bin/"
+                excludes="dist/, webapps/, work/, classes/, derived-src/, site/"
+            />
+    <patternset id="binary.root.dist.patterns"
+                includes="**"
+                excludes="dist/, conf/, work/, classes/, build/, derived-src/, webapps/, lib/app.*, bin/, site/"
+            />
+
+    <patternset id="binary.root.dist.patterns.exe"
+                includes="bin/"
+            />
+
+    <target name="package"
+            depends="package-binary, package-src">
+    </target>
+
+    <target name="package-binary"
+            depends="wars, src-jar, docs, site, index-doc, check-ant, package-binary-min, package-binary-full">
+    </target>
+
+    <target name="inc-package-binary"
+            depends="jars, src-jar, check-ant, package-binary-min, package-binary-full">
+    </target>
+
+    <target name="src-jar">
+        <zip destfile="${build.jars.dir}/ariba.aw-all-src.jar">
+            <zipfileset dir="${src.util.dir}"><patternset refid="src.jar.patterns"/></zipfileset>
+            <zipfileset dir="${src.expr.dir}"><patternset refid="src.jar.patterns"/></zipfileset>
+            <zipfileset dir="${src.ui.dir}/aribaweb"><patternset refid="src.jar.patterns"/></zipfileset>
+            <zipfileset dir="${src.ui.dir}/widgets"><patternset refid="src.jar.patterns"/></zipfileset>
+            <zipfileset dir="${src.ui.dir}/metaui"><patternset refid="src.jar.patterns"/></zipfileset>
+            <zipfileset dir="${src.ui.dir}/metaui-jpa"><patternset refid="src.jar.patterns"/></zipfileset>
+            <zipfileset dir="${src.ui.dir}/awreload"><patternset refid="src.jar.patterns"/></zipfileset>
+        </zip>
+        <zip destfile="${build.jars.dir}/ariba.appcore-src.jar">
+            <zipfileset dir="${src.samples.dir}/appcore"><patternset refid="src.jar.patterns"/></zipfileset>
+        </zip>
+    </target>
+
+    <target name="check-ant">
+        <property name="env.ANT_DIST_HOME" value="NOT_SET"/>
+        <condition property="ant.dist.dir" value="${env.ANT_DIST_HOME}">
+            <and>
+                <not><equals arg1="${env.ANT_DIST_HOME}" arg2="NOT_SET"/></not>
+                <not><equals arg1="${env.ANT_DIST_HOME}" arg2=""/></not>
+            </and>
+        </condition>
+        <property name="env.TOMCAT_DIST_HOME" value="NOT_SET"/>
+        <condition property="tomcat.dist.dir" value="${env.TOMCAT_DIST_HOME}">
+            <and>
+                <not><equals arg1="${env.TOMCAT_DIST_HOME}" arg2="NOT_SET"/></not>
+                <not><equals arg1="${env.TOMCAT_DIST_HOME}" arg2=""/></not>
+            </and>
+        </condition>
+        <condition property="has.dist.deps">
+            <and>
+                <isset property="tomcat.dist.dir"/>
+                <isset property="ant.dist.dir"/>
+            </and>
+        </condition>
+    </target>
+
+    <target name="package-binary-min" unless="has.dist.deps"
+            description="--> Generates the AribaWeb distribution as .zip">
+        <echo message="ANT_DIST_HOME or TOMCAT_DIST_HOME not set.  Building thin distribution..."/>
+        <mkdir dir="${dist.dir}"/>
+        <delete file="${binary.dist.zip}"/>
+        <zip destfile="${binary.dist.zip}">
+            <zipfileset prefix="aribaweb-${version}" dir="${dist.root.dir}">
+                <patternset refid="binary.root.dist.patterns"/>
+            </zipfileset>
+            <zipfileset prefix="aribaweb-${version}" dir="${dist.root.dir}" filemode="777">
+                <patternset refid="binary.root.dist.patterns.exe"/>
+            </zipfileset>
+        </zip>
+        <aribaweb-checksum file="${binary.dist.zip}"/>
+    </target>
+
+    <target name="package-binary-full" if="has.dist.deps">
+        <echo message="Packaging Ant from ${ant.dist.dir}..."/>
+        <echo message="Packaging Tomcat from ${tomcat.dist.dir}..."/>
+        <mkdir dir="${dist.dir}"/>
+        <delete file="${binary.dist.zip}"/>
+        <zip destfile="${binary.dist.zip}">
+            <zipfileset prefix="aribaweb-${version}" dir="${dist.root.dir}">
+                <patternset refid="binary.root.dist.patterns"/>
+            </zipfileset>
+            <zipfileset prefix="aribaweb-${version}" dir="${dist.root.dir}" filemode="777">
+                <patternset refid="binary.root.dist.patterns.exe"/>
+            </zipfileset>
+            <zipfileset prefix="aribaweb-${version}/tools/ant" dir="${ant.dist.dir}"
+                        excludes="bin/,docs/**/*"/>
+            <zipfileset prefix="aribaweb-${version}/tools/ant" dir="${ant.dist.dir}" filemode="777"
+                        includes="bin/"/>
+
+            <zipfileset prefix="aribaweb-${version}/tools/tomcat" dir="${tomcat.dist.dir}"
+                        includes="*,conf/,lib/"/>
+            <zipfileset prefix="aribaweb-${version}/tools/tomcat" dir="${tomcat.dist.dir}" filemode="777"
+                        includes="bin/"/>
+        </zip>
+        <aribaweb-checksum file="${binary.dist.zip}"/>
+    </target>
+
+    <target name="package-src"
+            description="--> Generates the AribaWeb source code distribution as .zip">
+        <mkdir dir="${dist.dir}"/>
+        <delete file="${src.dist.zip}"/>
+        <zip destfile="${src.dist.zip}">
+            <zipfileset prefix="aribaweb-${version}" dir="${dist.root.dir}">
+                <patternset refid="src.dist.patterns"/>
+            </zipfileset>
+        </zip>
+        <aribaweb-checksum file="${src.dist.zip}"/>
+    </target>
+
+    <target name="dist-all" depends="package"/>
+
+    <target name="check-ftp">
+        <fail unless="env.ARIBAWEB_FTP_HOST"/>
+        <fail unless="env.ARIBAWEB_FTP_USERNAME"/>
+        <fail unless="env.ARIBAWEB_FTP_PASSWORD"/>
+    </target>
+
+    <target name="ftp-dist" depends="check-ftp, dist-all">
+        <ftp server="${env.ARIBAWEB_FTP_HOST}"
+             remotedir="/incoming"
+             userid="${env.ARIBAWEB_FTP_USERNAME}"
+             password="${env.ARIBAWEB_FTP_PASSWORD}"
+             depends="yes">
+          <fileset dir="${dist.dir}">
+              <include name="*.zip"/>
+          </fileset>
+        </ftp>
+    </target>
+
+    <macrodef name="module-crawl">
+        <attribute name="target" default=""/>
+        <attribute name="failonerror" default="true"/>
+        <sequential>
+            <echo message="Invoking subant for target: @{target}"/>
+            <subant target="@{target}" failonerror="@{failonerror}">
+                <property name="aw.home" location="${aw.home}"/>
+                <property name="make.common.dir" location="${make.common.dir}"/>
+                <property name="build.dir" value="${build.dir}"/>
+                <property name="build.jars.dir" value="${build.jars.dir}"/>
+                <property name="use.shared.webapps.base" value="true"/>
+                <fileset dir="${src.dir}" includes="build.xml" erroronmissingdir="false"/>
+                <fileset dir="${src.ui.dir}" includes="metaui-jpa/examples/appcore/build.xml" erroronmissingdir="true"/>
+                <fileset dir="${src.samples.dir}" includes="**/appcore/build.xml"/>
+                <fileset refid="src.samples"/>
+                <fileset refid="src.ui.samples"/>
+            </subant>
+        </sequential>
+    </macrodef>
+
+    <!-- Macro for building checksum files
+        This is only needed until the "format" option is supported
+        by ant's built in checksum task
+    -->
+    <macrodef name="aribaweb-checksum">
+        <attribute name="file"/>
+        <!-- NOTE: we use the value of @{file} in the names any properties
+           set because macro's don't have variables, and otherwise we
+           wouldn't be able to checksum more then one file per build
+        -->
+        <sequential>
+            <checksum file="@{file}"
+                      property="@{file}.sum"
+                      algorithm="${checksum.algorithm}"/>
+            <basename file="@{file}" property="@{file}.base"/>
+            <concat destfile="@{file}.${checksum.algorithm}"
+                    force="yes"
+                    append="false"
+                    fixlastline="yes">
+                <header trimleading="yes">${@{file}.sum}</header>
+                <!-- empty fileset to trick concat -->
+                <fileset dir="." excludes="**"/>
+                <footer trimleading="yes">${@{file}.base}
+                </footer>
+            </concat>
+        </sequential>
+    </macrodef>
+</project>

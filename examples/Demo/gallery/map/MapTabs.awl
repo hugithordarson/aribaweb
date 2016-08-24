@@ -1,0 +1,16 @@
+<w:BasicPageWrapper hasForm="$true">
+    <w:TabSet>
+        <w:Tab label="Simple Map">
+            <x:MapSample/>
+        </w:Tab>
+        <w:Tab label="Map Search">
+            <x:MapSearch/>
+        </w:Tab>
+        <w:Tab label="Draw Course">
+            <x:MapDrawCourse/>
+        </w:Tab>
+        <w:Tab label="The Race">
+            <x:MapRace/>
+        </w:Tab>
+    </w:TabSet>
+</w:BasicPageWrapper>

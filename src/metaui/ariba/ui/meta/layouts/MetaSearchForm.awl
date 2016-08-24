@@ -1,0 +1,28 @@
+<m:Context scopeKey="class" dataSourceType="${metaContext.displayGroup.dataSource.class.getName()}">\
+  <m:Context operation="$searchOperation">
+    <m:Context layout="SearchForm" object="$searchMap">
+    <div bh="DTBS">
+        <m:IncludeComponent/>
+        <div style="float:right">\
+            <w:TextButton action="$search" isDefault="$true"><a:Local key="a001">Search</a:Local></w:TextButton>\
+        </div>
+        <a:SetValue mid="$requestContext.nextElementId"/>
+        <div _ifTrue="$showSearchTypeChooser" style="float:right">
+            <w:PopupMenuLink menuId="$mid" position="this"><a:Local key="a002">Options</a:Local></w:PopupMenuLink>
+            <w:PopupMenu menuId="$mid">
+                <w:PopupMenuHeading>Search Type</w:PopupMenuHeading>
+                <w:PopupMenuItem showBullet='${searchOperation=="keywordSearch"}' action='${searchOperation="keywordSearch"; null}'>\
+                    <a:Local key="a003">Keyword Search</a:Local>
+                </w:PopupMenuItem>
+                <w:PopupMenuItem showBullet='${searchOperation=="textSearch"}' action='${searchOperation="textSearch"; null}'>\
+                    <a:Local key="a004">Advanced Search</a:Local>
+                </w:PopupMenuItem>
+                <w:PopupMenuItem showBullet='${searchOperation=="search"}' action='${searchOperation="search"; null}'>\
+                    <a:Local key="a005">Structured Search</a:Local>
+                </w:PopupMenuItem>
+            </w:PopupMenu>
+        </div>
+    </div>
+    </m:Context>
+  </m:Context>
+</m:Context>

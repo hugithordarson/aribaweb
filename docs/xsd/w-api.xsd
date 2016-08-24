@@ -1,0 +1,1564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<!-- definition of AribaWeb elements for namespace 'w' -->
+<xs:element name="Chart">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="type" type="xs:string"/>
+        <xs:attribute name="filename" type="xs:string"/>
+        <xs:attribute name="width" type="xs:string"/>
+        <xs:attribute name="height" type="xs:string"/>
+        <xs:attribute name="animation" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="ChartData">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="list" type="xs:string" use="required"/>
+        <xs:attribute name="labelKey" type="xs:string" use="required"/>
+        <xs:attribute name="valueKey" type="xs:string" use="required"/>
+        <xs:attribute name="color" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="OutlineControl">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="renderAsTable" type="xs:string"/>
+        <xs:attribute name="title" type="xs:string"/>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="selectAction" type="xs:string"/>
+        <xs:attribute name="indentationPerLevel" type="xs:string"/>
+        <xs:attribute name="allowSelection" type="xs:string"/>
+        <xs:attribute name="expansionLinkAction" type="xs:string"/>
+        <xs:attribute name="addSelectionPadding" type="xs:string"/>
+        <xs:attribute name="style" type="xs:string"/>
+        <xs:attribute name="valign" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="OutlineFolderControl">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="title" type="xs:string" use="required"/>
+        <xs:attribute name="isFolder" type="xs:string"/>
+        <xs:attribute name="indentationPerLevel" type="xs:string"/>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="allowSelection" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="OutlineInnerRepetition">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="list" type="xs:string" use="required"/>
+        <xs:attribute name="scopeSubcomponentsByItem" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="OutlineRepetition">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="item" type="xs:string"/>
+        <xs:attribute name="list" type="xs:string"/>
+        <xs:attribute name="children" type="xs:string"/>
+        <xs:attribute name="hasChildren" type="xs:string"/>
+        <xs:attribute name="outlineState" type="xs:string"/>
+        <xs:attribute name="selectionPath" type="xs:string"/>
+        <xs:attribute name="selectedObject" type="xs:string"/>
+        <xs:attribute name="expandAll" type="xs:string"/>
+        <xs:attribute name="maxLevels" type="xs:string"/>
+        <xs:attribute name="outlineIndex" type="xs:string"/>
+        <xs:attribute name="expandCurrentItem" type="xs:string"/>
+        <xs:attribute name="showExpansionControl" type="xs:string"/>
+        <xs:attribute name="fullList" type="xs:string"/>
+        <xs:attribute name="start" type="xs:string"/>
+        <xs:attribute name="count" type="xs:string"/>
+        <xs:attribute name="scopeSubcomponentsByItem" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="RichTextArea">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="value" type="xs:string" use="required"/>
+        <xs:attribute name="editable" type="xs:string"/>
+        <xs:attribute name="readonly" type="xs:string"/>
+        <xs:attribute name="errorKey" type="xs:string"/>
+        <xs:attribute name="emptyStringValue" type="xs:string"/>
+        <xs:attribute name="rows" type="xs:string"/>
+        <xs:attribute name="cols" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="AWVModalPageWrapper">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="toc" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="CompactForm">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="CompactFormRow">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="tip" type="xs:string"/>
+        <xs:attribute name="errorKey" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="ComplexRepetition">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="item" type="xs:string" use="required"/>
+        <xs:attribute name="list" type="xs:string" use="required"/>
+        <xs:attribute name="count" type="xs:string" use="required"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="FormRow">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="label" type="xs:string"/>
+        <xs:attribute name="cueTip" type="xs:string"/>
+        <xs:attribute name="required" type="xs:string"/>
+        <xs:attribute name="errorKey" type="xs:string"/>
+        <xs:attribute name="errorValueSource" type="xs:string"/>
+        <xs:attribute name="errorFieldPath" type="xs:string"/>
+        <xs:attribute name="errorGroupName" type="xs:string"/>
+        <xs:attribute name="hidden" type="xs:string"/>
+        <xs:attribute name="useNoLabelLayout" type="xs:string"/>
+        <xs:attribute name="labelNowrap" type="xs:string"/>
+        <xs:attribute name="dragType" type="xs:string"/>
+        <xs:attribute name="dragAction" type="xs:string"/>
+        <xs:attribute name="dropAction" type="xs:string"/>
+        <xs:attribute name="dragHandleClickAction" type="xs:string"/>
+        <xs:attribute name="highlightRow" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="FormTable">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="showErrorFlags" type="xs:string"/>
+        <xs:attribute name="useFourZones" type="xs:string"/>
+        <xs:attribute name="leftZoneRowCount" type="xs:string"/>
+        <xs:attribute name="showErrorFlags" type="xs:string"/>
+        <xs:attribute name="omitTable" type="xs:string"/>
+        <xs:attribute name="width" type="xs:string"/>
+        <xs:attribute name="editable" type="xs:string"/>
+        <xs:attribute name="omitLabelPadding" type="xs:string"/>
+        <xs:attribute name="showLabelsAboveControls" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="GenericChooser">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="object" type="xs:string"/>
+        <xs:attribute name="key" type="xs:string"/>
+        <xs:attribute name="list" type="xs:string"/>
+        <xs:attribute name="destinationClass" type="xs:string"/>
+        <xs:attribute name="choiceProviderParams" type="xs:string"/>
+        <xs:attribute name="multiSelect" type="xs:string"/>
+        <xs:attribute name="type" type="xs:string"/>
+        <xs:attribute name="displayKey" type="xs:string"/>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="noSelectionString" type="xs:string"/>
+        <xs:attribute name="isRefresh" type="xs:string"/>
+        <xs:attribute name="disabled" type="xs:string"/>
+        <xs:attribute name="size" type="xs:string"/>
+        <xs:attribute name="allowFullMatchOnInput" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="AribaAboutBox">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="AribaAction">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:attribute name="alwaysVisible" type="xs:string"/>
+        <xs:attribute name="style" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="AribaBanner">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="AribaContactBox">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="htmlInline" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="AribaNotificationDialog">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="AribaShutdownWarning">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="BaseTabSet">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="actionMenuId" type="xs:string"/>
+        <xs:attribute name="actionMenuLabel" type="xs:string"/>
+        <xs:attribute name="label" type="xs:string" use="required"/>
+        <xs:attribute name="displayString" type="xs:string" use="required"/>
+        <xs:attribute name="selection" type="xs:string"/>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="item" type="xs:string" use="required"/>
+        <xs:attribute name="list" type="xs:string" use="required"/>
+        <xs:attribute name="visibles" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="contentClass" type="xs:string"/>
+        <xs:attribute name="dropAction" type="xs:string"/>
+        <xs:attribute name="dropType" type="xs:string"/>
+        <xs:attribute name="vertical" type="xs:string"/>
+        <xs:attribute name="index" type="xs:string"/>
+        <xs:attribute name="submitForm" type="xs:string"/>
+        <xs:attribute name="omitTabSet" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="BasicNavigator">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="showTopButtons" type="xs:string"/>
+        <xs:attribute name="showBottomButtons" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="BasicPageWrapper">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="commands" type="xs:string"/>
+        <xs:attribute name="toc" type="xs:string"/>
+        <xs:attribute name="applicationCSS" type="xs:string"/>
+        <xs:attribute name="debugTitle" type="xs:string"/>
+        <xs:attribute name="metaTags" type="xs:string"/>
+        <xs:attribute name="windowTitle" type="xs:string"/>
+        <xs:attribute name="escapeTitle" type="xs:string"/>
+        <xs:attribute name="sessionless" type="xs:string"/>
+        <xs:attribute name="onLoad" type="xs:string"/>
+        <xs:attribute name="submitFormDefault" type="xs:string"/>
+        <xs:attribute name="disableLogoutAction" type="xs:string"/>
+        <xs:attribute name="disableHomeAction" type="xs:string"/>
+        <xs:attribute name="disableHelpAction" type="xs:string"/>
+        <xs:attribute name="disableUndelegateAction" type="xs:string"/>
+        <xs:attribute name="disableFooter" type="xs:string"/>
+        <xs:attribute name="disableProfile" type="xs:string"/>
+        <xs:attribute name="hasSidebarNotch" type="xs:string"/>
+        <xs:attribute name="isSidebarVisible" type="xs:string"/>
+        <xs:attribute name="disableAboutBox" type="xs:string"/>
+        <xs:attribute name="isDebugVisible" type="xs:string"/>
+        <xs:attribute name="isNavigatorVisible" type="xs:string"/>
+        <xs:attribute name="overrideGlobalCommandBar" type="xs:string"/>
+        <xs:attribute name="hasForm" type="xs:string"/>
+        <xs:attribute name="formActionUrl" type="xs:string"/>
+        <xs:attribute name="formEncodingType" type="xs:string"/>
+        <xs:attribute name="omitWrapperFrame" type="xs:string"/>
+        <xs:attribute name="helpKey" type="xs:string"/>
+        <xs:attribute name="formName" type="xs:string"/>
+        <xs:attribute name="addContentMargin" type="xs:string"/>
+        <xs:attribute name="bodyClass" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="BucketHeading">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="isExternal" type="xs:string"/>
+        <xs:attribute name="initState" type="xs:string"/>
+        <xs:attribute name="state" type="xs:string"/>
+        <xs:attribute name="submitForm" type="xs:string"/>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="label" type="xs:string"/>
+        <xs:attribute name="isSelected" type="xs:string"/>
+        <xs:attribute name="labelRight" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="BucketItem">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="pageName" type="xs:string"/>
+        <xs:attribute name="flashing" type="xs:string"/>
+        <xs:attribute name="flashSet" type="xs:string"/>
+        <xs:attribute name="label" type="xs:string" use="required"/>
+        <xs:attribute name="labelRight" type="xs:string"/>
+        <xs:attribute name="isSelected" type="xs:string"/>
+        <xs:attribute name="submitForm" type="xs:string"/>
+        <xs:attribute name="enabled" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="BucketsTOC">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="Calendar">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="selection" type="xs:string" use="required"/>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="showYearNavigation" type="xs:string"/>
+        <xs:attribute name="dateFactory" type="xs:string"/>
+        <xs:attribute name="calendarDate" type="xs:string"/>
+        <xs:attribute name="bodyBehavior" type="xs:string"/>
+        <xs:attribute name="enabledCalendarDays" type="xs:string"/>
+        <xs:attribute name="isStandalone" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="CheckboxList">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="item" type="xs:string" use="required"/>
+        <xs:attribute name="selections" type="xs:string" use="required"/>
+        <xs:attribute name="list" type="xs:string" use="required"/>
+        <xs:attribute name="index" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="Chooser">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="selections" type="xs:string"/>
+        <xs:attribute name="selectionSource" type="xs:string"/>
+        <xs:attribute name="state" type="xs:string"/>
+        <xs:attribute name="noSelectionString" type="xs:string"/>
+        <xs:attribute name="formatter" type="xs:string"/>
+        <xs:attribute name="disabled" type="xs:string"/>
+        <xs:attribute name="size" type="xs:string"/>
+        <xs:attribute name="multiSelect" type="xs:string"/>
+        <xs:attribute name="searchAction" type="xs:string"/>
+        <xs:attribute name="maxLength" type="xs:string"/>
+        <xs:attribute name="errorKey" type="xs:string"/>
+        <xs:attribute name="basic" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="allowFullMatchOnInput" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="ClientPanelWrapper">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="title" type="xs:string"/>
+        <xs:attribute name="editable" type="xs:string"/>
+        <xs:attribute name="okHint" type="xs:string"/>
+        <xs:attribute name="okTitle" type="xs:string"/>
+        <xs:attribute name="cancelHint" type="xs:string"/>
+        <xs:attribute name="okAction" type="xs:string"/>
+        <xs:attribute name="cancelAction" type="xs:string"/>
+        <xs:attribute name="cancelTitle" type="xs:string"/>
+        <xs:attribute name="doneHint" type="xs:string"/>
+        <xs:attribute name="doneTitle" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="ComboButton">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="Confirmation">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string"/>
+        <xs:attribute name="okAction" type="xs:string"/>
+        <xs:attribute name="cancelAction" type="xs:string"/>
+        <xs:attribute name="lazyLoadConfirmation" type="xs:string"/>
+        <xs:attribute name="validate" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="ConfirmationLink">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="pageName" type="xs:string"/>
+        <xs:attribute name="submitForm" type="xs:string"/>
+        <xs:attribute name="onClick" type="xs:string"/>
+        <xs:attribute name="omitTags" type="xs:string"/>
+        <xs:attribute name="senderId" type="xs:string"/>
+        <xs:attribute name="href" type="xs:string"/>
+        <xs:attribute name="scrollToVisible" type="xs:string"/>
+        <xs:attribute name="target" type="xs:string"/>
+        <xs:attribute name="windowAttributes" type="xs:string"/>
+        <xs:attribute name="fragmentIdentifier" type="xs:string"/>
+        <xs:attribute name="onMouseDown" type="xs:string"/>
+        <xs:attribute name="confirmationId" type="xs:string"/>
+        <xs:attribute name="behavior" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="CueTip">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="value" type="xs:string"/>
+        <xs:attribute name="autoSize" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="DateField">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="value" type="xs:string" use="required"/>
+        <xs:attribute name="formatter" type="xs:string"/>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="showYearNavigation" type="xs:string"/>
+        <xs:attribute name="size" type="xs:string"/>
+        <xs:attribute name="textFieldType" type="xs:string"/>
+        <xs:attribute name="disabled" type="xs:string"/>
+        <xs:attribute name="errorKey" type="xs:string"/>
+        <xs:attribute name="calendarDate" type="xs:string"/>
+        <xs:attribute name="isRefresh" type="xs:string"/>
+        <xs:attribute name="formValueStrings" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="DefaultCommandBar">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="DeferredDisplayWrapper">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="DialogPageWrapper">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="hasForm" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="DocumentHead">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="applicationCSS" type="xs:string"/>
+        <xs:attribute name="sessionless" type="xs:string"/>
+        <xs:attribute name="windowTitle" type="xs:string"/>
+        <xs:attribute name="metaTags" type="xs:string"/>
+        <xs:attribute name="escapeTitle" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="ErrorBubble">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="ErrorFlag">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="colspan" type="xs:string"/>
+        <xs:attribute name="emitRow" type="xs:string"/>
+        <xs:attribute name="errorKey" type="xs:string"/>
+        <xs:attribute name="errorValueSource" type="xs:string"/>
+        <xs:attribute name="errorFieldPath" type="xs:string"/>
+        <xs:attribute name="errorGroupName" type="xs:string"/>
+        <xs:attribute name="errorImage" type="xs:string"/>
+        <xs:attribute name="errorLinkAction" type="xs:string"/>
+        <xs:attribute name="errorLinkOn" type="xs:string"/>
+        <xs:attribute name="errorLinkSubmitForm" type="xs:string"/>
+        <xs:attribute name="preBreak" type="xs:string"/>
+        <xs:attribute name="showError" type="xs:string"/>
+        <xs:attribute name="showWarning" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="ErrorIndicator">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="errorKey" type="xs:string"/>
+        <xs:attribute name="errorValueSource" type="xs:string"/>
+        <xs:attribute name="errorFieldPath" type="xs:string"/>
+        <xs:attribute name="errorGroupName" type="xs:string"/>
+        <xs:attribute name="showError" type="xs:string"/>
+        <xs:attribute name="showWarning" type="xs:string"/>
+        <xs:attribute name="showRequired" type="xs:string"/>
+        <xs:attribute name="autoHideBubble" type="xs:string"/>
+        <xs:attribute name="errorImage" type="xs:string"/>
+        <xs:attribute name="warningImage" type="xs:string"/>
+        <xs:attribute name="isNavigable" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="FileBrowser">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="baseDirectory" type="xs:string"/>
+        <xs:attribute name="selection" type="xs:string" use="required"/>
+        <xs:attribute name="action" type="xs:string" use="required"/>
+        <xs:attribute name="fileFilter" type="xs:string"/>
+        <xs:attribute name="filenameFilter" type="xs:string"/>
+        <xs:attribute name="enableScrolling" type="xs:string"/>
+        <xs:attribute name="showOptionsMenu" type="xs:string"/>
+        <xs:attribute name="batchSize" type="xs:string"/>
+        <xs:attribute name="allowCdUp" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="FileUploadChooser">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="file" type="xs:string"/>
+        <xs:attribute name="bytes" type="xs:string"/>
+        <xs:attribute name="filename" type="xs:string"/>
+        <xs:attribute name="mimeType" type="xs:string"/>
+        <xs:attribute name="fileSizeExceeded" type="xs:string"/>
+        <xs:attribute name="maxLength" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="FileUploadStatusBar">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="fileSizeExceeded" type="xs:string"/>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="FourZoneLayout">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="widthLeft" type="xs:string"/>
+        <xs:attribute name="widthRight" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="HintMessage">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="showFooterMessage" type="xs:string"/>
+        <xs:attribute name="showTopLine" type="xs:string"/>
+        <xs:attribute name="isVisible" type="xs:string"/>
+        <xs:attribute name="isExpanded" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="HoverCard">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="position" type="xs:string" use="required"/>
+        <xs:attribute name="disableLazyDiv" type="xs:string" use="required"/>
+        <xs:attribute name="shouldOpen" type="xs:string" use="required"/>
+        <xs:attribute name="class" type="xs:string" use="required"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="HTMLActionFilter">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="value" type="xs:string" use="required"/>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="actionUrl" type="xs:string"/>
+        <xs:attribute name="actionTarget" type="xs:string"/>
+        <xs:attribute name="resourceUrl" type="xs:string"/>
+        <xs:attribute name="replacementUrl" type="xs:string"/>
+        <xs:attribute name="resourceResponse" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="HtmlInclude">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="filename" type="xs:string" use="required"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="MapForEach">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="index" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="MessagesList">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="message" type="xs:string"/>
+        <xs:attribute name="isError" type="xs:string"/>
+        <xs:attribute name="isWarning" type="xs:string"/>
+        <xs:attribute name="isConfirmation" type="xs:string"/>
+        <xs:attribute name="addExtraBR" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="MimeMessageView">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="parsedMessage" type="xs:string"/>
+        <xs:attribute name="mimeMessage" type="xs:string"/>
+        <xs:attribute name="style" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="ModalPageWrapper">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="title" type="xs:string"/>
+        <xs:attribute name="disableHelpAction" type="xs:string"/>
+        <xs:attribute name="disableLogoutAction" type="xs:string"/>
+        <xs:attribute name="disableHomeAction" type="xs:string"/>
+        <xs:attribute name="hasSidebarNotch" type="xs:string"/>
+        <xs:attribute name="isSidebarVisible" type="xs:string"/>
+        <xs:attribute name="toc" type="xs:string"/>
+        <xs:attribute name="formEncodingType" type="xs:string"/>
+        <xs:attribute name="hasForm" type="xs:string"/>
+        <xs:attribute name="submitFormDefault" type="xs:string"/>
+        <xs:attribute name="editable" type="xs:string"/>
+        <xs:attribute name="okHint" type="xs:string"/>
+        <xs:attribute name="okTitle" type="xs:string"/>
+        <xs:attribute name="okButtonClass" type="xs:string"/>
+        <xs:attribute name="okButtonWrapperStyle" type="xs:string"/>
+        <xs:attribute name="cancelHint" type="xs:string"/>
+        <xs:attribute name="okAction" type="xs:string"/>
+        <xs:attribute name="okButtonRight" type="xs:string"/>
+        <xs:attribute name="cancelAction" type="xs:string"/>
+        <xs:attribute name="cancelTitle" type="xs:string"/>
+        <xs:attribute name="cancelButtonClass" type="xs:string"/>
+        <xs:attribute name="cancelButtonWrapperStyle" type="xs:string"/>
+        <xs:attribute name="doneHint" type="xs:string"/>
+        <xs:attribute name="doneTitle" type="xs:string"/>
+        <xs:attribute name="submitForm" type="xs:string"/>
+        <xs:attribute name="helpKey" type="xs:string"/>
+        <xs:attribute name="showTopButtons" type="xs:string"/>
+        <xs:attribute name="showBottomButtons" type="xs:string"/>
+        <xs:attribute name="commands" type="xs:string"/>
+        <xs:attribute name="preventBackTrack" type="xs:string"/>
+        <xs:attribute name="omitWrapperFrame" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="ModalWindowLink">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="omitTags" type="xs:string"/>
+        <xs:attribute name="size" type="xs:string"/>
+        <xs:attribute name="height" type="xs:string"/>
+        <xs:attribute name="width" type="xs:string"/>
+        <xs:attribute name="windowOpen" type="xs:string"/>
+        <xs:attribute name="windowRefresh" type="xs:string"/>
+        <xs:attribute name="windowCloseAction" type="xs:string"/>
+        <xs:attribute name="tile" type="xs:string"/>
+        <xs:attribute name="submitForm" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="ModalWindowWrapper">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="hasForm" type="xs:string"/>
+        <xs:attribute name="title" type="xs:string" use="required"/>
+        <xs:attribute name="okLabel" type="xs:string"/>
+        <xs:attribute name="cancelLabel" type="xs:string"/>
+        <xs:attribute name="okAction" type="xs:string" use="required"/>
+        <xs:attribute name="cancelAction" type="xs:string" use="required"/>
+        <xs:attribute name="windowClosed" type="xs:string"/>
+        <xs:attribute name="refreshParent" type="xs:string"/>
+        <xs:attribute name="showTopButtons" type="xs:string"/>
+        <xs:attribute name="disableCancelButton" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="MRUTabList">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="list" type="xs:string" use="required"/>
+        <xs:attribute name="item" type="xs:string" use="required"/>
+        <xs:attribute name="label" type="xs:string"/>
+        <xs:attribute name="rank" type="xs:string"/>
+        <xs:attribute name="selection" type="xs:string"/>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="maxWidthChars" type="xs:string"/>
+        <xs:attribute name="actionMenuId" type="xs:string"/>
+        <xs:attribute name="actionMenuLabel" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="vertical" type="xs:string"/>
+        <xs:attribute name="dropType" type="xs:string"/>
+        <xs:attribute name="dropAction" type="xs:string"/>
+        <xs:attribute name="disabled" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="PaddedImage">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="alt" type="xs:string"/>
+        <xs:attribute name="title" type="xs:string"/>
+        <xs:attribute name="filename" type="xs:string" use="required"/>
+        <xs:attribute name="minHeight" type="xs:string"/>
+        <xs:attribute name="minWidth" type="xs:string"/>
+        <xs:attribute name="fullUrl" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="PageErrorPanel">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="PageWrapperForm">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="formActionUrl" type="xs:string"/>
+        <xs:attribute name="formName" type="xs:string"/>
+        <xs:attribute name="formEncodingType" type="xs:string"/>
+        <xs:attribute name="omitTags" type="xs:string"/>
+        <xs:attribute name="submitFormDefault" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="PopupCalendar">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="selection" type="xs:string" use="required"/>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="showYearNavigation" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="PopupControl">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="list" type="xs:string" use="required"/>
+        <xs:attribute name="item" type="xs:string"/>
+        <xs:attribute name="index" type="xs:string"/>
+        <xs:attribute name="selection" type="xs:string"/>
+        <xs:attribute name="noSelectionString" type="xs:string"/>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="disabled" type="xs:string"/>
+        <xs:attribute name="size" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="PopupMenu">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="menuId" type="xs:string" use="required"/>
+        <xs:attribute name="index" type="xs:string"/>
+        <xs:attribute name="onDisplayHandler" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="closeTimeout" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="PopupMenuButton">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="menuId" type="xs:string" use="required"/>
+        <xs:attribute name="index" type="xs:string"/>
+        <xs:attribute name="actionSetup" type="xs:string"/>
+        <xs:attribute name="title" type="xs:string"/>
+        <xs:attribute name="omitTags" type="xs:string"/>
+        <xs:attribute name="style" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="justify" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="PopupMenuHeading">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="showSeparator" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="PopupMenuItem">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="submitForm" type="xs:string"/>
+        <xs:attribute name="indentation" type="xs:string"/>
+        <xs:attribute name="showCheck" type="xs:string"/>
+        <xs:attribute name="showBullet" type="xs:string"/>
+        <xs:attribute name="title" type="xs:string"/>
+        <xs:attribute name="disabled" type="xs:string"/>
+        <xs:attribute name="collapsed" type="xs:string"/>
+        <xs:attribute name="clientTrigger" type="xs:string"/>
+        <xs:attribute name="style" type="xs:string"/>
+        <xs:attribute name="onKeyPress" type="xs:string"/>
+        <xs:attribute name="onClick" type="xs:string"/>
+        <xs:attribute name="target" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="PopupMenuLink">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="menuId" type="xs:string" use="required"/>
+        <xs:attribute name="index" type="xs:string"/>
+        <xs:attribute name="actionSetup" type="xs:string"/>
+        <xs:attribute name="title" type="xs:string"/>
+        <xs:attribute name="omitTags" type="xs:string"/>
+        <xs:attribute name="tagName" type="xs:string"/>
+        <xs:attribute name="containerStyle" type="xs:string"/>
+        <xs:attribute name="style" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="onMouseOver" type="xs:string"/>
+        <xs:attribute name="onMouseOut" type="xs:string"/>
+        <xs:attribute name="position" type="xs:string"/>
+        <xs:attribute name="shouldOpen" type="xs:string"/>
+        <xs:attribute name="behavior" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="PortletWrapper">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="title" type="xs:string"/>
+        <xs:attribute name="portletStyle" type="xs:string"/>
+        <xs:attribute name="isMinimized" type="xs:string"/>
+        <xs:attribute name="toggleMinMaxAction" type="xs:string"/>
+        <xs:attribute name="closeAction" type="xs:string"/>
+        <xs:attribute name="disableDragDrop" type="xs:string"/>
+        <xs:attribute name="dragAction" type="xs:string"/>
+        <xs:attribute name="dropAction" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="PulldownButton">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="menuId" type="xs:string" use="required"/>
+        <xs:attribute name="actionSetup" type="xs:string"/>
+        <xs:attribute name="buttonClass" type="xs:string"/>
+        <xs:attribute name="buttonWrapperStyle" type="xs:string"/>
+        <xs:attribute name="style" type="xs:string"/>
+        <xs:attribute name="hilite" type="xs:string"/>
+        <xs:attribute name="title" type="xs:string"/>
+        <xs:attribute name="plain" type="xs:string"/>
+        <xs:attribute name="isBrandStyle" type="xs:string"/>
+        <xs:attribute name="hideArrow" type="xs:string"/>
+        <xs:attribute name="disabled" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="PunchOutHeader">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="onLoad" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="RadioButtonList">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="item" type="xs:string" use="required"/>
+        <xs:attribute name="selection" type="xs:string" use="required"/>
+        <xs:attribute name="list" type="xs:string" use="required"/>
+        <xs:attribute name="isRefresh" type="xs:string"/>
+        <xs:attribute name="index" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="RoundedCorners">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="class" type="xs:string" use="required"/>
+        <xs:attribute name="isTop" type="xs:string" use="required"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="SectionBody">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="showTopSpace" type="xs:string"/>
+        <xs:attribute name="showBottomSpace" type="xs:string"/>
+        <xs:attribute name="leftMargin" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="SectionHeading">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="title" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="SetterLink">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="value" type="xs:string" use="required"/>
+        <xs:attribute name="key" type="xs:string" use="required"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="SimpleTocPanel">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="menuId" type="xs:string" use="required"/>
+        <xs:attribute name="state" type="xs:string"/>
+        <xs:attribute name="title" type="xs:string"/>
+        <xs:attribute name="hasTemplateActionMenu" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="Spotlight">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="title" type="xs:string" use="required"/>
+        <xs:attribute name="value" type="xs:string" use="required"/>
+        <xs:attribute name="step" type="xs:string"/>
+        <xs:attribute name="tagName" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="SpotlightFooter">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="StepByStepTOC">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="label" type="xs:string" use="required"/>
+        <xs:attribute name="steps" type="xs:string" use="required"/>
+        <xs:attribute name="step" type="xs:string" use="required"/>
+        <xs:attribute name="stepLabel" type="xs:string" use="required"/>
+        <xs:attribute name="stepIsNumbered" type="xs:string"/>
+        <xs:attribute name="stepIsVisible" type="xs:string"/>
+        <xs:attribute name="stepIndex" type="xs:string" use="required"/>
+        <xs:attribute name="visibleStepCount" type="xs:string" use="required"/>
+        <xs:attribute name="isClickable" type="xs:string"/>
+        <xs:attribute name="stepAction" type="xs:string" use="required"/>
+        <xs:attribute name="selectionsLabel" type="xs:string" use="required"/>
+        <xs:attribute name="showSelections" type="xs:string"/>
+        <xs:attribute name="selectionsIcon" type="xs:string"/>
+        <xs:attribute name="selectionsAction" type="xs:string"/>
+        <xs:attribute name="selectedStep" type="xs:string" use="required"/>
+        <xs:attribute name="selectionsAlt" type="xs:string"/>
+        <xs:attribute name="navigateStepIndexMax" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="StepHeader">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="label" type="xs:string" use="required"/>
+        <xs:attribute name="stepIndex" type="xs:string"/>
+        <xs:attribute name="hasSubsteps" type="xs:string"/>
+        <xs:attribute name="dialogStyle" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="StepNavigator">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="stepIndex" type="xs:string"/>
+        <xs:attribute name="label" type="xs:string"/>
+        <xs:attribute name="hasSubsteps" type="xs:string"/>
+        <xs:attribute name="dialogStyle" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="StepNavigatorButton">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="action" type="xs:string" use="required"/>
+        <xs:attribute name="label" type="xs:string" use="required"/>
+        <xs:attribute name="hint" type="xs:string"/>
+        <xs:attribute name="isDefault" type="xs:string"/>
+        <xs:attribute name="disabled" type="xs:string"/>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="buttonWrapperStyle" type="xs:string"/>
+        <xs:attribute name="buttonClass" type="xs:string"/>
+        <xs:attribute name="submitForm" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="Substep">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="action" type="xs:string" use="required"/>
+        <xs:attribute name="isSelected" type="xs:string" use="required"/>
+        <xs:attribute name="label" type="xs:string" use="required"/>
+        <xs:attribute name="isClickable" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="Tab">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="label" type="xs:string" use="required"/>
+        <xs:attribute name="isVisible" type="xs:string"/>
+        <xs:attribute name="dropAction" type="xs:string"/>
+        <xs:attribute name="dropType" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="TableHeaderRow">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="list" type="xs:string" use="required"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="TabList">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="actionMenuId" type="xs:string"/>
+        <xs:attribute name="actionMenuLabel" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="vertical" type="xs:string"/>
+        <xs:attribute name="dropType" type="xs:string"/>
+        <xs:attribute name="dropAction" type="xs:string"/>
+        <xs:attribute name="list" type="xs:string" use="required"/>
+        <xs:attribute name="visibles" type="xs:string"/>
+        <xs:attribute name="submitForm" type="xs:string"/>
+        <xs:attribute name="item" type="xs:string" use="required"/>
+        <xs:attribute name="selection" type="xs:string"/>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="index" type="xs:string"/>
+        <xs:attribute name="label" type="xs:string"/>
+        <xs:attribute name="disabled" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="TabSet">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="index" type="xs:string"/>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="submitForm" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="contentClass" type="xs:string"/>
+        <xs:attribute name="vertical" type="xs:string"/>
+        <xs:attribute name="actionMenuId" type="xs:string"/>
+        <xs:attribute name="actionMenuLabel" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="TextButton">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:attribute name="target" type="xs:string"/>
+        <xs:attribute name="windowAttributes" type="xs:string"/>
+        <xs:attribute name="title" type="xs:string"/>
+        <xs:attribute name="submitForm" type="xs:string"/>
+        <xs:attribute name="isBrandStyle" type="xs:string"/>
+        <xs:attribute name="hilite" type="xs:string"/>
+        <xs:attribute name="disabled" type="xs:string"/>
+        <xs:attribute name="disableClick" type="xs:string"/>
+        <xs:attribute name="onKeyPress" type="xs:string"/>
+        <xs:attribute name="tabIndex" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="buttonClass" type="xs:string"/>
+        <xs:attribute name="buttonOverClass" type="xs:string"/>
+        <xs:attribute name="buttonWrapperStyle" type="xs:string"/>
+        <xs:attribute name="onClick" type="xs:string"/>
+        <xs:attribute name="style" type="xs:string"/>
+        <xs:attribute name="plain" type="xs:string"/>
+        <xs:attribute name="onKeyPress" type="xs:string"/>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="formName" type="xs:string"/>
+        <xs:attribute name="formValue" type="xs:string"/>
+        <xs:attribute name="confirmationId" type="xs:string"/>
+        <xs:attribute name="behavior" type="xs:string"/>
+        <xs:attribute name="isDefault" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="TextFormSubmitButton">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="formName" type="xs:string" use="required"/>
+        <xs:attribute name="isDisabled" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="TocPanel">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="title" type="xs:string" use="required"/>
+        <xs:attribute name="hasContent" type="xs:string"/>
+        <xs:attribute name="menuId" type="xs:string"/>
+        <xs:attribute name="state" type="xs:string"/>
+        <xs:attribute name="hasTemplateActionMenu" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="TocPanelItem">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="action" type="xs:string" use="required"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="ToggleBox">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="title" type="xs:string"/>
+        <xs:attribute name="state" type="xs:string" use="required"/>
+        <xs:attribute name="trueImageName" type="xs:string"/>
+        <xs:attribute name="falseImageName" type="xs:string"/>
+        <xs:attribute name="useCheckboxIcon" type="xs:string"/>
+        <xs:attribute name="controlTitle" type="xs:string"/>
+        <xs:attribute name="class" type="xs:string"/>
+        <xs:attribute name="style" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="ToggleImage">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="state" type="xs:string" use="required"/>
+        <xs:attribute name="initState" type="xs:string"/>
+        <xs:attribute name="submitForm" type="xs:string"/>
+        <xs:attribute name="align" type="xs:string"/>
+        <xs:attribute name="scrollToVisible" type="xs:string"/>
+        <xs:attribute name="isExternal" type="xs:string"/>
+        <xs:attribute name="useCheckboxIcon" type="xs:string"/>
+        <xs:attribute name="trueImageName" type="xs:string"/>
+        <xs:attribute name="falseImageName" type="xs:string"/>
+        <xs:attribute name="title" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="TopFrameRedirect">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="TruncateString">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="value" type="xs:string" use="required"/>
+        <xs:attribute name="size" type="xs:string" use="required"/>
+        <xs:attribute name="escapeUnsafeHtml" type="xs:string"/>
+        <xs:attribute name="truncationStyle" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="VirtualForm">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="action" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="WaterMark">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="WidgetInclude">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="WidgetsJavaScript">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="sessionless" type="xs:string"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="WizardButtonsBarBottom">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="WizardButtonsBarTop">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="WizardAction">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="WizardNavigator">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="frame" type="xs:string" use="required"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="WizardPage">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="WizardPageWrapper">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="debugTitle" type="xs:string"/>
+        <xs:attribute name="frame" type="xs:string" use="required"/>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="WizardTOC">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:any minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute/>
+    </xs:complexType>
+</xs:element>
+
+</xs:schema>

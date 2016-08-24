@@ -1,0 +1,44 @@
+<a:PhaseInvocation append="$requestContext.enableComponentPathDebugging"/>\
+<a:If notEqualNull="$toc">
+    <div class="flexContainer tocContent">
+    <a:If ifFalse="$hasTOCContainer">
+        <div class="tocSpacer"></div>\
+            <a:OutputRangeCheck contentIterator="$iteratorForTOCContentCheck">
+                <div style="padding-top:13px;padding-left:20px">
+                    <w:RoundedBox class="flexContainer tocBox">
+                        <a name="navigation"></a>\
+                        <w:WidgetInclude name="$toc"/>\
+                        <a:If notEqualNull="$ariba.ui.widgets.Widgets.TocBottomComponent">
+                            <a:IncludeComponent name="$ariba.ui.widgets.Widgets.TocBottomComponent" isLoginPage="$false"/>
+                        </a:If>
+                    </w:RoundedBox>\
+                </div>
+            </a:OutputRangeCheck>
+            <a:If ifTrue="$requestContext.isIncrementalUpdateRequest">
+                <a:ClientSideScript>
+                    ariba.Widgets.updateTOC($hasVisibleContent);
+                </a:ClientSideScript>
+            <a:Else/>
+                <a:GenericContainer tagName="script">
+                    ariba.Widgets.updateTOC($hasVisibleContent);
+                </a:GenericContainer>                
+            </a:If>
+    <a:Else/>
+        <a name="navigation"></a>\
+        <w:WidgetInclude name="$toc"/>\
+        <a:If notEqualNull="$ariba.ui.widgets.Widgets.TocBottomComponent">
+            <a:IncludeComponent name="$ariba.ui.widgets.Widgets.TocBottomComponent" isLoginPage="$false"/>
+        </a:If>
+    </a:If>
+    </div>
+<a:Else/>
+    <!--- IE defect: This content is embedded in a td that spans the full page.
+         On incremental update when the page size reduces, IE does not recalculate the 
+         height of this td as it is empty. This causes the page height to remain unchanged
+         from the previous page. This retains the scroll bar, allowing the user to scroll 
+         into an empty area. 
+         Putting an empty div with the width as 1px forces IE to recalculate the height
+         of this td. --->\
+    <div style="width:1px;"/>\
+</a:If>
+<a:PhaseInvocation append="$requestContext.disableComponentPathDebugging"/>\

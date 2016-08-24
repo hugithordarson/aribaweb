@@ -1,0 +1,82 @@
+<a:Api>
+    <Copyright>
+        Copyright 1996-2008 Ariba, Inc.
+
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at
+            http://www.apache.org/licenses/LICENSE-2.0
+
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+
+        $Id: //ariba/platform/ui/widgets/ariba/ui/widgets/FourZoneLayout.awl#11 $
+    </Copyright>
+
+    <Overview>
+        Top, Bottom, Left, Right box layout
+    </Overview>
+
+    <Binding key="widthLeft" direction="get" type="String" default="50%">
+        Width for left TD
+    </Binding>
+
+    <Binding key="widthRight" direction="get" type="String" default="50%">
+        Width for right TD
+    </Binding>
+
+    <NamedContent name="top" required="$false">
+        Top zone
+    </NamedContent>
+
+    <NamedContent name="bottom" required="$false">
+        Bottom zone
+    </NamedContent>
+
+    <NamedContent name="left" required="$false">
+        Left zone
+    </NamedContent>
+
+    <NamedContent name="right" required="$false">
+        Right zone
+    </NamedContent>
+</a:Api>\
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+        <td colspan="3" valign="top">\
+            <a:RefreshRegion>
+                <a:IncludeContent name="top" required="$false"/>
+            </a:RefreshRegion>
+        </td>
+    </tr>
+    <tr>
+        <a:SetValue dict.wL="$^widthLeft:50%"/>
+        <td width='${dict.wL.endsWith("px") ? "1%" : dict.wL }' valign="top">\
+            <a:RefreshRegion class="flexContainer">\
+                <a:IncludeContent name="left" required="$false"/>\
+                <div _ifTrue='${dict.wL.endsWith("px")}' style='${"zoom:1;height:1px;line-height:1px;padding-right:" + dict.wL}'></div>
+            </a:RefreshRegion>
+        </td>
+
+        <a:SetValue dict.wA="$^widthAlley:30px"/>
+        <td width="1px">\
+            <div style='${"width:"+dict.wA}'></div>\
+        </td>
+
+        <td width="$^widthRight:50%" valign="top">\
+            <a:RefreshRegion class="flexContainer">
+                <a:IncludeContent name="right" required="$false"/>
+            </a:RefreshRegion>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" valign="top">\
+            <a:RefreshRegion>
+                <a:IncludeContent name="bottom" required="$false"/>
+            </a:RefreshRegion>
+        </td>
+    </tr>
+</table>\

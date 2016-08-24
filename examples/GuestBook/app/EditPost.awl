@@ -1,0 +1,6 @@
+<w:ModalPageWrapper title="$title">
+    <m:Context object="$post" operation="$operation" layout="Inspect">
+        <m:IncludeComponent/>
+    </m:Context>
+</w:ModalPageWrapper>
+        

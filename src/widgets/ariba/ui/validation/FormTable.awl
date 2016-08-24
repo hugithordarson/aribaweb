@@ -1,0 +1,138 @@
+<a:Api>
+    <Copyright>
+        Copyright 1996-2008 Ariba, Inc.
+
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at
+            http://www.apache.org/licenses/LICENSE-2.0
+
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+
+        $Id: //ariba/platform/ui/widgets/ariba/ui/validation/FormTable.awl#18 $
+    </Copyright>
+
+    <Overview>
+        Component content should be AWXFormRows
+    </Overview>
+
+    <Binding key="showErrorFlags" direction="get" type="boolean" default="$false">
+        Should embedded rows emit AWErrorIndicators
+    </Binding>
+
+    <Binding key="useFourZones" direction="get" type="boolean" default="$false">
+        Should use a top, left, right, bottom layout
+    </Binding>
+
+    <Binding key="leftZoneRowCount" direction="get" type="int" default="$false">
+        Required if useFourZones=true -- how many AWXFormRows will be rendered
+        in the left zone?
+    </Binding>
+
+    <Binding key="showErrorFlags" direction="get" type="boolean" default="$false">
+        Should embedded rows emit AWErrorIndicators
+    </Binding>
+
+    <Binding key="omitTable" direction="get" type="boolean" default="$false">
+        Should omit wrapper table tags
+    </Binding>
+
+    <Binding key="width" direction="get" type="String">
+        Table width attribute
+    </Binding>
+
+    <Binding key="editable" direction="get" type="boolean" default="$true">
+        Should use editing layout (i.e. larger row pad style)
+    </Binding>
+
+    <Binding key="omitLabelPadding" direction="get" type="boolean" default="$false">
+        Should omit the minimum label padding used to create alignment across forms
+    </Binding>
+
+    <Binding key="showLabelsAboveControls" direction="get" type="boolean" default="$false">
+        Render labels over the controls (instead of to the left)
+    </Binding>
+
+    <NamedContent name="top" required="$false">
+        top zone rows (assuming useFourZones=true)
+    </NamedContent>
+
+    <NamedContent name="left" required="$false">
+        left zone rows (assuming useFourZones=true)
+    </NamedContent>
+
+    <NamedContent name="right" required="$false">
+        right zone rows (assuming useFourZones=true)
+    </NamedContent>
+
+    <NamedContent name="bottom" required="$false">
+        bottom zone rows (assuming useFourZones=true)
+    </NamedContent>
+
+</a:Api>\
+<span class="$ftClass" emitTags="$ftClass">\
+<a:If ifTrue="$^useFourZones">\
+    <a:If ifTrue="$hasTop">
+        <a:RefreshRegion tagName="table" class="ftL " isScope="$true" omitTags="$omitOuterTable"
+                         border="0" cellspacing="0" cellpadding="0" width="$^width:100%">
+            <tr _ifFalse="$omitPaddingRow"><td class="fflS"></td><td class="ffiS"></td><td class="ffpS"></td></tr>
+            <a:Environment formRowTrailingColspan="$null" showErrorFlags="$^showErrorFlags"
+                           showLabelsAbove="$^showLabelsAboveControls" inFormTable="$true">
+                <a:IncludeContent name="top" required="$false"/>\
+            </a:Environment>
+        </a:RefreshRegion>
+    </a:If>
+\
+    <a:If ifTrue="$hasLR">\
+        <a:RefreshRegion tagName="table" isScope="$true" omitTags="$omitOuterTable"
+                         border="0" cellspacing="0" cellpadding="0" width="$^width">
+            <a:Environment formRowTrailingColspan="$null" showErrorFlags="$^showErrorFlags"
+                           showLabelsAbove="$^showLabelsAboveControls" inFormTable="$true">
+                <a:RefreshRegion tagName="tr">
+                    <td valign="top">\
+                        <a:If ifTrue="$hasLeft">
+                            <a:RefreshRegion tagName="table" class="ftL" isScope="$true" border="0" cellspacing="0" cellpadding="0"  width="100%">
+                                <tr _ifFalse="$^omitLabelPadding"><td class="fflS"></td><td class="ffiS"></td><td class="ffpS"></td></tr>
+                                <a:IncludeContent name="left" required="$false"/>\
+                            </a:RefreshRegion>
+                        </a:If>
+                    </td>
+                    <td class="ftAs"></td>
+                    <td valign="top">\
+                        <a:If ifTrue="$hasRight">
+                            <a:RefreshRegion tagName="table" class="ftR" isScope="$true" border="0" cellspacing="0" cellpadding="0" width="100%">
+                                <tr _ifFalse="$^omitLabelPadding"><td class="fflS"></td><td class="ffiS"></td><td class="ffpS"></td></tr>
+                                <a:IncludeContent name="right" required="$false"/>\
+                            </a:RefreshRegion>
+                        </a:If>
+                    </td>
+                </a:RefreshRegion>
+            </a:Environment>
+        </a:RefreshRegion>\
+    </a:If>\
+\
+    <a:If ifTrue="$hasBottom">\
+        <a:RefreshRegion tagName="table" class="ftL" isScope="$true" omitTags="$omitOuterTable"
+                         border="0" cellspacing="0" cellpadding="0" width="$^width:100%">
+            <tr _ifFalse="$omitPaddingRow"><td class="fflS"></td><td class="ffiS"></td><td class="ffpS"></td></tr>
+            <a:Environment formRowTrailingColspan="$null" showErrorFlags="$^showErrorFlags"
+                           showLabelsAbove="$^showLabelsAboveControls" inFormTable="$true">
+                <a:IncludeContent name="bottom" required="$false"/>\
+            </a:Environment>
+        </a:RefreshRegion>
+    </a:If>
+<a:Else/>\
+    <a:RefreshRegion tagName="table" class="ftL" isScope="$true" omitTags="$omitOuterTable"
+                     border="0" cellspacing="0" cellpadding="0" width="$^width">
+        <tr _ifFalse="$omitPaddingRow"><td class="fflS"></td><td class="ffiS"></td><td class="ffpS"></td></tr>
+        <a:Environment formRowTrailingColspan="$null" showErrorFlags="$^showErrorFlags"
+                       showLabelsAbove="$^showLabelsAboveControls" inFormTable="$true">
+            <a:IncludeContent/>
+        </a:Environment>
+    </a:RefreshRegion>
+</a:If>\
+</span>

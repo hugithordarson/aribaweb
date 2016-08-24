@@ -1,0 +1,12 @@
+/*
+   rules.oss:  auto-loaded (lazily) when any component in this 
+               java package is referenced in the rules
+*/
+module=model.Issue#SearchDetail; 
+class=model.Issue {
+    zTop => title;
+    zLeft => status#Popup => metaClass => priority#Popup;
+    zRight => owner => category;
+    ObjectDetail.zDetail => notes;
+    field=title  { bindings:{size:50};  }
+}

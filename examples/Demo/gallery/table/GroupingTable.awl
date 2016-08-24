@@ -1,0 +1,44 @@
+<style>
+    .oTableWrapper tr.tableGroupBy {
+        background-color:#FFFFFF;
+    }
+</style>
+<t:DataTable csvPath="SampleSpend.csv" item="$item" title="Grouping By Department"
+             groupByColumn="Department" showGroupCounts="$false" initialSortKey="Amount" expandAll="$true"
+             minHeight="400" enableScrolling="$true" showOptionsMenu="$true">
+
+    <a:Content name="optionsMenu">
+        <table><tr>
+            <td nowrap>
+                <a:Hyperlink action="$toggleDetails" style="whitespace:nowrap;margin:0px 5px">\
+                    <a:If ifTrue="$showDetails">Hide Details<a:Else/>Show Details</a:If>
+                </a:Hyperlink>
+            </td>
+            <td><t:OptionsMenuButton/></td>\
+        </tr></table>
+    </a:Content>
+
+    <t:Column key="Department"/>
+
+    <t:Column key="Category"/>
+
+    <t:Column key="Year" formatter="$formatters.shortDate" align="right"/>
+
+    <t:Column key="Amount" formatter="$formatters.money" align="right"/>
+
+    <t:Column align="right">
+        <div style="float:right">
+            <w:TextButton action="$null">Inspect</w:TextButton>
+        </div>
+    </t:Column>
+
+    <t:RowDetail isVisible="$showDetails">
+        <i>Here are some details for $item ...</i>
+    </t:RowDetail>
+
+    <t:ButtonArea>\
+        <w:TextButton action="$null">Delete</w:TextButton>\
+        <w:TextButton action="$null">Edit</w:TextButton>\
+    </t:ButtonArea>
+
+</t:DataTable>

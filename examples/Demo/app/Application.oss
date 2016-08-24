@@ -1,0 +1,60 @@
+/* Used for Dashboard modules rules */
+@module=Home  {
+    label:$[a001]Home;
+    @layout=Main {
+       after:zTop;
+       label:$[a003]"Welcome to AribaWeb!";
+       component:HomeContent;
+    }
+
+    @layout=Actions {
+       label:$[a004]Actions;
+       after:zToc;
+       component:Toc;
+    }
+}
+
+@module=Documentation {
+    label:$[a005]Documentation;
+    homePage:SearchSource;
+}
+
+@module=DataTables  {
+    label:$[a002]"Data Tables";
+    needsForm:true;
+    component:MetaTabs;
+    layout {
+        bindings: { vertical:true; }
+        @layout=SimpleTable     { component:SimpleTable }
+        @layout=AdvancedTable   { component:AdvancedTable }
+        @layout=GroupingTable   { component:GroupingTable }
+        @layout=OutlineTable    { component:OutlineTable }
+        @layout=XMLTable        { component:XMLDataTable }
+        @layout=RemoteTable     { component:MetaContentTable }
+        @layout=ExplorerPage    { component:ExplorerPage }
+        @layout=PersonMasterDetail { component:PersonMasterDetail }
+    }
+}
+
+@module=PivotTables  {
+    label:$[a006]"Pivot Tables";
+    homePage:"PivotTabs";
+}
+
+@module="Forms"  {
+    label:$[a007]Forms;
+    homePage:MetaUIForms;
+}
+
+@module=MiniApp {
+    label:$[a008]"Mini App";
+    homePage:ERPage;
+}
+
+/* Action Set up */
+@actionCategory=Favorites {
+    after:zNav; 
+    label:$[a009]Favorites;
+    @action=MiniApp#pageAction { pageName:ERPage;}
+    @action=Documentation#pageAction { pageName:SearchSource }
+}
