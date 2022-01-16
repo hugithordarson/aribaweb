@@ -29,8 +29,8 @@ import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.Collection;
 import java.util.Iterator;
-import org.apache.oro.text.perl.MalformedPerl5PatternException;
-import org.apache.oro.text.perl.Perl5Util;
+//import org.apache.oro.text.perl.MalformedPerl5PatternException;
+//import org.apache.oro.text.perl.Perl5Util;
 
 /**
     String Utilities. These are utilities for working with strings.
@@ -176,7 +176,7 @@ public final class StringUtil
         }
     }
 
-    private static Perl5Util perlUtil = new Perl5Util();
+//    private static Perl5Util perlUtil = new Perl5Util();
 
     /**
         Checks if a string matches a perl 5 pattern.
@@ -188,16 +188,17 @@ public final class StringUtil
     */
     public static boolean stringMatchesPattern (String str, String pattern)
     {
-        try {
-                // method is synchronized, no need to do it ourselves
-            return perlUtil.match(pattern, str);
-        }
-        catch (MalformedPerl5PatternException ex) {
-            Assert.that(false, "Malformed Perl Pattern: %s",
-                        SystemUtil.stackTrace(ex));
-            /* NOTREACHED */
-            return false;
-        }
+    	throw new RuntimeException( "Disabled due to missing oro dependency // Hugi 2022-01-16" );
+//        try {
+//                // method is synchronized, no need to do it ourselves
+//            return perlUtil.match(pattern, str);
+//        }
+//        catch (MalformedPerl5PatternException ex) {
+//            Assert.that(false, "Malformed Perl Pattern: %s",
+//                        SystemUtil.stackTrace(ex));
+//            /* NOTREACHED */
+//            return false;
+//        }
     }
 
 
